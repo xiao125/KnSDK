@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -76,7 +77,10 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
     private ListView etLv=null;
     private EditText account_et=null;
     private String name=null;
-    
+	//声明一个SharedPreferences对象和一个Editor对象
+	private SharedPreferences preferences;
+	private SharedPreferences.Editor editor;
+
 	@Override
 	public void finish() {
 		// TODO Auto-generated method stub
@@ -109,6 +113,13 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 		
 		
 		m_activity = this ;
+
+		//创建sp存储
+		preferences = getSharedPreferences("Autoogin",MODE_PRIVATE);
+		editor= preferences.edit();
+
+
+
 		m_btn = (Button)findViewById(R.id.login_game_bt);
 	//	m_userName = (TextView)findViewById(R.id.userName);
 		other_login=(TextView) findViewById(R.id.other_login); //其他方式登录
@@ -285,16 +296,27 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 				if(msg.obj!=null){
 					if(GameSDK.getInstance().getmLoginListener()!=null){
 						GameSDK.getInstance().getmLoginListener().onSuccess( msg.obj.toString() );
-//						if(null==m_activity){
-//							
-//						}else{
-//							
-//							m_activity.finish();
-//							m_activity = null ;
-//							
-//						}
-						//查询账号是否绑定手机号
-						HttpService.queryBindAccont(m_activity.getApplicationContext(), handler, name);
+
+						//查询是否第一次登录
+						String first = preferences.getString("login",null);
+						if(first==null){
+
+
+							//存入数据
+							editor.putString("login","1");
+							editor.commit();
+							finish();
+							m_activity=null;
+
+						}else {
+
+
+                            //查询账号是否绑定手机号
+							HttpService.queryBindAccont(m_activity.getApplicationContext(), handler, name);
+
+
+						}
+
 
 					}else{
 

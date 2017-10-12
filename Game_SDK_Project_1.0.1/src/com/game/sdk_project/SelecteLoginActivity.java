@@ -4,6 +4,7 @@ package com.game.sdk_project;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -41,6 +42,11 @@ private ImageView imageView;
 private Activity activity;
 private String username;
 private boolean isFirstLogin=false;
+
+	//声明一个SharedPreferences对象和一个Editor对象
+	private SharedPreferences preferences;
+	private SharedPreferences.Editor editor;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,6 +54,13 @@ private boolean isFirstLogin=false;
 		setContentView(R.layout.activity_selecte_login);
 		
 		activity=this;
+
+
+		//创建sp存储
+		preferences = getSharedPreferences("visit",MODE_PRIVATE);
+		editor= preferences.edit();
+
+
 		visit_login=(ImageButton) findViewById(R.id.select_login_visit_login); //游客登录
 		account_login=(ImageButton) findViewById(R.id.select_login_account_login); //已有账号
 		imageView=(ImageView) findViewById(R.id.select_log_close); //返回
@@ -88,7 +101,30 @@ private boolean isFirstLogin=false;
 				/**
 				 * 	此时先查询是否绑定了账号
 				 */
-				HttpService.queryBindMsi(activity, handler);
+
+				String name = preferences.getString("first",null);
+
+				if(name==null){ //游客直接登录
+
+
+					//存入数据
+					editor.putString("first","1");
+					editor.commit();
+
+					//游客登录MIS绑定
+					HttpService.visitorReg(activity,mHandler);
+
+
+				}else {
+
+
+					HttpService.queryBindMsi(activity, handler);
+
+				}
+
+
+
+
 				
 			}
 		});
