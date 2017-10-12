@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="round_btn_green_tk_corner">2.0dip</dimen>
+    <dimen name="round_btn_green_tk_corner0">5.0dip</dimen>
+    <dimen name="login_user">13sp</dimen>
+    <dimen name="register_user">15sp</dimen>
+    <dimen name="register_user_one">17sp</dimen>
+
+    <dimen name="button">30dp</dimen> 9743447
+</resources>

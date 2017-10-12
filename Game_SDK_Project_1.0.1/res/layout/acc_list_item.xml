@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
+    android:background="@android:color/transparent"
+    android:orientation="horizontal"
+    
+    tools:context="com.game.sdk.activity.LoginActivity" >
+
+    <ImageButton
+        android:id="@+id/list_item_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/list_item_close"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/textview"
+        style="?android:attr/dropDownItemStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/list_item_close"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceSmallInverse"
+        android:textColor="@color/Kn_Username" />
+
+</RelativeLayout>

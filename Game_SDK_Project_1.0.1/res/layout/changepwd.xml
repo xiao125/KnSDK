@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/inner_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/input_frame"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/tips_18"
+                android:textColor="@color/text_color_black"
+                android:textSize="18dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+	
+            <LinearLayout 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"         
+				android:orientation="horizontal"       
+                >
+                
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/text_color_black"
+                    android:text="@string/tips_19" 
+                    android:textSize="15dp"
+					android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                     />
+                
+                
+                <EditText
+	                android:id="@+id/cpac_input_acc"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:background="@drawable/input_text_bg"
+	                android:paddingLeft="8dp"
+	                android:hint="@string/tips_20"
+	                android:imeOptions="actionDone"
+	                android:maxLength="16"
+	                android:singleLine="true"
+	                android:textColor="@android:color/black"
+	                android:textColorHint="@color/text_color_hint"
+	                android:textSize="15dp" />
+                
+                
+            </LinearLayout>
+	
+             <LinearLayout 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"         
+				android:orientation="horizontal"       
+                >
+             	
+                 <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/text_color_black"
+                    android:text="@string/tips_21"
+                    android:textSize="15dp"
+					android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                     />
+                 
+                 <EditText
+	                android:id="@+id/cpac_older_input_pwd"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                 android:paddingLeft="8dp"
+	                android:layout_marginTop="8dp"
+	                android:background="@drawable/input_text_bg"
+	                android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@-_#@`~,.?/|\"
+	                android:hint="@string/tips_22"
+	                android:imeOptions="actionDone"
+	                android:maxLength="16"
+	                android:singleLine="true"
+	                android:textColor="@android:color/black"
+	                android:textColorHint="@color/text_color_hint"
+	                android:textSize="15dp" />
+             
+             </LinearLayout>
+             
+             <LinearLayout 
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"         
+				android:orientation="horizontal"       
+                >
+             	
+                 <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/text_color_black"
+                    android:text="@string/tips_23"
+                    android:textSize="15dp"
+					android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                     />
+                 
+                 <EditText
+	                android:id="@+id/cpac_new_input_pwd"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                 android:paddingLeft="8dp"
+	                android:layout_marginTop="8dp"
+	                android:background="@drawable/input_text_bg"
+	                android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@-_#@`~,.?/|\"
+	                android:hint="@string/tips_24"
+	                android:imeOptions="actionDone"
+	                android:maxLength="16"
+	                android:singleLine="true"
+	                android:textColor="@android:color/black"
+	                android:textColorHint="@color/text_color_hint"
+	                android:textSize="15dp" />
+             
+             </LinearLayout>
+             
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            >
+    
+            <Button
+                android:id="@+id/cpac_confirm_btn"
+                android:layout_width="wrap_content"
+				android:layout_marginLeft="10dp"
+                android:layout_marginRight="14dp"                
+                android:layout_height="wrap_content"
+                android:background="@color/blue_btn_selector"
+                android:text="@string/tips_25"
+                android:focusable="false"
+                android:textColor="@color/text_color_white" />
+
+            <Button
+                android:id="@+id/cpac_back_btn"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:background="@color/green_btn_selector"
+                android:text="@string/tips_26"
+                android:textColor="@color/text_color_white" />
+    
+            
+          </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

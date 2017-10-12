@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+    <!-- 添加底层布局 -->
+    <LinearLayout
+        android:id="@+id/account_manager_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/first_login">
+        <LinearLayout 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="30dp"
+          android:layout_gravity="center"
+          android:orientation="vertical">
+
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="35dp">
+
+				<TextView
+					android:id="@+id/text_current"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerHorizontal="true"
+					android:layout_marginTop="8dp"
+					android:textColor="@color/text_color_white" />
+
+				<Button
+					android:id="@+id/password_update"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="55dp"
+					android:background="@color/btn_long_selector"
+					android:text="@string/tips_18"
+					android:textColor="@color/text_color_white" />
+
+				<Button
+					android:id="@+id/account_manager_back"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="90dp"
+					android:background="@color/btn_long_selector"
+					android:text="@string/tips_26"
+					android:textColor="@color/text_color_white" />
+			</RelativeLayout>
+		</LinearLayout>
+    </LinearLayout>
+</LinearLayout>

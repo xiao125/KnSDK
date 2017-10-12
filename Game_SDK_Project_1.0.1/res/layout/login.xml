@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/inner_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/input_frame"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/tips_27"
+                android:textColor="@color/text_color_black"
+                android:textSize="18dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/lac_input_acc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/input_text_bg"
+                    android:hint="@string/tips_20"
+                    android:imeOptions="actionDone"
+                    android:maxLength="16"
+                    android:paddingLeft="8dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/text_color_hint"
+                    android:textSize="15dp" />
+
+                <Button
+                    android:id="@+id/lac_arrow_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/arrow_down" />
+            </RelativeLayout>
+	
+            <RelativeLayout 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="8dp"
+                >
+                
+                <EditText
+	                android:id="@+id/lac_input_pwd"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_marginTop="0dp"
+	                android:background="@drawable/input_text_bg"
+	                android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@-_#@`~,.?/|\"
+	                android:hint="@string/tips_31"
+	                android:imeOptions="actionDone"
+	                android:maxLength="16"
+	                android:password="true"
+	                android:paddingLeft="8dp"
+	                android:singleLine="true"
+	                android:textColor="@android:color/black"
+	                android:textColorHint="@color/text_color_hint"
+	                android:textSize="15dp" />
+                
+                <Button
+                    android:id="@+id/lac_clear_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/list_item_close" />
+                
+                
+            </RelativeLayout>
+            
+            
+
+            <Button
+                android:id="@+id/lac_changepwd_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                android:text="@string/tips_18"
+                android:textColor="@color/text_color_blue" >
+            </Button>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/lac_login_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/blue_btn_selector"
+                    android:text="@string/tips_29"
+                    android:textColor="@color/text_color_white" />
+
+                <Button
+                    android:id="@+id/lac_register_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/green_btn_selector"
+                    android:focusable="false"
+                    android:text="@string/tips_30"
+                    android:textColor="@color/text_color_white" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
