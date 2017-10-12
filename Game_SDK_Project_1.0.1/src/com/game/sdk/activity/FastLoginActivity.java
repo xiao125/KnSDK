@@ -36,6 +36,7 @@ import com.game.sdk_project.SelecteLoginActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -63,6 +64,7 @@ public class FastLoginActivity extends Activity {
     public String m_phone;
     public String m_pw;
 
+    public static final String allChar = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     /**
      * 倒计时秒数
@@ -86,7 +88,12 @@ public class FastLoginActivity extends Activity {
         setContentView(R.layout.fast_login);
 
         initView();
+
+        generateMixString(5);
+
         initLinster();
+
+
 
     }
 
@@ -142,9 +149,11 @@ public class FastLoginActivity extends Activity {
         });
 
 
-        user_register.setOnClickListener(new View.OnClickListener() {
+        user_register.setOnClickListener(new View.OnClickListener() { //用户名注册
             @Override
             public void onClick(View view) {
+
+                //随机参数一组数字
 
 
 
@@ -157,6 +166,8 @@ public class FastLoginActivity extends Activity {
 
             }
         });
+
+
 
 
 
@@ -256,6 +267,27 @@ public class FastLoginActivity extends Activity {
 
 
     }
+
+
+    //随机生成一组字符串
+    public void  generateMixString(int length)
+
+    {
+        StringBuffer sb = new StringBuffer();
+        Random random = new Random();
+
+        for (int i = 0; i < length; i++)
+
+        {
+            sb.append(allChar.charAt(random.nextInt(allChar.length())));
+
+        }
+        String username ="mc"+sb.toString();
+        ks_user.setText(username); //默认填写用户名
+
+
+    }
+
 
     //判断手机号是否正确
     private boolean isPhone(String phone) {
@@ -380,7 +412,7 @@ public class FastLoginActivity extends Activity {
                     @Override
                     public void run() {
                         mCount--;
-                        phone_ks_code.setText(String.valueOf(mCount));
+                        phone_ks_code.setText(String.valueOf(mCount)+"秒");
                         phone_ks_code.setBackgroundColor(getResources().getColor(R.color.kn_text));
 
                         if (mCount<=0){

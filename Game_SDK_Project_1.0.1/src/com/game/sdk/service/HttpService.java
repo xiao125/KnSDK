@@ -258,7 +258,7 @@ public class HttpService {
 			
 			JSONObject content = new JSONObject();
 			content.put("mobile",mobile);
-			update_params.put("newSdk", newSdk);
+		//	update_params.put("newSdk", newSdk);
 			update_params.put("content", content.toString());
 			update_params.put("proxyVersion", versionCode);
 			update_params.put("game", gameName);
