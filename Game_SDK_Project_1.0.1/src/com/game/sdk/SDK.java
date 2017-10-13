@@ -24,6 +24,9 @@ public class SDK {
 	public static String QUERY_MSI_BIND = "http://oms.u7game.cn/api/is_bind_username.php"; //查询是否绑定账号
 	public static String REG_MOBILE="http://oms.u7game.cn/api/mobile_reg.php"; //手机注册
 	public static String GET_USER_NAME="http://oms.u7game.cn/api/get_user_name.php"; //验证账号是否存在
+	public static String VISITOR_BIND_MOBILE="http://oms.u7game.cn/api/visitor_bind_mobile.php"; //游客绑定手机号
+
+
 
 	public static final int LANDSCAPE = 0;
 	public static final int PORTRAIT = 1;

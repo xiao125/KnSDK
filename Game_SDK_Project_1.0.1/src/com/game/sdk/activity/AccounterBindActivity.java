@@ -343,7 +343,7 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 		public void handleMessage(Message msg) {
 			LoadingDialog.dismiss();
 			switch (msg.what) {
-				case ResultCode.SUCCESS: //注册账号成功
+				/*case ResultCode.SUCCESS: //注册账号成功
 
 					//保存用户名与密码
 					DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
@@ -357,7 +357,7 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 				case ResultCode.FAIL: ////注册失败
 					if(msg.obj!=null)
 						Util.ShowTips(AccounterBindActivity.this,Util.getJsonStringByName( msg.obj.toString() , "reason" ) );
-					break;
+					break;*/
 
 				case ResultCode.GET_USER_SUCCRESS: //账号已经被注册过了
 
@@ -380,12 +380,13 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 
 					if (Util.isMobileNO(username)){ //
 
-						KnLog.log("是手机号：");
+						KnLog.log("是手机号："+username+" 密码="+ps);
 
 						//跳转发送验证码注册
 						Intent intent1 =new Intent(AccounterBindActivity.this,TourtistRegActivity.class);
 						intent1.putExtra("phone",username);
 						intent1.putExtra("password",ps);
+
 						startActivity(intent1);
 
 						KnLog.log("跳转页面：");
@@ -401,10 +402,14 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 						String pd = Md5Util.getMd5(password);
 						m_userName = username ;
 						m_passWord = pd ;
-						LoadingDialog.show(m_activity, "注册中...",true);
+						LoadingDialog.show(m_activity, "绑定中...",true);
+
+						//游客绑定账号
+						HttpService.visitorBindAccount(getApplicationContext(), handler, username, pd );
+
 
 						//直接用户名与密码，注册账号
-						HttpService.doRegister(getApplicationContext(), handler, username, pd);
+					//	HttpService.doRegister(getApplicationContext(), handler, username, pd);
 
 
 					}
@@ -420,6 +425,26 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 
 					break;
 
+				case ResultCode.VISITOR_BIND_SUCCESS: //游客绑定账号成功
+
+					String result=	msg.obj.toString();
+					KnLog.log("游客绑定账号成功:"+result);
+
+					//保存用户名与密码
+					DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
+					Util.ShowTips(AccounterBindActivity.this, getResources().getString(R.string.tips_15) );
+
+					GameSDK.instance.login(AccounterBindActivity.this); //跳转到免密码登录
+
+					break;
+
+				case ResultCode.VISITOR_BIND_FAIL: //游客绑定账号失败
+
+				    String result1=	msg.obj.toString();
+					KnLog.log("游客绑定账号失败:"+result1);
+
+					Util.ShowTips(AccounterBindActivity.this,"绑定账号失败:"+result1 );
+					break;
 
 				default:
 					break;

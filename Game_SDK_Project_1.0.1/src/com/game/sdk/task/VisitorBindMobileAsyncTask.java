@@ -1,31 +1,27 @@
 package com.game.sdk.task;
 
-import java.util.Map;
-
-import org.json.JSONObject;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 
 import com.example.kngame_sdk_project.R;
-import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
 import com.game.sdk.bean.Result;
-import com.game.sdk.bean.UserInfo;
-import com.game.sdk.util.DBHelper;
 import com.game.sdk.util.HttpUtil;
 import com.game.sdk.util.KnLog;
-import com.game.sdk.util.Util;
 
-public class BindMobileAsyncTask extends AsyncTask<Map<String, String>, Void, Void>  {
-	
+import org.json.JSONObject;
+
+import java.util.Map;
+
+public class VisitorBindMobileAsyncTask extends AsyncTask<Map<String, String>, Void, Void>  {
+
 	private Context context = null;
 	private String loginUrl = null;
 	private Handler handler = null;
-	
-	public BindMobileAsyncTask(Context context, Handler handler,String loginUrl) {
+
+	public VisitorBindMobileAsyncTask(Context context, Handler handler, String loginUrl) {
 		this.loginUrl = loginUrl;
 		this.handler  = handler;
 		this.context = context;
@@ -35,16 +31,16 @@ public class BindMobileAsyncTask extends AsyncTask<Map<String, String>, Void, Vo
 	protected Void doInBackground(Map<String, String>[] params) {
 		Message msg = handler.obtainMessage();
 		
-		KnLog.i("loginUrl : " + this.loginUrl+  "BindMobileAsyncTask params = " + params[0] );
-		KnLog.log("loginUrl : " + this.loginUrl+  "BindMobileAsyncTask params = " + params[0] );
+		KnLog.i("loginUrl : " + this.loginUrl+  "VisitorBindMobileAsyncTask params = " + params[0] );
+		KnLog.log("loginUrl : " + this.loginUrl+  "VisitorBindMobileAsyncTask params = " + params[0] );
 		
 		for (int i = 0; i < 3; i++) {
 			
 			try {
 				 String result = HttpUtil.doHttpPost(params[0], this.loginUrl);
 				
-				 KnLog.i("BindMobileAsyncTask result = " + result);
-				 KnLog.log("BindMobileAsyncTask result = " + result);
+				 KnLog.i("VisitorBindMobileAsyncTask result = " + result);
+				 KnLog.log("VisitorBindMobileAsyncTask result = " + result);
 				 
 				 if(result == null){
 					 Thread.sleep(500L);
@@ -57,7 +53,7 @@ public class BindMobileAsyncTask extends AsyncTask<Map<String, String>, Void, Vo
 				 else{
 					 
 					JSONObject obj = new JSONObject(result);
-
+					 KnLog.log("游客绑定请求返回参数： " + obj);
 					int resultCode = obj.getInt("code");
 					
 					String reason  = obj.getString("reason");
@@ -67,11 +63,11 @@ public class BindMobileAsyncTask extends AsyncTask<Map<String, String>, Void, Vo
 					case ResultCode.SUCCESS:
 							
 						 KnLog.log(" get code OK ");
-						 msg.what = ResultCode.BIND_SUCCESS;
+						 msg.what = ResultCode.VISITOR_BIND_MODILE_SUCCESS;
 						 
 						break;
 					default:
-						msg.what = ResultCode.BIND_FAIL;
+						msg.what = ResultCode.VISITOR_BIND_MODILE_FAIL;
 						break;
 					}
 					

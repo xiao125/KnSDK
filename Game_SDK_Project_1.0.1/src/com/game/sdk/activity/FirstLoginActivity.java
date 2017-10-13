@@ -396,7 +396,7 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 			return;
 		}
 
-		password = Md5Util.getMd5(password);
+
 		m_password = password ;
 		m_userName = username ;
 		LoadingDialog.show(activity, "手机登录中...",true);
@@ -426,14 +426,14 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 			return ;
 		}
 
-		String pw = Md5Util.getMd5(password);
+		//String pw = Md5Util.getMd5(password);
 		m_userName = username ;
-		m_password = pw;
-		KnLog.log("输入账号登录username="+username+" password="+pw);
+		m_password = password;
+		KnLog.log("输入账号登录username="+username+" password="+password);
 
 		LoadingDialog.show(activity, "登录中...",true);
 
-		HttpService.doLogin(getApplicationContext(), handler, username, pw);
+		HttpService.doLogin(getApplicationContext(), handler, username, password);
 		
 	}
 	

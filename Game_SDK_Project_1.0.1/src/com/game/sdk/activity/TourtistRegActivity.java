@@ -25,7 +25,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * 游客登录后升级成萌创账号
+ *  游客直接绑定手机号，用户名就是手机
  * Created
  */
 
@@ -80,7 +80,7 @@ public class TourtistRegActivity extends Activity implements View.OnClickListene
         m_account_bind_bt= (Button) findViewById(R.id.account_bind_bt); //确定注册
         m_close.setOnClickListener(this);
         m_account_bind_bt.setOnClickListener(this);
-
+        m_tortist_code.setOnClickListener(this);
     }
 
 
@@ -116,6 +116,8 @@ public class TourtistRegActivity extends Activity implements View.OnClickListene
             if(null==activity){
 
             }else{
+
+                KnLog.log("获取的手机号是="+phone);
                 LoadingDialog.show(activity, "获取验证码中...", true);
                 HttpService.getSecCode(activity, handler,phone,newSdk);
 
@@ -134,8 +136,15 @@ public class TourtistRegActivity extends Activity implements View.OnClickListene
                 return ;
             }
 
+
+            //游客绑定手机，用户名就为手机号
+
+            KnLog.log("游客绑定手机，手机号="+phone+" 密码="+password);
+            HttpService.visitorbindMobile(getApplicationContext(), handler, phone , phonecode,phone,password);
+
+
             //手机注册
-            HttpService.doMobileRegister(getApplicationContext(), handler, phone,phonecode, password);
+           // HttpService.doMobileRegister(getApplicationContext(), handler, phone,phonecode, password);
 
         }
 
@@ -157,7 +166,28 @@ public class TourtistRegActivity extends Activity implements View.OnClickListene
             LoadingDialog.dismiss();
             switch (resultCode) {
 
-                case ResultCode.MOBILE_REG_SUCCRESS: //手机注册成功
+                case ResultCode.VISITOR_BIND_MODILE_SUCCESS: //游客绑定手机号成功
+
+                  //  Util.ShowTips(activity,msg_content);
+				/* intent = new Intent(m_activity.getApplicationContext(), AutoLoginActivity.class);
+				 intent.putExtra("userName",m_userNames);*/
+                    Util.ShowTips(activity,"升级账号成功！");
+
+                    if (activity!=null){
+                        activity.finish();
+                        activity = null ;
+                    }
+
+
+                    break;
+
+                case ResultCode.VISITOR_BIND_MODILE_FAIL://游客绑定手机号失败
+
+                    Util.ShowTips(activity,"绑定失败："+msg_content);
+
+                    break;
+
+              /*  case ResultCode.MOBILE_REG_SUCCRESS: //手机注册成功
 
                     setResult(Activity.RESULT_OK);
 
@@ -174,7 +204,7 @@ public class TourtistRegActivity extends Activity implements View.OnClickListene
 
                     if(msg.obj!=null)
                         Util.ShowTips(TourtistRegActivity.this,  Util.getJsonStringByName( msg.obj.toString() , "reason" ) );
-                    break;
+                    break;*/
 
                 case ResultCode.SECURITY_SUCCESS: //验证码获取成功
 
@@ -222,7 +252,7 @@ public class TourtistRegActivity extends Activity implements View.OnClickListene
             }
             else if(10000==msg.what){
                 m_tortist_code.setBackgroundColor(getResources().getColor(R.color.kn_text));
-                String text =String.valueOf(m_time);
+                String text =String.valueOf(m_time)+"秒";
                 m_tortist_code.setText(text);
             }
         }

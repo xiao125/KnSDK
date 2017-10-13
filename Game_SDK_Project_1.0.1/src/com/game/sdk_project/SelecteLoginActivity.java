@@ -99,25 +99,23 @@ private boolean isFirstLogin=false;
 				// TODO Auto-generated method stub
 				KnLog.log("login_visitor_bt");
 				/**
-				 * 	此时先查询是否绑定了账号
+				 *  1：第一次使用游客登录，直接登录
+				 *  2：使用过游客登录以后，先查询是否绑定了账号，如果没有，那游客登录都出现提示框
+				 *  3：如果根据提示框升级了萌创账号，那以后点击游客登录都会直接登录（一个手机只能申请一个游客账号）
+				 *
 				 */
 
 				String name = preferences.getString("first",null);
 
 				if(name==null){ //游客直接登录
 
-
-					//存入数据
-					editor.putString("first","1");
-					editor.commit();
-
-					//游客登录MIS绑定
+					//游客登录
 					HttpService.visitorReg(activity,mHandler);
 
 
 				}else {
 
-
+					//查询是否绑定了账号
 					HttpService.queryBindMsi(activity, handler);
 
 				}
@@ -180,6 +178,9 @@ private boolean isFirstLogin=false;
 				try {
 					json = new JSONObject(msg_content);
 					username = json.getString("username");
+
+					KnLog.log("游客绑定成功后的 username="+username);
+
 					String[] usernames = DBHelper.getInstance().findAllUserName();
 					
 					for(int i=0;i!=usernames.length;++i){
@@ -187,6 +188,8 @@ private boolean isFirstLogin=false;
 					}
 					
 					boolean  flag = Util.findNameInSet(usernames, username);
+
+
 					
 					if(true==flag){
 						 String password = DBHelper.getInstance().findPwdByUsername(username);
@@ -196,7 +199,7 @@ private boolean isFirstLogin=false;
 					}else{
 						KnLog.log("说明这个用户名是没有缓存数据的");
 
-						//游客登录MIS绑定
+						//游客登录
 						HttpService.visitorReg(activity,mHandler);
 
 
@@ -300,8 +303,8 @@ private boolean isFirstLogin=false;
 						GameSDK.getInstance().getmLoginListener().onSuccess( msg.obj.toString() );
 
 						//游客模式询问用户是否注册账号
-						Intent intent = new Intent(SelecteLoginActivity.this,AccountManagerActivity.class);
-						startActivity(intent);
+						/*Intent intent = new Intent(SelecteLoginActivity.this,AccountManagerActivity.class);
+						startActivity(intent);*/
 
 						if(null==activity){
 							
@@ -342,6 +345,12 @@ private boolean isFirstLogin=false;
 					if(GameSDK.getInstance().getmLoginListener()!=null){
 						KnLog.log("getmLoginListener().onSuccess++");
 						GameSDK.getInstance().getmLoginListener().onSuccess( msg.obj.toString() );
+
+						//存入数据
+						editor.putString("first","1");
+						editor.commit();
+
+						Util.ShowTips(activity,"游客登录成功了！" );
 						if(activity!=null){
 							activity.finish();
 							activity = null ;

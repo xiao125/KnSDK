@@ -24,6 +24,7 @@ import com.game.sdk.task.QueryMsiBindAsyncTask;
 import com.game.sdk.task.RegisterAsyncTask;
 import com.game.sdk.task.VisitorAccountBindAsyncTask;
 import com.game.sdk.task.VisitorAsyncTask;
+import com.game.sdk.task.VisitorBindMobileAsyncTask;
 import com.game.sdk.util.DeviceUtil;
 import com.game.sdk.util.KnLog;
 import com.game.sdk.util.Md5Util;
@@ -144,7 +145,7 @@ public class HttpService {
 	}
 
 
-	
+	//游客绑定账号
 	public static void visitorBindAccount( Context applicationContext, Handler handler,
 			String username, String password ){
 		
@@ -195,7 +196,7 @@ public class HttpService {
 		
 	}
 
-	//游客登录MIS绑定
+	//游客登录
 	public static void visitorReg( Context applicationContext, Handler handler ){
 		
 		String gameId = GameSDK.getInstance().getGameInfo().getGameId() ;
@@ -287,7 +288,8 @@ public class HttpService {
 			String app_secret = "3d759cba73b253080543f8311b6030bf";
 //			String versionCode = KnUtil.getJsonStringByName(appInfo, "versionCode") ;
 			String versionCode = PROXY_VERSION ;
-			String gameName = gameInfo.getGameId() ; 
+			String gameName = gameInfo.getGameId() ;
+			String imei = DeviceUtil.getDeviceId();
 			
 			Map<String, String> update_params = new TreeMap<String, String>( new Comparator<String>() {
 
@@ -305,6 +307,7 @@ public class HttpService {
 			update_params.put("content", content.toString());
 			update_params.put("proxyVersion", versionCode);
 			update_params.put("game", gameName);
+			update_params.put("msi",imei);
 			update_params.put("app_id",app_id);
 			
 			Map<String, String> update_params1 = Util.getSign( update_params , app_secret );
@@ -316,6 +319,58 @@ public class HttpService {
 		}
 		
 	}
+
+	//游客绑定手机
+	public static void visitorbindMobile( Context applicationContext, Handler handler, String mobile , String security_code , String user_Name,String user_Password ){
+
+		try {
+
+			GameInfo gameInfo = GameSDK.getInstance().getGameInfo();
+			String appInfo = Util.getAppInfo( GameSDK.getInstance().getActivity() );
+			String app_id     = "1011";
+			String app_secret = "3d759cba73b253080543f8311b6030bf";
+//			String versionCode = KnUtil.getJsonStringByName(appInfo, "versionCode") ;
+			String versionCode = PROXY_VERSION ;
+			String gameName = gameInfo.getGameId() ;
+			String imei = DeviceUtil.getDeviceId();
+			String channel = gameInfo.getChannel();
+			String ad_channel = gameInfo.getAdChannel();
+			String platform = gameInfo.getPlatform();
+
+			Map<String, String> update_params = new TreeMap<String, String>( new Comparator<String>() {
+
+				@Override
+				public int compare(String arg0, String arg1) {
+					// TODO Auto-generated method stub
+					return arg0.compareTo(arg1);
+				}
+			} );
+
+			JSONObject content = new JSONObject();
+			content.put("mobile",mobile);
+			content.put("user_name",user_Name);
+			content.put("passwd",user_Password);
+			content.put("rand_code",security_code);
+			update_params.put("content", content.toString());
+			update_params.put("proxyVersion", versionCode);
+			update_params.put("msi",imei);
+			update_params.put("game_id",gameName);
+			update_params.put("channel",channel);
+			update_params.put("platform",platform);
+			update_params.put("ad_channel",ad_channel);
+
+			Map<String, String> update_params1 = Util.getSign( update_params , app_secret );
+
+			new VisitorBindMobileAsyncTask(applicationContext, handler, SDK.VISITOR_BIND_MOBILE)
+					.execute(new Map[] { update_params1 , null, null });
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+
+
 	
 	public static void getAccountSubmit( Context applicationContext, Handler handler, String mobile , String security_code ){
 	

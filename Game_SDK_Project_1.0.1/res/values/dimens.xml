@@ -9,5 +9,5 @@
     <dimen name="register_user">15sp</dimen>
     <dimen name="register_user_one">17sp</dimen>
 
-    <dimen name="button">30dp</dimen> 9743447
+    <dimen name="button">30dp</dimen>
 </resources>

@@ -46,6 +46,8 @@ public class ResultCode {
 	public static final int GET_USER_NoEXIStTENT=515;
 	public static final int GET_USER=6;
 
+	public static final int VISITOR_BIND_MODILE_SUCCESS = 516;
+	public static final int VISITOR_BIND_MODILE_FAIL = 5517;
 
 
 }

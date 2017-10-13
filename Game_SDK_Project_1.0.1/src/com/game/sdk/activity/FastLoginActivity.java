@@ -546,16 +546,16 @@ public class FastLoginActivity extends Activity {
             Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
             return ;
         }
-        String pw = Md5Util.getMd5(password);
+       // String pw = Md5Util.getMd5(password);
         m_phone = userphone ;
-        m_pw = pw ;
+        m_pw = password ;
 
-        KnLog.log("手机注册的用户名："+userphone+"  密码："+pw);
+        KnLog.log("手机注册的用户名："+userphone+"  密码："+password);
 
         LoadingDialog.show(m_activity, "注册中...",true);
 
         //手机注册
-        HttpService.doMobileRegister(getApplicationContext(), handler, userphone,security_code, pw);
+        HttpService.doMobileRegister(getApplicationContext(), handler, userphone,security_code, password);
 
     }
 
@@ -609,15 +609,15 @@ public class FastLoginActivity extends Activity {
             Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
             return ;
         }
-       String  pw = Md5Util.getMd5(password);
+     //  String  pw = Md5Util.getMd5(password);
         m_userName = username ;
-        m_passWord = pw ;
+        m_passWord = password ;
 
-        KnLog.log("用户名注册的密码="+pw);
+        KnLog.log("用户名注册的密码="+password);
 
         LoadingDialog.show(m_activity, "注册中...",true);
 
-        HttpService.doRegister(getApplicationContext(), handler, username, pw);
+        HttpService.doRegister(getApplicationContext(), handler, username, password);
 
     }
 

@@ -118,7 +118,7 @@ public class PasswordUpdateActivity extends Activity implements OnClickListener 
 				return ;
 			}
 
-			newpassword = Md5Util.getMd5(newPwd);
+			newpassword = newPwd;
 
 			KnLog.log("开始更改新密码请求");
 			LoadingDialog.show(m_activity, "请求中...", true);
