@@ -106,16 +106,6 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				/*Intent intent=new Intent(activity,SelecteLoginActivity.class);
-				if(null==activity){
-
-				}else{
-
-					activity.startActivity(intent);
-					activity.finish();
-					activity = null ;
-
-				}*/
 
 				if(null==activity){
 
@@ -330,8 +320,7 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
 			return ;
 		}
-		LoadingDialog.show(context, "绑定中...",true);
-
+		//LoadingDialog.show(context, "绑定中...",true);
 
 		//查询账号是否存在
 		HttpService.getUsername(activity.getApplicationContext(), handler,username);
@@ -448,6 +437,8 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 				if(msg.obj!=null){
 					if(GameSDK.getInstance().getmLoginListener()!=null){
 						GameSDK.getInstance().getmLoginListener().onSuccess( msg.obj.toString() );
+
+						Util.ShowTips(activity,"登录成功！");
 						//查询账号是否绑定手机号
 					//	HttpService.queryBindAccont(activity.getApplicationContext(), handler, m_userName);
 
@@ -476,7 +467,91 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 				}
 				KnLog.log("登录失败++End");
 				break;
-			case ResultCode.QUERY_MSI_BIND_SUCCESS:
+
+
+
+				case ResultCode.GET_USER_SUCCRESS: //账号已经被注册过了
+
+
+					KnLog.log("账号已经被注册过了，返回的信息："+msg.obj.toString());
+
+					//开始登录
+					Util.hideEditTextWindow(FirstLoginActivity.this, passWordEt);
+					checkLoginParams(FirstLoginActivity.this, userNameEt, passWordEt);
+
+					break;
+
+				case ResultCode.GET_USER_NoEXIStTENT: //账号没有被注册过
+
+					KnLog.log("账号没有被注册过，返回的信息："+msg.obj.toString());
+
+					//提示绑定手机弹窗
+					LayoutInflater inflater = LayoutInflater.from(activity);
+					View v = inflater.inflate(R.layout.bind_mobile_dialog, null);
+					LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
+					final AlertDialog dia=new AlertDialog.Builder(activity).create();
+					Button bind=(Button) v.findViewById(R.id.visit_bind_account); //立即注册
+					Button cont=(Button) v.findViewById(R.id.visit_continue); //重新输入]
+					TextView name = (TextView) v.findViewById(R.id.username); //提示
+
+					String user= name.getText().toString(); //占位符
+					String et=userNameEt.getText().toString().trim(); //账号
+					name.setText(user.replace("1",et)); //替换
+
+					// bind.setText("绑定手机");
+					dia.show();
+					dia.setContentView(v);
+					bind.setOnClickListener(new OnClickListener() { //立即注册
+
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+
+
+							Intent intent1=new Intent(activity, FastLoginActivity.class);
+							startActivity(intent1);
+							dia.dismiss();
+
+							//DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
+						/*	Intent intent=new Intent(activity, BindCellActivity.class);
+							intent.putExtra("userName", m_userName);
+							startActivity(intent);*/
+							if(null==activity){
+
+							}else{
+								activity.finish();
+								activity = null ;
+							}
+
+						}
+					});
+					cont.setOnClickListener(new OnClickListener() { //重新输入
+
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							dia.dismiss();
+						//	DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
+							if(null==activity){
+
+							}else{
+
+
+								dia.dismiss();
+
+
+							}
+
+
+						}
+					});
+
+
+					break;
+
+
+
+			/*case ResultCode.QUERY_MSI_BIND_SUCCESS:
 				
 				KnLog.log("MIS已经绑定过了++");
 				
@@ -545,168 +620,95 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 					
 				}
 				
-				break;
-			case ResultCode.QUERY_ACCOUNT_BIND_SUCCESS: //返回账号绑定的手机号
-				
-							String mobile= msg.obj.toString() ; //服务器返回的手机号
+				break;*/
 
-				KnLog.log("返回账号绑定的手机号:"+mobile);
+			/*	case ResultCode.QUERY_ACCOUNT_BIND_SUCCESS: //返回账号绑定的手机号
 
+					String mobile= msg.obj.toString() ; //服务器返回的手机号
 
-							if(null==activity){
-							
-							}else{
-								
-					
-								activity.finish();
-								activity = null ;
-								
-							}
-							break;
-			case ResultCode.QUERY_ACCOUNT_BIND_FAIL: //没有绑定手机号
-							if(null==activity){
-								
-							}else{
-
-								KnLog.log("返回账号绑定的手机号:没有绑定手机");
-								//提示绑定手机弹窗
-								LayoutInflater inflater = LayoutInflater.from(activity);
-								View v = inflater.inflate(R.layout.bind_mobile_dialog, null);
-								LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
-								final AlertDialog dia=new AlertDialog.Builder(activity).create();
-								Button bind=(Button) v.findViewById(R.id.visit_bind_account); //立即注册
-							    Button cont=(Button) v.findViewById(R.id.visit_continue); //重新输入]
-								TextView name = (TextView) v.findViewById(R.id.username); //提示
-
-								String user= name.getText().toString(); //占位符
-								String et=userNameEt.getText().toString().trim(); //账号
-								name.setText(user.replace("1",et)); //替换
-
-							   // bind.setText("绑定手机");
-							    dia.show();
-							    dia.setContentView(v);
-							    bind.setOnClickListener(new OnClickListener() { //立即注册
-
-									@Override
-									public void onClick(View v) {
-										// TODO Auto-generated method stub
-										dia.dismiss();
-										DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
-										Intent intent=new Intent(activity, BindCellActivity.class);
-												intent.putExtra("userName", m_userName);
-												startActivity(intent);
-												if(null==activity){
-
-												}else{
-													activity.finish();
-													activity = null ;
-												}
-
-									}
-								});
-				                cont.setOnClickListener(new OnClickListener() { //重新输入
-
-									@Override
-									public void onClick(View v) {
-										// TODO Auto-generated method stub
-										dia.dismiss();
-										DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
-										if(null==activity){
-
-												}else{
+					KnLog.log("返回账号绑定的手机号:"+mobile);
 
 
-											      dia.dismiss();
+					if(null==activity){
 
-													/*activity.finish();
-													activity = null ;*/
-												}
+					}else{
 
 
-									}
-								});
-								if(null==activity){
-									
-								}else{
-									/*activity.finish();
-									activity = null ;*/
-								}
-							}
-               break;
+						activity.finish();
+						activity = null ;
 
-				case ResultCode.GET_USER_SUCCRESS: //账号已经被注册过了
-
-
-					KnLog.log("账号已经被注册过了，返回的信息："+msg.obj.toString());
-
-					//开始登录
-					Util.hideEditTextWindow(FirstLoginActivity.this, passWordEt);
-			        checkLoginParams(FirstLoginActivity.this, userNameEt, passWordEt);
-
+					}
 					break;
+				case ResultCode.QUERY_ACCOUNT_BIND_FAIL: //没有绑定手机号
+					if(null==activity){
 
-				case ResultCode.GET_USER_NoEXIStTENT: //账号没有被注册过
+					}else{
 
-					KnLog.log("账号没有被注册过，返回的信息："+msg.obj.toString());
+						KnLog.log("返回账号绑定的手机号:没有绑定手机");
+						//提示绑定手机弹窗
+						LayoutInflater inflater = LayoutInflater.from(activity);
+						View v = inflater.inflate(R.layout.bind_mobile_dialog, null);
+						LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
+						final AlertDialog dia=new AlertDialog.Builder(activity).create();
+						Button bind=(Button) v.findViewById(R.id.visit_bind_account); //立即注册
+						Button cont=(Button) v.findViewById(R.id.visit_continue); //重新输入]
+						TextView name = (TextView) v.findViewById(R.id.username); //提示
 
-					//提示绑定手机弹窗
-					LayoutInflater inflater = LayoutInflater.from(activity);
-					View v = inflater.inflate(R.layout.bind_mobile_dialog, null);
-					LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
-					final AlertDialog dia=new AlertDialog.Builder(activity).create();
-					Button bind=(Button) v.findViewById(R.id.visit_bind_account); //立即注册
-					Button cont=(Button) v.findViewById(R.id.visit_continue); //重新输入]
-					TextView name = (TextView) v.findViewById(R.id.username); //提示
+						String user= name.getText().toString(); //占位符
+						String et=userNameEt.getText().toString().trim(); //账号
+						name.setText(user.replace("1",et)); //替换
 
-					String user= name.getText().toString(); //占位符
-					String et=userNameEt.getText().toString().trim(); //账号
-					name.setText(user.replace("1",et)); //替换
+						// bind.setText("绑定手机");
+						dia.show();
+						dia.setContentView(v);
+						bind.setOnClickListener(new OnClickListener() { //立即注册
 
-					// bind.setText("绑定手机");
-					dia.show();
-					dia.setContentView(v);
-					bind.setOnClickListener(new OnClickListener() { //立即注册
-
-						@Override
-						public void onClick(View v) {
-							// TODO Auto-generated method stub
-							dia.dismiss();
-							DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
-							Intent intent=new Intent(activity, BindCellActivity.class);
-							intent.putExtra("userName", m_userName);
-							startActivity(intent);
-							if(null==activity){
-
-							}else{
-								activity.finish();
-								activity = null ;
-							}
-
-						}
-					});
-					cont.setOnClickListener(new OnClickListener() { //重新输入
-
-						@Override
-						public void onClick(View v) {
-							// TODO Auto-generated method stub
-							dia.dismiss();
-							DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
-							if(null==activity){
-
-							}else{
-
-
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
 								dia.dismiss();
+								DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
+								Intent intent=new Intent(activity, BindCellActivity.class);
+								intent.putExtra("userName", m_userName);
+								startActivity(intent);
+								if(null==activity){
+
+								}else{
+									activity.finish();
+									activity = null ;
+								}
+
+							}
+						});
+						cont.setOnClickListener(new OnClickListener() { //重新输入
+
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								dia.dismiss();
+								DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
+								if(null==activity){
+
+								}else{
+
+
+									dia.dismiss();
+
+													*//*activity.finish();
+													activity = null ;*//*
+								}
 
 
 							}
+						});
+						if(null==activity){
 
-
+						}else{
+									*//*activity.finish();
+									activity = null ;*//*
 						}
-					});
-
-
-					break;
+					}
+					break;*/
 
 				default:
 				break;
