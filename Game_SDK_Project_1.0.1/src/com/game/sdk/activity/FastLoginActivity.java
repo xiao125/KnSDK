@@ -57,10 +57,6 @@ public class FastLoginActivity extends Activity {
     private String newSdk="1";
     public  static   String    m_userName ;
     public  static   String    m_passWord ;
-
-    public static String m_userPhone;
-    public static String m_phone_pw;
-
     public String m_phone;
     public String m_pw;
 
@@ -515,26 +511,6 @@ public class FastLoginActivity extends Activity {
             Util.ShowTips(context,  getResources().getString(R.string.tips_8) );
             return;
         }
-       /* String confirm_password=confirmPassword.getText().toString();
-        if (TextUtils.isEmpty(confirm_password)) {
-            Util.ShowTips(context,  getResources().getString(R.string.tips_64) );
-            return;
-        }*/
-
-      /*  if (!userphone.matches("^[a-z|A-Z]{1}.{0,}$")) {
-            Util.ShowTips(context, getResources().getString(R.string.tips_1));
-            return;
-        }*/
-
-       /* if (!userphone.matches("^[a-z|A-Z|0-9]{1,}$")) {
-            Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
-            return;
-        }*/
-
-       if (!userphone.matches("^.{6,12}$")) {
-            Util.ShowTips(context, getResources().getString(R.string.tips_4) );
-            return;
-        }
 
         if (!password.matches("^.{6,16}$")) {
             Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
@@ -571,7 +547,7 @@ public class FastLoginActivity extends Activity {
             Util.ShowTips(context,  getResources().getString(R.string.tips_8) );
             return;
         }
-       /* String confirm_password=confirmPassword.getText().toString();
+      /*  String confirm_password=confirmPassword.getText().toString();
         if (TextUtils.isEmpty(confirm_password)) {
             Util.ShowTips(context,  getResources().getString(R.string.tips_64) );
             return;

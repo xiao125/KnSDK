@@ -44,8 +44,8 @@ public class ForgotPasswordActivity extends Activity {
     private EditText m_phone;
     private ImageView m_close;
     private Button m_zh_qd,m_phone_ks_code;
-    private CheckBox m_cb_phone,m_cb_email;
-    private TextView mphone,memail;
+    private CheckBox m_cb_phone;
+    private TextView mphone;
     private FrameLayout m_frameLayout;
     private Boolean iscb=true;
     private Timer m_timer = null ;
@@ -74,6 +74,7 @@ public class ForgotPasswordActivity extends Activity {
         initView();
 
         initLinerter();
+
 
 
 
@@ -178,20 +179,29 @@ public class ForgotPasswordActivity extends Activity {
 
     private void checkAccountBindParams(Activity context, EditText mUsername) {
 
-        String username =  m_phone.getText().toString().trim(); //账号
+        String username =  m_phone.getText().toString().trim(); //账号或手机号
 
         if (ismobile(activity, username)) return;
+
+        KnLog.log("判断是否是手机="+ismobile(activity, username));
+
+
 
              /*   if (isphone()) return;*/
 
 
-        if (!username.matches("^.{6,12}$")) {
+        if (!username.matches("^.{6,16}$")) {
             Util.ShowTips(activity, getResources().getString(R.string.tips_4) );
             return;
         }
 
-        if (!username.matches("^[a-z|A-Z|0-9]{1,}$")) {
+        if (!username.matches("^[A-Za-z0-9 _-]+$")) {
             Util.ShowTips(activity, getResources().getString(R.string.tips_3));
+            return;
+        }
+
+        if (!username.matches("^.{6,16}$")) {
+            Util.ShowTips(context, getResources().getString(R.string.tips_4) );
             return;
         }
 
@@ -215,6 +225,7 @@ public class ForgotPasswordActivity extends Activity {
 
     }
 
+
     private boolean ismobile(Activity context, String username) {
         if(!Util.isMobileNO(username)) { //如果不是手机号
             //Util.ShowTips(m_activity, getResources().getString(R.string.tips_57)); //如果不是手机号
@@ -224,16 +235,15 @@ public class ForgotPasswordActivity extends Activity {
                 return true;
             }
 
-            if (!username.matches("^[a-z|A-Z|0-9]{1,}$")) {
+            if (!username.matches("^[A-Za-z0-9_-]+$")) {
                 Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
                 return true;
             }
 
-            if (!username.matches("^.{6,12}$")) {
+            if (!username.matches("^.{6,16}$")) {
                 Util.ShowTips(context, getResources().getString(R.string.tips_4) );
                 return true;
             }
-
 
 
         }
@@ -263,11 +273,11 @@ public class ForgotPasswordActivity extends Activity {
     private void initView() {
 
         m_close = (ImageView) findViewById(R.id.select_forgot_close);
-        m_phone = (EditText) findViewById(R.id.phone_ks_va); //手机号
-        m_phone_ks_code = (Button) findViewById(R.id.phone_ks_code_va); //验证手机号是否绑定
+        m_phone = (EditText) findViewById(R.id.phone_ks_va); //手机号或账号
+        m_phone_ks_code = (Button) findViewById(R.id.phone_ks_code_va); //验证手机号或账号是否存在
         m_zh_qd= (Button) findViewById(R.id.zh_qd);
         m_cb_phone= (CheckBox) findViewById(R.id.zh_phone);
-        m_cb_email= (CheckBox) findViewById(R.id.zh_email);
+     //   m_cb_email= (CheckBox) findViewById(R.id.zh_email);
         mphone = (TextView) findViewById(R.id.tv);
       //  memail = (TextView) findViewById(R.id.tv_1);
         m_frameLayout= (FrameLayout) findViewById(R.id.zh_view); //显示找回密码view

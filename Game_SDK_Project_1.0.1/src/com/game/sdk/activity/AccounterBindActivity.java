@@ -280,10 +280,21 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 		}
 
 
-		if (!username.matches("^.{6,12}$")) {
+		if (!username.matches("^.{6,16}$")) {
 			Util.ShowTips(context, getResources().getString(R.string.tips_4) );
 			return;
 		}
+
+		if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
+			Util.ShowTips(context, getResources().getString(R.string.tips_1));
+			return;
+		}
+
+		if (!username.matches("^[A-Za-z0-9_-]+$")) {
+			Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
+			return;
+		}
+
 
 		if (!password.matches("^.{6,16}$")) {
 			Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
@@ -319,16 +330,24 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 				Util.ShowTips(context, getResources().getString(R.string.tips_1));
 				return true;
 			}
-
+/*
 			if (!username.matches("^[a-z|A-Z|0-9]{1,}$")) {
+				Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
+				return true;
+			}*/
+
+			if (!username.matches("^.{6,16}$")) {
+				Util.ShowTips(context, getResources().getString(R.string.tips_4) );
+				return true;
+			}
+
+
+
+			if (!username.matches("^[A-Za-z0-9_-]+$")) {
 				Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
 				return true;
 			}
 
-			if (!username.matches("^.{6,12}$")) {
-				Util.ShowTips(context, getResources().getString(R.string.tips_4) );
-				return true;
-			}
 
 
 
