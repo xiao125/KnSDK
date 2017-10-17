@@ -6,8 +6,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="tips_1">账号必须以字母开头</string>
     <string name="tips_2">账号不能为空</string>
-    <string name="tips_3">玩家账号只能含有数字、字母或一些特殊符号,大小在4-16位字符</string>
-    <string name="tips_4">账号长度必须在6~12位</string>
+    <string name="tips_3">玩家账号只能含有数字、字母或一些特殊符号,大小在6-16位字符</string>
+    <string name="tips_4">账号长度必须在6~16位</string>
     <string name="tips_5">密码长度必须在6~16位</string>
     <string name="tips_6">修改密码中,请稍等...</string>
     <string name="tips_7">旧密码不能为空</string>

@@ -69,6 +69,10 @@ public class LoginAsyncTask extends AsyncTask<Map<String, String>, Void, Void>  
 						 DBHelper.getInstance().insertOrUpdateUser( userInfo.getUsername() , content.getString("passwd") );
 						 msg.what = ResultCode.SUCCESS;
 						break;
+
+					case ResultCode.NONEXISTENT: //用户不存在：-3
+						msg.what = ResultCode.NONEXISTENT;
+						break;
 					default:
 						msg.what = ResultCode.FAIL;
 						break;

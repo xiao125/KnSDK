@@ -242,7 +242,15 @@ public class LoginActivity extends Activity implements OnClickListener {
 					}
 				}
 				break;
-			case ResultCode.FAIL:
+
+				case ResultCode.NONEXISTENT: //账号不存在
+
+					Util.ShowTips(LoginActivity.this,"账号不存在！");
+
+					break;
+
+
+				case ResultCode.FAIL:
 				if(msg.obj!=null)
 				{
 					if(GameSDK.getInstance().getmLoginListener()!=null){

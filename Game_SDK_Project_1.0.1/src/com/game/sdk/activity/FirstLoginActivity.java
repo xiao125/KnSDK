@@ -214,6 +214,7 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 
 			Util.hideEditTextWindow(this, passWordEt);
 			Util.hideEditTextWindow(this, userNameEt);
+
 			checkAccountBindParams(activity, userNameEt, passWordEt);
 
 
@@ -305,7 +306,7 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 		}
 
 
-		if (!username.matches("^.{6,12}$")) {
+		if (!username.matches("^.{6,16}$")) {
 			Util.ShowTips(context, getResources().getString(R.string.tips_4) );
 			return;
 		}
@@ -323,7 +324,17 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 		//LoadingDialog.show(context, "绑定中...",true);
 
 		//查询账号是否存在
-		HttpService.getUsername(activity.getApplicationContext(), handler,username);
+		//HttpService.getUsername(activity.getApplicationContext(), handler,username);
+
+
+		//直接登录
+		m_userName = username ;
+		m_password = password;
+		KnLog.log("输入账号登录username="+username+" password="+password);
+
+		LoadingDialog.show(activity, "登录中...",true);
+
+		HttpService.doLogin(getApplicationContext(), handler, username, password);
 
 
 	}
@@ -343,7 +354,7 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 				return true;
 			}
 
-			if (!username.matches("^.{6,12}$")) {
+			if (!username.matches("^.{6,16}$")) {
 				Util.ShowTips(context, getResources().getString(R.string.tips_4) );
 				return true;
 			}
@@ -451,39 +462,10 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 				}
 				
 				break;
-			case ResultCode.FAIL:
-				KnLog.log("登录失败++");				
-				if(msg.obj!=null)
-				{
-					KnLog.log("登录失败01++");
-					if(GameSDK.getInstance().getmLoginListener()!=null){
-						KnLog.log("登录失败01++ reason:"+msg.obj.toString());
-						GameSDK.getInstance().getmLoginListener().onFail(  msg.obj.toString() );
-						Util.ShowTips(activity,  Util.getJsonStringByName( msg.obj.toString() , "reason" ) );
-						KnLog.log("登录失败02++");
-					}else{
-//						KnLog.e("请先设置登录回调");
-					}
-				}
-				KnLog.log("登录失败++End");
-				break;
 
+				case ResultCode.NONEXISTENT: //账号不存在
 
-
-				case ResultCode.GET_USER_SUCCRESS: //账号已经被注册过了
-
-
-					KnLog.log("账号已经被注册过了，返回的信息："+msg.obj.toString());
-
-					//开始登录
-					Util.hideEditTextWindow(FirstLoginActivity.this, passWordEt);
-					checkLoginParams(FirstLoginActivity.this, userNameEt, passWordEt);
-
-					break;
-
-				case ResultCode.GET_USER_NoEXIStTENT: //账号没有被注册过
-
-					KnLog.log("账号没有被注册过，返回的信息："+msg.obj.toString());
+				//	Util.ShowTips(activity,"账号不存在！");
 
 					//提示绑定手机弹窗
 					LayoutInflater inflater = LayoutInflater.from(activity);
@@ -531,7 +513,7 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 						public void onClick(View v) {
 							// TODO Auto-generated method stub
 							dia.dismiss();
-						//	DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
+							//	DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
 							if(null==activity){
 
 							}else{
@@ -548,6 +530,104 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 
 
 					break;
+
+			case ResultCode.FAIL:
+				KnLog.log("登录失败++");				
+				if(msg.obj!=null)
+				{
+					KnLog.log("登录失败01++");
+					if(GameSDK.getInstance().getmLoginListener()!=null){
+						KnLog.log("登录失败01++ reason:"+msg.obj.toString());
+						GameSDK.getInstance().getmLoginListener().onFail(  msg.obj.toString() );
+						Util.ShowTips(activity,  Util.getJsonStringByName( msg.obj.toString() , "reason" ) );
+						KnLog.log("登录失败02++");
+					}else{
+//						KnLog.e("请先设置登录回调");
+					}
+				}
+				KnLog.log("登录失败++End");
+				break;
+
+
+/*
+				case ResultCode.GET_USER_SUCCRESS: //账号已经被注册过了
+
+
+					KnLog.log("账号已经被注册过了，返回的信息："+msg.obj.toString());
+
+					//开始登录
+					Util.hideEditTextWindow(FirstLoginActivity.this, passWordEt);
+					checkLoginParams(FirstLoginActivity.this, userNameEt, passWordEt);
+
+					break;
+
+				case ResultCode.GET_USER_NoEXIStTENT: //账号没有被注册过
+
+					KnLog.log("账号没有被注册过，返回的信息："+msg.obj.toString());
+
+					//提示绑定手机弹窗
+					LayoutInflater inflater = LayoutInflater.from(activity);
+					View v = inflater.inflate(R.layout.bind_mobile_dialog, null);
+					LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
+					final AlertDialog dia=new AlertDialog.Builder(activity).create();
+					Button bind=(Button) v.findViewById(R.id.visit_bind_account); //立即注册
+					Button cont=(Button) v.findViewById(R.id.visit_continue); //重新输入]
+					TextView name = (TextView) v.findViewById(R.id.username); //提示
+
+					String user= name.getText().toString(); //占位符
+					String et=userNameEt.getText().toString().trim(); //账号
+					name.setText(user.replace("1",et)); //替换
+
+					// bind.setText("绑定手机");
+					dia.show();
+					dia.setContentView(v);
+					bind.setOnClickListener(new OnClickListener() { //立即注册
+
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+
+
+							Intent intent1=new Intent(activity, FastLoginActivity.class);
+							startActivity(intent1);
+							dia.dismiss();
+
+							//DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
+						*//*	Intent intent=new Intent(activity, BindCellActivity.class);
+							intent.putExtra("userName", m_userName);
+							startActivity(intent);*//*
+							if(null==activity){
+
+							}else{
+								activity.finish();
+								activity = null ;
+							}
+
+						}
+					});
+					cont.setOnClickListener(new OnClickListener() { //重新输入
+
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							dia.dismiss();
+						//	DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
+							if(null==activity){
+
+							}else{
+
+
+								dia.dismiss();
+
+
+							}
+
+
+						}
+					});
+
+
+					break;*/
 
 
 

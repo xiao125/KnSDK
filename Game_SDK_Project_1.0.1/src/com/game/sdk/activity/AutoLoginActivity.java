@@ -324,6 +324,13 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 					}
 				}
 				break;
+
+				case ResultCode.NONEXISTENT: //账号不存在
+
+					Util.ShowTips(m_activity,"账号不存在！");
+
+					break;
+
 			case ResultCode.FAIL:
 				if(msg.obj!=null)
 				{

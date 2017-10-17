@@ -4,7 +4,7 @@ public class ResultCode {
 	
 	public static final int SUCCESS = 0;
 	public static final int FAIL	= 1;
-	
+	public static final int NONEXISTENT	= -3;
 	public static final int PAY_CANCEL = 201;
 	
 	public static final int UNKNOW	= 2;

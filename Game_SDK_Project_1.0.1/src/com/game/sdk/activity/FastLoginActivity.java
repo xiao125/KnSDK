@@ -325,10 +325,10 @@ public class FastLoginActivity extends Activity {
             @Override
             public boolean onEditorAction(TextView v , int actionId, KeyEvent event ) {
                 // TODO Auto-generated method stub
-                if(EditorInfo.IME_ACTION_DONE==actionId){
-                    ks_user .clearFocus();
+                if(EditorInfo.IME_ACTION_DONE==actionId){ // 按下完成按钮
+                    ks_user .clearFocus(); //清除光标，也就是失去焦点
                     kn_password.requestFocus();
-                    ks_user.setCursorVisible(false);
+                    ks_user.setCursorVisible(false); //让EditText不出现光标
                 }
                 return false;
             }
@@ -582,12 +582,18 @@ public class FastLoginActivity extends Activity {
             return;
         }
 
-        if (!username.matches("^[a-z|A-Z|0-9]{1,}$")) {
+
+        if (!username.matches("^[A-Za-z0-9_-]+$")) {
             Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
             return;
         }
 
-        if (!username.matches("^.{6,12}$")) {
+       /* if (!username.matches("^[a-z|A-Z|0-9]{1,}$")) {
+            Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
+            return;
+        }*/
+
+        if (!username.matches("^.{6,16}$")) {
             Util.ShowTips(context, getResources().getString(R.string.tips_4) );
             return;
         }
@@ -596,11 +602,8 @@ public class FastLoginActivity extends Activity {
             Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
             return;
         }
-       /* if (!confirm_password.matches("^.{6,16}$")) {
-            Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
-            return;
-        }
-        if (!confirm_password.equals(password)) {
+
+       /* if (!confirm_password.equals(password)) {
             Util.ShowTips(context,  getResources().getString(R.string.tips_65) );
             return;
         }*/

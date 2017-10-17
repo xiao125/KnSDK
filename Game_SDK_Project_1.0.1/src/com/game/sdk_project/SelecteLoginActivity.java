@@ -320,6 +320,13 @@ private boolean isFirstLogin=false;
 					}
 				}
 				break;
+
+				case ResultCode.NONEXISTENT: //账号不存在
+
+					Util.ShowTips(activity,"账号不存在！");
+
+					break;
+
 			case ResultCode.FAIL:
 				if(msg.obj!=null)
 				{
