@@ -194,6 +194,9 @@ private boolean isFirstLogin=false;
 					if(true==flag){
 						 String password = DBHelper.getInstance().findPwdByUsername(username);
 						 DBHelper.getInstance().insertOrUpdateUser( username , password );
+
+
+
 						//登录
 						 HttpService.doLogin(getApplicationContext(), mHandler, username,password);
 					}else{

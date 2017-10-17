@@ -262,8 +262,7 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 		}
 
 
-
-		KnLog.log("判断是否手机号："+ismobile(context, username));
+		KnLog.log("判断是否手机号2："+ismobile(context, username));
 
 		if (ismobile(context, username)) return;
 
@@ -285,10 +284,10 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 			return;
 		}
 
-		if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
+		/*if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
 			Util.ShowTips(context, getResources().getString(R.string.tips_1));
 			return;
-		}
+		}*/
 
 		if (!username.matches("^[A-Za-z0-9_-]+$")) {
 			Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
@@ -330,11 +329,11 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 				Util.ShowTips(context, getResources().getString(R.string.tips_1));
 				return true;
 			}
-/*
+
 			if (!username.matches("^[a-z|A-Z|0-9]{1,}$")) {
 				Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
 				return true;
-			}*/
+			}
 
 			if (!username.matches("^.{6,16}$")) {
 				Util.ShowTips(context, getResources().getString(R.string.tips_4) );
