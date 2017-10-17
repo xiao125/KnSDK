@@ -8,7 +8,7 @@ import android.view.WindowManager;
 
 
 import com.kn.game.R;
-import com.kn.game.util.dimen.DimenUtil;
+import com.kn.game.util.DimenUtil;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;

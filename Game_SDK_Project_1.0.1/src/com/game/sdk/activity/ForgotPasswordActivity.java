@@ -111,18 +111,23 @@ public class ForgotPasswordActivity extends Activity {
 
                     iscb=true;
                     mphone.setTextColor(getResources().getColor(R.color.Kn_Username));
-                    memail.setTextColor(getResources().getColor(R.color.kn_selecte_log));
-                    m_cb_email.setChecked(false);
+                  //  memail.setTextColor(getResources().getColor(R.color.kn_selecte_log));
+                   // m_cb_email.setChecked(false);
                     m_cb_phone.setChecked(true);
+                    m_zh_qd.setEnabled(true);
+                    m_zh_qd.setBackgroundColor(getResources().getColor(R.color.Kn_Username));
 
 
-
+                }else {
+                    mphone.setTextColor(getResources().getColor(R.color.kn_selecte_log));
+                    m_zh_qd.setEnabled(false);
+                    m_zh_qd.setBackgroundColor(getResources().getColor(R.color.kn_text));
                 }
             }
         });
 
         //邮箱找回
-        m_cb_email.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      /*  m_cb_email.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
@@ -135,7 +140,7 @@ public class ForgotPasswordActivity extends Activity {
                     m_cb_email.setChecked(true);
                 }
             }
-        });
+        });*/
 
 
 
@@ -264,7 +269,7 @@ public class ForgotPasswordActivity extends Activity {
         m_cb_phone= (CheckBox) findViewById(R.id.zh_phone);
         m_cb_email= (CheckBox) findViewById(R.id.zh_email);
         mphone = (TextView) findViewById(R.id.tv);
-        memail = (TextView) findViewById(R.id.tv_1);
+      //  memail = (TextView) findViewById(R.id.tv_1);
         m_frameLayout= (FrameLayout) findViewById(R.id.zh_view); //显示找回密码view
     }
 
@@ -302,7 +307,7 @@ public class ForgotPasswordActivity extends Activity {
 
                     KnLog.log("账号没有被注册过，返回的信息："+msg.obj.toString());
 
-                    Util.ShowTips(activity,"该没有被注册过,请重新输入！");
+                    Util.ShowTips(activity,"该账号没有被注册过,请重新输入！");
 
 
                     break;

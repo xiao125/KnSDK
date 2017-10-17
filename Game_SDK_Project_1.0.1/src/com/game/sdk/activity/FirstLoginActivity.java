@@ -180,7 +180,7 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 		passWordEt = (EditText) findViewById(R.id.password__et); //密码
 		image_back=(ImageView) findViewById(R.id.first_login_back); //返回
 		update_Password= (TextView) findViewById(R.id.update_Password); //忘记密码
-		login_bt = (Button) findViewById(R.id.login_bt);
+		login_bt = (Button) findViewById(R.id.login_bt); //登录
 		new_account_bt = (TextView) findViewById(R.id.new_account_bt);
 
 		login_bt.setOnClickListener(this);
