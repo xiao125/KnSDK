@@ -43,7 +43,7 @@ public class PAY_API {
 		this.appkey = appkey;
 		this.publicKey = publicKey;
 
-		IAppPay.init(activity, orientation, this.appid);
+		IAppPay.init(activity, orientation, this.appid); //爱贝支付sdk初始化
 
 	}
 	

@@ -283,7 +283,7 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 
 
 		if(TextUtils.isEmpty(username)){
-			Util.ShowTips(activity,getResources().getString(R.string.tips_58));
+			Util.ShowTips(activity,getResources().getString(R.string.tips_100));
 			return ;
 		}
 
@@ -306,12 +306,12 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 		}
 
 
-		if (!username.matches("^.{6,16}$")) {
+		if (!username.matches("^.{6,25}$")) {
 			Util.ShowTips(context, getResources().getString(R.string.tips_4) );
 			return;
 		}
 
-		if (!password.matches("^.{6,16}$")) {
+		if (!password.matches("^.{6,20}$")) {
 			Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
 			return;
 		}
@@ -344,17 +344,19 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 		if(!Util.isMobileNO(username)) { //如果不是手机号
 			//Util.ShowTips(m_activity, getResources().getString(R.string.tips_57)); //如果不是手机号
 
+
+
 			if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
 				Util.ShowTips(context, getResources().getString(R.string.tips_1));
 				return true;
 			}
 
-			if (!username.matches("^[a-z|A-Z|0-9]{1,}$")) {
+			if (!username.matches("^[A-Za-z0-9_-]+$")) {
 				Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
 				return true;
 			}
 
-			if (!username.matches("^.{6,16}$")) {
+			if (!username.matches("^.{6,25}$")) {
 				Util.ShowTips(context, getResources().getString(R.string.tips_4) );
 				return true;
 			}

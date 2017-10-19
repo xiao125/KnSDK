@@ -12,15 +12,17 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class Util {
-	
+
 	private static long  mTime = System.currentTimeMillis() ;
 	
 	public static boolean  findNameInSet( final String[] set ,final String name ){

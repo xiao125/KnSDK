@@ -17,6 +17,7 @@ import com.game.sdk.util.Util;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -46,6 +47,7 @@ public class BindCellActivity  extends Activity implements OnClickListener {
 	private int      m_time  = 60 ;
 	private Message  m_msg = null ;
     private String newSdk="1";
+
 	@Override
 	public void onClick(View v ) {
 		// TODO Auto-generated method stub

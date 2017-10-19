@@ -190,7 +190,7 @@ public class ForgotPasswordActivity extends Activity {
              /*   if (isphone()) return;*/
 
 
-        if (!username.matches("^.{6,16}$")) {
+        if (!username.matches("^.{6,25}$")) {
             Util.ShowTips(activity, getResources().getString(R.string.tips_4) );
             return;
         }
@@ -200,10 +200,6 @@ public class ForgotPasswordActivity extends Activity {
             return;
         }
 
-        if (!username.matches("^.{6,16}$")) {
-            Util.ShowTips(context, getResources().getString(R.string.tips_4) );
-            return;
-        }
 
                /* if (!userphone.matches("^[a-z|A-Z]{1}.{0,}$")) {
                     Util.ShowTips(context, getResources().getString(R.string.tips_1));
@@ -230,6 +226,13 @@ public class ForgotPasswordActivity extends Activity {
         if(!Util.isMobileNO(username)) { //如果不是手机号
             //Util.ShowTips(m_activity, getResources().getString(R.string.tips_57)); //如果不是手机号
 
+            //手机号或者账号不能为空
+
+            if(TextUtils.isEmpty(username)){
+                Util.ShowTips(context,getResources().getString(R.string.tips_100));
+                return true;
+            }
+
             if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
                 Util.ShowTips(context, getResources().getString(R.string.tips_1));
                 return true;
@@ -240,7 +243,7 @@ public class ForgotPasswordActivity extends Activity {
                 return true;
             }
 
-            if (!username.matches("^.{6,16}$")) {
+            if (!username.matches("^.{6,25}$")) {
                 Util.ShowTips(context, getResources().getString(R.string.tips_4) );
                 return true;
             }

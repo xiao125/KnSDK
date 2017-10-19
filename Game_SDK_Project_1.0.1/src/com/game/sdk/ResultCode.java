@@ -49,5 +49,6 @@ public class ResultCode {
 	public static final int VISITOR_BIND_MODILE_SUCCESS = 516;
 	public static final int VISITOR_BIND_MODILE_FAIL = 5517;
 
-
+	public static final int RANDUSERNAME_SUCCESS = 518;
+	public static final int RANDUSERNAME_FAIL = 519;
 }

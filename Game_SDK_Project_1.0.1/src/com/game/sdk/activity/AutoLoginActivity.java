@@ -11,11 +11,13 @@ import com.example.kngame_sdk_project.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
+import com.game.sdk.bean.GameInfo;
 import com.game.sdk.service.HttpService;
 import com.game.sdk.util.DBHelper;
 import com.game.sdk.util.DeviceUtil;
 import com.game.sdk.util.LoadingDialog;
 import com.game.sdk.util.KnLog;
+import com.game.sdk.util.SpUtil;
 import com.game.sdk.util.Util;
 import com.game.sdk_project.SelecteLoginActivity;
 
@@ -117,6 +119,8 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 		//创建sp存储
 		preferences = getSharedPreferences("Autoogin",MODE_PRIVATE);
 		editor= preferences.edit();
+
+
 
 
 
@@ -299,12 +303,21 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 
 						//查询是否第一次登录
 						String first = preferences.getString("login",null);
+
+						//Object first= SpUtil.get(m_activity,"String","");
+
+						KnLog.log("//查询是否第一次登录"+first);
+
 						if(first==null){
 
 
 							//存入数据
 							editor.putString("login","1");
 							editor.commit();
+
+						//	SpUtil.put(m_activity,"String","1");
+							KnLog.log("//存入数据第一次登录");
+
 							finish();
 							m_activity=null;
 

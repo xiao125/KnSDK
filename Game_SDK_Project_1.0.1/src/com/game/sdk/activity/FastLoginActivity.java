@@ -32,10 +32,13 @@ import com.game.sdk.util.LoadingDialog;
 import com.game.sdk.util.Md5Util;
 import com.game.sdk.util.Util;
 import com.game.sdk_project.SelecteLoginActivity;
+import com.ta.utdid2.android.utils.SystemUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -59,6 +62,8 @@ public class FastLoginActivity extends Activity {
     public  static   String    m_passWord ;
     public String m_phone;
     public String m_pw;
+
+    public String randName;
 
     public static final String allChar = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -85,7 +90,8 @@ public class FastLoginActivity extends Activity {
 
         initView();
 
-        generateMixString(5);
+
+        RandName();
 
         initLinster();
 
@@ -263,6 +269,21 @@ public class FastLoginActivity extends Activity {
 
 
     }
+
+
+
+    private  void RandName(){
+
+        //获取随机有户名
+        SimpleDateFormat formatter   =   new   SimpleDateFormat("yyyyMMddHHmmss");
+        Date curDate =  new Date(System.currentTimeMillis());
+        String   time  =   formatter.format(curDate);
+
+        KnLog.log("获取时间："+time);
+        HttpService.RandUserName(m_activity,handler,String.valueOf(time));
+
+    }
+
 
 
     //随机生成一组字符串
@@ -492,18 +513,17 @@ public class FastLoginActivity extends Activity {
         String security_code = code.getText().toString().trim();//验证码
         String password = passWordEt.getText().toString().trim();//密码
 
-        if(TextUtils.isEmpty(security_code)){
-            Util.ShowTips(m_activity,"验证码不能为空");
-            return ;
-        }
-
         if(TextUtils.isEmpty(userphone)){
             Util.ShowTips(m_activity,getResources().getString(R.string.tips_58));
-
             return ;
         }
         if(!Util.isMobileNO(userphone)){
             Util.ShowTips(m_activity,getResources().getString(R.string.tips_57));
+            return ;
+        }
+
+        if(TextUtils.isEmpty(security_code)){
+            Util.ShowTips(m_activity,"验证码不能为空");
             return ;
         }
 
@@ -512,7 +532,7 @@ public class FastLoginActivity extends Activity {
             return;
         }
 
-        if (!password.matches("^.{6,16}$")) {
+        if (!password.matches("^.{6,20}$")) {
             Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
             return;
         }
@@ -537,21 +557,18 @@ public class FastLoginActivity extends Activity {
 
 
     private void checkRegisterParams(Context context, EditText userNameEt, EditText passWordEt) {
+
+        //注意：判断顺序
         String username = userNameEt.getText().toString();
         if (TextUtils.isEmpty(username)) {
             Util.ShowTips(context,  getResources().getString(R.string.tips_2) );
             return;
         }
-        String password = passWordEt.getText().toString();
-        if (TextUtils.isEmpty(password)) {
-            Util.ShowTips(context,  getResources().getString(R.string.tips_8) );
+
+        if (!username.matches("^.{6,25}$")) {
+            Util.ShowTips(context, getResources().getString(R.string.tips_4) );
             return;
         }
-      /*  String confirm_password=confirmPassword.getText().toString();
-        if (TextUtils.isEmpty(confirm_password)) {
-            Util.ShowTips(context,  getResources().getString(R.string.tips_64) );
-            return;
-        }*/
 
         if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
             Util.ShowTips(context, getResources().getString(R.string.tips_1));
@@ -564,17 +581,28 @@ public class FastLoginActivity extends Activity {
             return;
         }
 
+
+        String password = passWordEt.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            Util.ShowTips(context,  getResources().getString(R.string.tips_8) );
+            return;
+        }
+      /*  String confirm_password=confirmPassword.getText().toString();
+        if (TextUtils.isEmpty(confirm_password)) {
+            Util.ShowTips(context,  getResources().getString(R.string.tips_64) );
+            return;
+        }*/
+
+
+
        /* if (!username.matches("^[a-z|A-Z|0-9]{1,}$")) {
             Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
             return;
         }*/
 
-        if (!username.matches("^.{6,16}$")) {
-            Util.ShowTips(context, getResources().getString(R.string.tips_4) );
-            return;
-        }
 
-        if (!password.matches("^.{6,16}$")) {
+
+        if (!password.matches("^.{6,20}$")) {
             Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
             return;
         }
@@ -717,6 +745,20 @@ public class FastLoginActivity extends Activity {
                         Util.ShowTips(FastLoginActivity.this,  Util.getJsonStringByName( msg.obj.toString() , "reason" ) );
                     break;
 
+                case ResultCode.RANDUSERNAME_SUCCESS: //获取分配用户名成功
+
+                    randName =msg.obj.toString();
+                    ks_user.setText(randName); //显示用户名
+
+
+                    break;
+
+                case ResultCode.RANDUSERNAME_FAIL: //获取分配用户名失败
+
+                    KnLog.log("服务器生成失败，那就客户端生成");
+                    generateMixString(7);//客户端生成
+
+                    break;
 
 
                 default:

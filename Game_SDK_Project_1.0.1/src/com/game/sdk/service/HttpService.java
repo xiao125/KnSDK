@@ -21,6 +21,7 @@ import com.game.sdk.task.MobileRegisterAsyncTask;
 import com.game.sdk.task.PassWordNewBindMobileAsyncTask;
 import com.game.sdk.task.QueryAccountBindAsyncTask;
 import com.game.sdk.task.QueryMsiBindAsyncTask;
+import com.game.sdk.task.RandUserNameAsyncTask;
 import com.game.sdk.task.RegisterAsyncTask;
 import com.game.sdk.task.VisitorAccountBindAsyncTask;
 import com.game.sdk.task.VisitorAsyncTask;
@@ -370,8 +371,49 @@ public class HttpService {
 	}
 
 
+	//随机分配用户名接口
+	public static void RandUserName( Context applicationContext, Handler handler, String time ){
 
-	
+		try {
+
+			GameInfo gameInfo = GameSDK.getInstance().getGameInfo();
+			String appInfo = Util.getAppInfo( GameSDK.getInstance().getActivity() );
+			String app_id     = "1011";
+			String app_secret = "3d759cba73b253080543f8311b6030bf";
+//			String versionCode = KnUtil.getJsonStringByName(appInfo, "versionCode") ;
+			String versionCode = PROXY_VERSION ;
+			String gameName = gameInfo.getGameId() ;
+			String imei = DeviceUtil.getDeviceId();
+			String channel = gameInfo.getChannel();
+			String ad_channel = gameInfo.getAdChannel();
+			String platform = gameInfo.getPlatform();
+
+			Map<String, String> update_params = new TreeMap<String, String>( new Comparator<String>() {
+
+				@Override
+				public int compare(String arg0, String arg1) {
+					// TODO Auto-generated method stub
+					return arg0.compareTo(arg1);
+				}
+			} );
+
+
+			update_params.put("time",time);
+			update_params.put("proxyVersion", versionCode);
+
+			Map<String, String> update_params1 = Util.getSign( update_params , app_secret );
+
+			new RandUserNameAsyncTask(applicationContext, handler, SDK.RAND_USER_NAME)
+					.execute(new Map[] { update_params1 , null, null });
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+
+
+
 	public static void getAccountSubmit( Context applicationContext, Handler handler, String mobile , String security_code ){
 	
 		try {
@@ -436,7 +478,7 @@ public class HttpService {
 			
 			JSONObject content = new JSONObject();
 			content.put("mobile",mobile);
-			content.put("new_pwd",new_password);
+			content.put("pwd_new",new_password);
 			content.put("rand_code",security_code);
 			update_params.put("newSdk", newSdk);//区分sdk
 			update_params.put("content", content.toString());
