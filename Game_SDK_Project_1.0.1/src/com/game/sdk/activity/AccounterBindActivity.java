@@ -277,15 +277,17 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 			return;
 		}
 
+		if (!username.matches("^.{6,25}$")) {
+			Util.ShowTips(context, getResources().getString(R.string.tips_4) );
+			return;
+		}
+
 		if (TextUtils.isEmpty(password)) {
 			Util.ShowTips(context,  getResources().getString(R.string.tips_8) );
 			return;
 		}
 
-		if (!username.matches("^.{6,25}$")) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_4) );
-			return;
-		}
+
 
 		/*if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
 			Util.ShowTips(context, getResources().getString(R.string.tips_1));
