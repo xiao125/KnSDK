@@ -255,7 +255,6 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 		String username = mUsername.getText().toString();
 		String password = mPassword.getText().toString();
 
-
 		if(TextUtils.isEmpty(username)){
 			Util.ShowTips(m_activity,getResources().getString(R.string.tips_100));
 			return ;

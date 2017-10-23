@@ -26,6 +26,7 @@ public class SDK {
 	public static String GET_USER_NAME="http://oms.u7game.cn/api/get_user_name.php"; //验证账号是否存在
 	public static String VISITOR_BIND_MOBILE="http://oms.u7game.cn/api/visitor_bind_mobile.php"; //游客绑定手机号
 	public static String RAND_USER_NAME="http://oms.u7game.cn/api/rand_user_name.php"; //随机分配用户名接口
+    public static String RECORD_ACTIVATE="http://oms.u7game.cn/api/record_activate.php";//上报设备激活接口
 
 
 	public static final int LANDSCAPE = 0;

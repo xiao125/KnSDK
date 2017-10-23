@@ -25,6 +25,7 @@ import com.game.sdk.bean.UserInfo;
 import com.game.sdk.listener.LoginListener;
 import com.game.sdk.listener.PayListener;
 import com.game.sdk.pay.PAY_API;
+import com.game.sdk.service.HttpService;
 import com.game.sdk.util.DBHelper;
 import com.game.sdk.util.KnLog;
 import com.game.sdk.util.Util;
@@ -98,7 +99,10 @@ public class GameSDK {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+		//上报数据
+		RecordActivate.getInstance().init(activity);
+
 	}
 
 	/**
@@ -112,6 +116,10 @@ public class GameSDK {
 	public void initIappaySDK(Activity activity,String appid, String appkey , String publicKey) {
 		PAY_API.getInstance().init(activity, getmOrientation(), appid , appkey  , publicKey);
 	}
+
+
+
+
 
 	/**
 	 * 跳转到登陆页面

@@ -5,7 +5,7 @@ public class GameInfo {
 	private String appKey;
 	
 	private String gameId;
-	private String channel = "kuniu";
+	private String channel = "u7game";
 	private String platform = "android";
 	private String adChannel;
 	private String gid;

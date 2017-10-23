@@ -22,6 +22,7 @@ import com.game.sdk.task.PassWordNewBindMobileAsyncTask;
 import com.game.sdk.task.QueryAccountBindAsyncTask;
 import com.game.sdk.task.QueryMsiBindAsyncTask;
 import com.game.sdk.task.RandUserNameAsyncTask;
+import com.game.sdk.task.RecordActivateAsyncTask;
 import com.game.sdk.task.RegisterAsyncTask;
 import com.game.sdk.task.VisitorAccountBindAsyncTask;
 import com.game.sdk.task.VisitorAsyncTask;
@@ -410,6 +411,34 @@ public class HttpService {
 		}
 
 	}
+
+
+	//上报设备激活接口
+	public static void  recordActivate( Context applicationContext, Handler handler ){
+
+
+		try {
+
+		    HashMap<String , String> params = getCommonParams();
+
+			GameInfo gameInfo = GameSDK.getInstance().getGameInfo();
+			String gameId = gameInfo.getGameId() ;
+			String imei = DeviceUtil.getDeviceId();
+		    String phonetype =  DeviceUtil.getPhoneType();
+			String appkey= String.valueOf(System.currentTimeMillis());//自定义，没有明确指定
+		    params.put("app_key",appkey);
+		    params.put("phone_Type",phonetype);//手机类型
+
+		    params.put("sign", Md5Util.getMd5(gameId+appkey+imei));
+
+			new RecordActivateAsyncTask(applicationContext, handler, SDK.RECORD_ACTIVATE)
+					.execute(new Map[] { params , null, null });
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 
 
 
