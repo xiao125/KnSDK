@@ -8,7 +8,7 @@ import com.game.sdk.service.HttpService;
 import com.game.sdk.util.KnLog;
 
 /**
- * 上报数据接口
+ * 上报激活设备接口
  */
 
 public class RecordActivate {
