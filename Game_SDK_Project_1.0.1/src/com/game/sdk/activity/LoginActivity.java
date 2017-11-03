@@ -29,7 +29,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.widget.EditText;
@@ -265,7 +264,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 			default:
 				break;
 			}
-//			KnLog.i(" LoginActivity msg.obj.toString() = " + msg.obj.toString());
 		}
 	};
 

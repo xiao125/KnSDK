@@ -25,7 +25,6 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -188,92 +187,128 @@ public class AccountForgetActivity extends Activity implements OnClickListener {
 			Intent intent = null;
 			LoadingDialog.dismiss();
 			switch (resultCode) {
-			case ResultCode.ACCOUNT_GET_SUCCESS:
-				 String reason   = "";
-				 try {
-					JSONObject  json = new JSONObject(msg_content);
-					final String username = json.getString("username");
-					reason = json.getString("reason");
-					
-					LayoutInflater inflater = m_activity.getLayoutInflater();
-					m_View = inflater.inflate(R.layout.tip, null);	
-					FrameLayout.LayoutParams  layoutParams1 = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,FrameLayout.LayoutParams.WRAP_CONTENT);
-				  	layoutParams1.gravity = Gravity.CENTER;
-					m_activity.addContentView(m_View,layoutParams1);
-					 
-					View backGround = (View)m_View.findViewById(R.id.background);
-					backGround.getBackground().setAlpha(255);
-					 
-					TextView   tView     = (TextView)m_View.findViewById(R.id.text_current);
-					Button     btnSubmit = (Button)m_View.findViewById(R.id.submit);
-					 
-					String str1 = "您的账户为:"+username ;
-					String str2 = "请记住您的账号" ;
-					int    len1 = str1.length();
-					int    len2 = str2.length();
-					int    mid  = (len1-len2)/2;
-					String str3 = "\n\n\r\r";
-					for(int i=0;i!=mid-1;++i){
-						str3=str3+"\r\r";
-					}
-					tView.setText(str1+str3+str2);
-					
-					btnSubmit.setOnClickListener( new OnClickListener() {
-						
-						@Override
-						public void onClick(View arg0) {
-							// TODO Auto-generated method stub
-							 Intent intent = null;
-							 intent = new Intent(m_activity.getApplicationContext(), FirstLoginActivity.class);
-							 intent.putExtra("userName",username);
-							 if(null==m_activity){
-								 
-							 }else{
-								
-								 m_activity.startActivity(intent);
-								 m_activity.finish();
-								 m_activity = null ;
-								 
-							 }
+				case ResultCode.ACCOUNT_GET_SUCCESS:
+
+					if (msg.obj != null) {
+						if (GameSDK.getInstance().getmLoginListener() != null) {
+							GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
+
+
+							String reason = "";
+							try {
+								JSONObject json = new JSONObject(msg_content);
+								final String username = json.getString("username");
+								reason = json.getString("reason");
+
+								LayoutInflater inflater = m_activity.getLayoutInflater();
+								m_View = inflater.inflate(R.layout.tip, null);
+								FrameLayout.LayoutParams layoutParams1 = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+								layoutParams1.gravity = Gravity.CENTER;
+								m_activity.addContentView(m_View, layoutParams1);
+
+								View backGround = (View) m_View.findViewById(R.id.background);
+								backGround.getBackground().setAlpha(255);
+
+								TextView tView = (TextView) m_View.findViewById(R.id.text_current);
+								Button btnSubmit = (Button) m_View.findViewById(R.id.submit);
+
+								String str1 = "您的账户为:" + username;
+								String str2 = "请记住您的账号";
+								int len1 = str1.length();
+								int len2 = str2.length();
+								int mid = (len1 - len2) / 2;
+								String str3 = "\n\n\r\r";
+								for (int i = 0; i != mid - 1; ++i) {
+									str3 = str3 + "\r\r";
+								}
+								tView.setText(str1 + str3 + str2);
+
+								btnSubmit.setOnClickListener(new OnClickListener() {
+
+									@Override
+									public void onClick(View arg0) {
+										// TODO Auto-generated method stub
+										Intent intent = null;
+										intent = new Intent(m_activity.getApplicationContext(), FirstLoginActivity.class);
+										intent.putExtra("userName", username);
+										if (null == m_activity) {
+
+										} else {
+
+											m_activity.startActivity(intent);
+											m_activity.finish();
+											m_activity = null;
+
+										}
+									}
+								});
+
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
 						}
-					} );
-					
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				 
-				break;
-			case ResultCode.ACCOUNT_GET_FAIL:
-				 Util.ShowTips(m_activity,msg_content);
+					}
+
+
+					break;
+				case ResultCode.ACCOUNT_GET_FAIL:
+					if (msg.obj != null) {
+						if (GameSDK.getInstance().getmLoginListener() != null) {
+							GameSDK.getInstance().getmLoginListener().onFail(msg.obj.toString());
+
+							Util.ShowTips(m_activity,msg_content);
+						}
+					}
+
+
 				 break;
 			case ResultCode.SECURITY_SUCCESS:
-				 m_get_security_codeBtn.setClickable(false);
-				 m_timer = new Timer();
-				 m_time = 60 ;
-				 m_timer.schedule(new TimerTask() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							m_msg = new Message();
-							if(0==m_time){
-								m_msg.what = 10001;
-								m_timer.cancel();
-							}else{
-								m_time -- ;
-								m_msg.what = 10000;
+
+				if (msg.obj != null) {
+					if (GameSDK.getInstance().getmLoginListener() != null) {
+						GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
+
+						m_get_security_codeBtn.setClickable(false);
+						m_timer = new Timer();
+						m_time = 60 ;
+						m_timer.schedule(new TimerTask() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								m_msg = new Message();
+								if(0==m_time){
+									m_msg.what = 10001;
+									m_timer.cancel();
+								}else{
+									m_time -- ;
+									m_msg.what = 10000;
+								}
+								m_handler.sendMessage(m_msg);
 							}
-							m_handler.sendMessage(m_msg);
-						}
-				 },1000,1000);
+						},1000,1000);
+					}
+				}
+
+
 				 break;
 			case ResultCode.SECURITY_FAIL:
-				 if(null==m_activity){
-					 
-				 }else{
-					 Util.ShowTips(m_activity,msg_content); 
-				 }
+
+				if (msg.obj != null) {
+					if (GameSDK.getInstance().getmLoginListener() != null) {
+						GameSDK.getInstance().getmLoginListener().onFail(msg.obj.toString());
+
+						if(null==m_activity){
+
+						}else{
+							Util.ShowTips(m_activity,msg_content);
+						}
+					}
+				}
+
+
 				 break;
 			default:
 				 if(null==m_activity){

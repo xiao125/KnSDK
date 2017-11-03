@@ -101,7 +101,9 @@ public class GameSDK {
 		}
 
 		//上报数据
-		RecordActivate.getInstance().init(activity);
+		//RecordActivate.getInstance().init(activity);
+
+
 
 	}
 

@@ -1,11 +1,7 @@
 package com.game.sdk.activity;
 
-import java.text.BreakIterator;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import org.w3c.dom.Text;
-
 import com.example.kngame_sdk_project.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
@@ -17,7 +13,6 @@ import com.game.sdk.util.Util;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,8 +24,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * 手机号注册账号
@@ -245,19 +238,37 @@ public class BindCellActivity  extends Activity implements OnClickListener {
 			LoadingDialog.dismiss();
 			switch (resultCode) {
 			case ResultCode.BIND_SUCCESS: //绑定手机号成功
-				 Util.ShowTips(m_activity,msg_content);
-				/* intent = new Intent(m_activity.getApplicationContext(), AutoLoginActivity.class);
-				 intent.putExtra("userName",m_userNames);*/
 
-               if (m_activity!=null){
-				   m_activity.finish();
-				   m_activity = null ;
-			   }
+				if(msg.obj!=null) {
+					if (GameSDK.getInstance().getmLoginListener() != null) {
+						GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
+
+						Util.ShowTips(m_activity,msg_content);
+				       /* intent = new Intent(m_activity.getApplicationContext(), AutoLoginActivity.class);
+				        intent.putExtra("userName",m_userNames);*/
+
+						if (m_activity!=null){
+							m_activity.finish();
+							m_activity = null ;
+						}
+					}
+				}
+
+
 
 
 				 break;
 			case ResultCode.BIND_FAIL:
-				 Util.ShowTips(m_activity,msg_content);
+
+				if(msg.obj!=null) {
+					if (GameSDK.getInstance().getmLoginListener() != null) {
+						GameSDK.getInstance().getmLoginListener().onFail(msg.obj.toString());
+
+						Util.ShowTips(m_activity,msg_content);
+					}
+				}
+
+
 				 break;
 			case ResultCode.SECURITY_SUCCESS: //验证码获取成功
 

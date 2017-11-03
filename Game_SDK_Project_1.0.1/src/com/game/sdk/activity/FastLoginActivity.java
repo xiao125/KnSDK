@@ -643,38 +643,61 @@ public class FastLoginActivity extends Activity {
             Log.e("sadaaaawdawf", msg_content+"////"+resultCode);
             switch (resultCode) {
                 case ResultCode.PASSWORD_NEW_SUCCESS:
-                    KnLog.log("修改密码成功++");
-                    try {
-                        KnLog.log("msg_content:"+msg_content);
-                        JSONObject json = new JSONObject( msg_content );
-                        KnLog.log("json:"+json.toString());
-                        String reason = json.getString("reason");
-                        String user_name = json.getString("user_name");
-                        KnLog.log("reason:"+reason);
-                        KnLog.log("user_name:"+user_name);
-                        Util.ShowTips(m_activity,reason);
-                        intent = new Intent(m_activity.getApplicationContext(), AutoLoginActivity.class); //跳转到免输入密码登录界面
-                        intent.putExtra("userName", user_name);
-                        if(null==intent){
 
-                        }else{
-                            if(null==m_activity){
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
 
-                            }else{
 
-                                m_activity.startActivity(intent);
-                                m_activity.finish();
-                                m_activity = null ;
+                            KnLog.log("修改密码成功++");
+                            try {
+                                KnLog.log("msg_content:"+msg_content);
+                                JSONObject json = new JSONObject( msg_content );
+                                KnLog.log("json:"+json.toString());
+                                String reason = json.getString("reason");
+                                String user_name = json.getString("user_name");
+                                KnLog.log("reason:"+reason);
+                                KnLog.log("user_name:"+user_name);
+                                Util.ShowTips(m_activity,reason);
+                                intent = new Intent(m_activity.getApplicationContext(), AutoLoginActivity.class); //跳转到免输入密码登录界面
+                                intent.putExtra("userName", user_name);
+                                if(null==intent){
 
+                                }else{
+                                    if(null==m_activity){
+
+                                    }else{
+
+                                        m_activity.startActivity(intent);
+                                        m_activity.finish();
+                                        m_activity = null ;
+
+                                    }
+                                }
+
+                            } catch (JSONException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
                             }
+
                         }
-                        break;
-                    } catch (JSONException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
                     }
+
+
+
+                    break;
                 case ResultCode.PASSWORD_NEW_FAIL:
-                    Util.ShowTips(m_activity,msg_content);
+
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onFail(msg.obj.toString());
+
+                            Util.ShowTips(m_activity,msg_content);
+
+                        }
+                    }
+
+
                     break;
                 case ResultCode.SECURITY_SUCCESS: //验证码获取成功
                    /* m_get_security_codeBtn.setClickable(false);
@@ -700,63 +723,114 @@ public class FastLoginActivity extends Activity {
 
                     break;
                 case ResultCode.SECURITY_FAIL:
+
                     Util.ShowTips(m_activity,msg_content);
                     break;
 
                 case ResultCode.SUCCESS: //注册成功
-                    setResult(Activity.RESULT_OK);
-                    DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
-                    Util.ShowTips(FastLoginActivity.this, getResources().getString(R.string.tips_15) );
-                    //RegisterActivity.this.finish();
 
-                 /*   m_activity.finish();
-                    m_activity=null;*/
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
 
-                   GameSDK.instance.login(FastLoginActivity.this); //跳转到免密码登录
-                    //	执行自动登录
+                            setResult(Activity.RESULT_OK);
+                            DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
+                            Util.ShowTips(FastLoginActivity.this, getResources().getString(R.string.tips_15) );
+                            //RegisterActivity.this.finish();
+
+                           /*   m_activity.finish();
+                                m_activity=null;*/
+
+                            GameSDK.instance.login(FastLoginActivity.this); //跳转到免密码登录
+                            //	执行自动登录
+                        }
+                    }
+
+
+
                     break;
                 case ResultCode.FAIL: ////注册失败
-                    if(msg.obj!=null)
-                        Util.ShowTips(FastLoginActivity.this,  Util.getJsonStringByName( msg.obj.toString() , "reason" ) );
+
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onFail(msg.obj.toString());
+
+                                Util.ShowTips(FastLoginActivity.this,  Util.getJsonStringByName( msg.obj.toString() , "reason" ) );
+                        }
+                    }
+
+
+
                     break;
 
                 case ResultCode.MOBILE_REG_SUCCRESS: //手机注册成功
 
-                    setResult(Activity.RESULT_OK);
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
 
-                    KnLog.log("手机注册成功1");
 
-                    //添加手机账号
-                    DBHelper.getInstance().insertOrUpdateUser( m_phone ,m_pw );
-                    Util.ShowTips(FastLoginActivity.this, getResources().getString(R.string.tips_15) );
-                    //RegisterActivity.this.finish();
+                            setResult(Activity.RESULT_OK);
 
-                 /*   m_activity.finish();
-                    m_activity=null;*/
+                            KnLog.log("手机注册成功1");
 
-                    GameSDK.instance.login(FastLoginActivity.this); //跳转到免密码登录
+                            //添加手机账号
+                            DBHelper.getInstance().insertOrUpdateUser( m_phone ,m_pw );
+                            Util.ShowTips(FastLoginActivity.this, getResources().getString(R.string.tips_15) );
+
+                            GameSDK.instance.login(FastLoginActivity.this); //跳转到免密码登录
+
+                        }
+                    }
+
 
 
                     break;
 
                 case ResultCode.MOBILE_REG_FAIL: //手机注册失败
 
-                    if(msg.obj!=null)
-                        Util.ShowTips(FastLoginActivity.this,  Util.getJsonStringByName( msg.obj.toString() , "reason" ) );
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onFail(msg.obj.toString());
+
+                            Util.ShowTips(FastLoginActivity.this,  Util.getJsonStringByName( msg.obj.toString() , "reason" ) );
+                        }
+                    }
+
+
                     break;
 
                 case ResultCode.RANDUSERNAME_SUCCESS: //获取分配用户名成功
 
-                    randName =msg.obj.toString();
-                    ks_user.setText(randName); //显示用户名
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
+
+
+                            randName =msg.obj.toString();
+                            ks_user.setText(randName); //显示用户名
+
+                        }
+                    }
+
 
 
                     break;
 
                 case ResultCode.RANDUSERNAME_FAIL: //获取分配用户名失败
 
-                    KnLog.log("服务器生成失败，那就客户端生成");
-                    generateMixString(7);//客户端生成
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onFail(msg.obj.toString());
+
+
+                            KnLog.log("服务器生成失败，那就客户端生成");
+                            generateMixString(7);//客户端生成
+
+                        }
+                    }
+
+
 
                     break;
 

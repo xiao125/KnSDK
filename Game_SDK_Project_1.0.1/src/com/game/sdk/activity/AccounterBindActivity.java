@@ -1,7 +1,5 @@
 package com.game.sdk.activity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.example.kngame_sdk_project.R;
 import com.game.sdk.Constants;
@@ -14,9 +12,7 @@ import com.game.sdk.util.KnLog;
 import com.game.sdk.util.Util;
 import com.game.sdk.util.Md5Util;
 import com.game.sdk_project.SelecteLoginActivity;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -34,9 +30,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-
-import static com.game.sdk.ResultCode.GET_USER_FAIL;
-
 /**
  * 游客升级成萌创账号
  */
@@ -363,75 +356,86 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 		public void handleMessage(Message msg) {
 			LoadingDialog.dismiss();
 			switch (msg.what) {
-				/*case ResultCode.SUCCESS: //注册账号成功
-
-					//保存用户名与密码
-					DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
-					Util.ShowTips(AccounterBindActivity.this, getResources().getString(R.string.tips_15) );
-
-
-					GameSDK.instance.login(AccounterBindActivity.this); //跳转到免密码登录
-
-					break;
-
-				case ResultCode.FAIL: ////注册失败
-					if(msg.obj!=null)
-						Util.ShowTips(AccounterBindActivity.this,Util.getJsonStringByName( msg.obj.toString() , "reason" ) );
-					break;*/
 
 				case ResultCode.GET_USER_SUCCRESS: //账号已经被注册过了
+					if(msg.obj!=null) {
+						if (GameSDK.getInstance().getmLoginListener() != null) {
+							GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
 
-					Util.ShowTips(m_activity,"账号已经被注册了，请重新输入！");
+							Util.ShowTips(m_activity,"账号已经被注册了，请重新输入！");
 
-					KnLog.log("账号已经被注册过了，返回的信息："+msg.obj.toString());
+							KnLog.log("账号已经被注册过了，返回的信息："+msg.obj.toString());
+
+						}
+					}
+
+
 
 					break;
 
 				case ResultCode.GET_USER_NoEXIStTENT: //账号没有被注册过
 
+					if(msg.obj!=null) {
+						if (GameSDK.getInstance().getmLoginListener() != null) {
+							GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
 
-					KnLog.log("账号没有被注册过，返回的信息："+msg.obj.toString());
+							KnLog.log("账号没有被注册过，返回的信息："+msg.obj.toString());
 
-					String username= userNameEt.getText().toString().trim(); //账号
-					String  password=passWordEt.getText().toString().trim(); //密码
-					String ps = Md5Util.getMd5(password);
+							String username= userNameEt.getText().toString().trim(); //账号
+							String  password=passWordEt.getText().toString().trim(); //密码
+							String ps = Md5Util.getMd5(password);
 
-					KnLog.log("判断是否是手机："+ismobile(m_activity, username));
+							KnLog.log("判断是否是手机："+ismobile(m_activity, username));
 
-					if (Util.isMobileNO(username)){ //
+							if (Util.isMobileNO(username)){ //
 
-						KnLog.log("是手机号："+username+" 密码="+ps);
+								KnLog.log("是手机号："+username+" 密码="+ps);
 
-						//跳转发送验证码注册
-						Intent intent1 =new Intent(AccounterBindActivity.this,TourtistRegActivity.class);
-						intent1.putExtra("phone",username);
-						intent1.putExtra("password",ps);
+								//跳转发送验证码注册
+								Intent intent1 =new Intent(AccounterBindActivity.this,TourtistRegActivity.class);
+								intent1.putExtra("phone",username);
+								intent1.putExtra("password",ps);
 
-						startActivity(intent1);
+								startActivity(intent1);
 
-						KnLog.log("跳转页面：");
-
-
-
-
-					}else {
+								KnLog.log("跳转页面：");
 
 
-						KnLog.log("不是手机号：");
-
-						String pd = Md5Util.getMd5(password);
-						m_userName = username ;
-						m_passWord = pd ;
-						LoadingDialog.show(m_activity, "绑定中...",true);
-
-						//游客绑定账号
-						HttpService.visitorBindAccount(getApplicationContext(), handler, username, pd );
 
 
-						//直接用户名与密码，注册账号
-					//	HttpService.doRegister(getApplicationContext(), handler, username, pd);
+							}else {
 
 
+								KnLog.log("不是手机号：");
+
+								String pd = Md5Util.getMd5(password);
+								m_userName = username ;
+								m_passWord = pd ;
+								LoadingDialog.show(m_activity, "绑定中...",true);
+
+								//游客绑定账号
+								HttpService.visitorBindAccount(getApplicationContext(), handler, username, pd );
+
+
+								//直接用户名与密码，注册账号
+								//	HttpService.doRegister(getApplicationContext(), handler, username, pd);
+
+
+							}
+
+
+						}
+					}
+
+					break;
+
+				case ResultCode.GET_USER_FAIL: //查询账号返回错误
+
+					if(msg.obj!=null) {
+						if (GameSDK.getInstance().getmLoginListener() != null) {
+							GameSDK.getInstance().getmLoginListener().onFail(msg.obj.toString());
+							Util.ShowTips(m_activity,"查询账号失败！");
+						}
 					}
 
 
@@ -439,31 +443,41 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 
 					break;
 
-				case ResultCode.GET_USER_FAIL: //查询账号返回错误
-
-					Util.ShowTips(m_activity,"网络错误！");
-
-					break;
-
 				case ResultCode.VISITOR_BIND_SUCCESS: //游客绑定账号成功
+					if(msg.obj!=null) {
+						if (GameSDK.getInstance().getmLoginListener() != null) {
+							GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
 
-					String result=	msg.obj.toString();
-					KnLog.log("游客绑定账号成功:"+result);
 
-					//保存用户名与密码
-					DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
-					Util.ShowTips(AccounterBindActivity.this, getResources().getString(R.string.tips_15) );
+							String result=	msg.obj.toString();
+							KnLog.log("游客绑定账号成功:"+result);
 
-					GameSDK.instance.login(AccounterBindActivity.this); //跳转到免密码登录
+							//保存用户名与密码
+							DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
+							Util.ShowTips(AccounterBindActivity.this, getResources().getString(R.string.tips_15) );
+
+							GameSDK.instance.login(AccounterBindActivity.this); //跳转到免密码登录
+
+
+						}
+					}
 
 					break;
 
 				case ResultCode.VISITOR_BIND_FAIL: //游客绑定账号失败
 
-				    String result1=	msg.obj.toString();
-					KnLog.log("游客绑定账号失败:"+result1);
+					if(msg.obj!=null) {
+						if (GameSDK.getInstance().getmLoginListener() != null) {
+							GameSDK.getInstance().getmLoginListener().onFail(msg.obj.toString());
 
-					Util.ShowTips(AccounterBindActivity.this,"绑定账号失败:"+result1 );
+							String result1=	msg.obj.toString();
+							KnLog.log("游客绑定账号失败:"+result1);
+
+							Util.ShowTips(AccounterBindActivity.this,"绑定账号失败:"+result1 );
+						}
+					}
+
+
 					break;
 
 				default:

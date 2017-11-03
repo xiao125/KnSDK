@@ -91,18 +91,6 @@ public class AccountManagerActivity extends Activity implements OnClickListener 
 			}
 
 
-		/*if( null == intent ){
-			return ;
-		}
-		if(null==m_activity){
-			
-		}else{
-			
-			m_activity.startActivity(intent);
-			m_activity.finish();
-			m_activity = null ;
-			
-		}*/
 	}
 
 	@Override

@@ -2,22 +2,14 @@ package com.game.sdk.activity;
 
 import java.util.ArrayList;
 import java.util.Timer;
-import java.util.TimerTask;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.example.kngame_sdk_project.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
-import com.game.sdk.bean.GameInfo;
 import com.game.sdk.service.HttpService;
 import com.game.sdk.util.DBHelper;
-import com.game.sdk.util.DeviceUtil;
 import com.game.sdk.util.LoadingDialog;
 import com.game.sdk.util.KnLog;
-import com.game.sdk.util.SpUtil;
 import com.game.sdk.util.Util;
 import com.game.sdk_project.SelecteLoginActivity;
 
@@ -33,10 +25,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -49,7 +37,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -60,12 +47,9 @@ import android.widget.TextView;
  */
 public class AutoLoginActivity extends Activity implements OnClickListener {
 	
-	private Timer  m_timer = null ;
-	private int    m_time  = 5 ;
-	private Message  m_msg = null ;
+	private int m_time  = 5 ;
 	private Button  m_btn = null ;
 	private Activity m_activity = null ;
-	private TextView m_userName = null ;
 	private String  m_userNames = null ;
 	private String  m_passwords = null ;
 	private boolean m_dbHas     = false ;
@@ -363,22 +347,37 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 				}
 				break;
 			case ResultCode.QUERY_ACCOUNT_BIND_SUCCESS: //绑定了手机号
-	//			intent = new Intent(m_activity.getApplicationContext(),AccountManagerCurrentActivity.class);
-				String mobile= msg.obj.toString() ;
-	//			intent.putExtra("userName",m_userNames);
-	//			intent.putExtra("mobile",mobile);
-//				if( null == intent ){
-//					return ;
-//				}	
-				if(null==m_activity){
-				
-				}else{
-					
-		//		m_activity.startActivity(intent);
-					m_activity.finish();
-					m_activity = null ;
-					
+
+				if(msg.obj!=null) {
+					if (GameSDK.getInstance().getmLoginListener() != null) {
+						GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
+
+
+						String mobile= msg.obj.toString() ;
+
+						//			intent.putExtra("userName",m_userNames);
+						//			intent.putExtra("mobile",mobile);
+                       //			if( null == intent ){
+						// 			     return ;
+                        //           }
+
+						if(null==m_activity){
+
+						}else{
+
+							//		m_activity.startActivity(intent);
+							m_activity.finish();
+							m_activity = null ;
+
+						}
+
+
+					}
 				}
+
+
+
+
 				break;
 			case ResultCode.QUERY_ACCOUNT_BIND_FAIL: //没有绑定手机号
 				/*intent = new Intent(m_activity.getApplicationContext(),AccountManagerActivity.class);
@@ -386,79 +385,83 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 				if( null == intent ){
 					return ;
 				}*/
-				if(null==m_activity){
-					
-				}else{
-					LayoutInflater inflater = LayoutInflater.from(m_activity);
-					View v = inflater.inflate(R.layout.bind_mobile_dialog_ts, null); //绑定手机
-					LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
-					final AlertDialog dia=new AlertDialog.Builder(m_activity).create();
-					Button bind=(Button) v.findViewById(R.id.visit_bind_account); //下次再说
-				    Button cont=(Button) v.findViewById(R.id.visit_continue);//立刻绑定
-					TextView ts= (TextView) v.findViewById(R.id.ts);
-					String phone= ts.getText().toString(); //占位符
-					String et=account_et.getText().toString().trim(); //账号
-
-					ts.setText(phone.replace("1",et));
-
-					KnLog.log("账号提示："+phone+" 需要替换的et="+et +" 替换后的="+phone.replace("1",et));
 
 
-
-				   // bind.setText("绑定手机");
-				    dia.show();
-				    dia.setContentView(v);
-					cont.setOnClickListener(new OnClickListener() {
+				if(msg.obj!=null) {
+					if (GameSDK.getInstance().getmLoginListener() != null) {
+						GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
 
 
-						@Override
-						public void onClick(View v) {
-							// TODO Auto-generated method stub
+						if (null == m_activity) {
+
+						} else {
+							LayoutInflater inflater = LayoutInflater.from(m_activity);
+							View v = inflater.inflate(R.layout.bind_mobile_dialog_ts, null); //绑定手机
+							LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
+							final AlertDialog dia = new AlertDialog.Builder(m_activity).create();
+							Button bind = (Button) v.findViewById(R.id.visit_bind_account); //下次再说
+							Button cont = (Button) v.findViewById(R.id.visit_continue);//立刻绑定
+							TextView ts = (TextView) v.findViewById(R.id.ts);
+							String phone = ts.getText().toString(); //占位符
+							String et = account_et.getText().toString().trim(); //账号
+
+							ts.setText(phone.replace("1", et));
+
+							KnLog.log("账号提示：" + phone + " 需要替换的et=" + et + " 替换后的=" + phone.replace("1", et));
 
 
-							DBHelper.getInstance().insertOrUpdateUser( name , m_passwords );
-							Intent intent=new Intent(m_activity, BindCellActivity.class);
+							// bind.setText("绑定手机");
+							dia.show();
+							dia.setContentView(v);
+							cont.setOnClickListener(new OnClickListener() {
+
+
+								@Override
+								public void onClick(View v) {
+									// TODO Auto-generated method stub
+
+
+									DBHelper.getInstance().insertOrUpdateUser(name, m_passwords);
+									Intent intent = new Intent(m_activity, BindCellActivity.class);
 									intent.putExtra("userName", name);
 									startActivity(intent);
 
 
-									if(null==m_activity){
+									if (null == m_activity) {
 
-									}else{
+									} else {
 										dia.dismiss();
 
 									}
 
-						}
-					});
+								}
+							});
 
-					bind.setOnClickListener(new OnClickListener() {
+							bind.setOnClickListener(new OnClickListener() {
 
-						@Override
-						public void onClick(View v) {
-							// TODO Auto-generated method stub
+								@Override
+								public void onClick(View v) {
+									// TODO Auto-generated method stub
 
-						//	DBHelper.getInstance().insertOrUpdateUser( name , m_passwords );
-							if(null==m_activity){
+									//	DBHelper.getInstance().insertOrUpdateUser( name , m_passwords );
+									if (null == m_activity) {
 
-									}else{
-								        dia.dismiss();
+									} else {
+										dia.dismiss();
 										m_activity.finish();
-										m_activity = null ;
+										m_activity = null;
 									}
 
 
+								}
+							});
+
+
 						}
-					});
-                     
-					
-					
-					
-	//				m_activity.startActivity(intent);
-				/*	m_activity.finish();
-					m_activity = null ;*/
-					
+					}
+
 				}
+
 				break;
 			case ResultCode.VISITOR_LOGIN_SUCCESS:
 				KnLog.log("游客登录成功:"+msg.obj.toString());
@@ -484,7 +487,7 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 				}
 				break;
 			case ResultCode.VISITOR_LOGIN_FAIL:
-				KnLog.log("游客登录成功:"+msg.obj.toString());
+				KnLog.log("游客登录失败:"+msg.obj.toString());
 				if(msg.obj!=null)
 				{
 					if(GameSDK.getInstance().getmLoginListener()!=null){

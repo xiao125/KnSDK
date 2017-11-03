@@ -1,5 +1,4 @@
 package com.game.sdk.activity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,22 +14,14 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.kngame_sdk_project.R;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
-import com.game.sdk.SDK;
 import com.game.sdk.service.HttpService;
 import com.game.sdk.util.KnLog;
 import com.game.sdk.util.LoadingDialog;
 import com.game.sdk.util.Util;
-
 import java.util.Timer;
-import java.util.TimerTask;
-
-import static com.alipay.sdk.app.statistic.c.G;
-import static com.alipay.sdk.app.statistic.c.a;
-import static com.alipay.sdk.app.statistic.c.b;
 import static com.game.sdk.ResultCode.GET_USER_FAIL;
 
 /**
@@ -306,11 +297,20 @@ public class ForgotPasswordActivity extends Activity {
 
                 case ResultCode.GET_USER_SUCCRESS: //账号存在
 
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
+
+                            KnLog.log("账号已经被注册过了，返回的信息："+msg.obj.toString());
+                            //显示view
+                            m_frameLayout.setVisibility(View.VISIBLE);
 
 
-                    KnLog.log("账号已经被注册过了，返回的信息："+msg.obj.toString());
-                    //显示view
-                    m_frameLayout.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+
+
 
 
 
@@ -318,40 +318,68 @@ public class ForgotPasswordActivity extends Activity {
 
                 case ResultCode.GET_USER_NoEXIStTENT: //账号没有被注册过
 
-                    KnLog.log("账号没有被注册过，返回的信息："+msg.obj.toString());
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
 
-                    Util.ShowTips(activity,"该账号没有被注册过,请重新输入！");
+                            KnLog.log("账号没有被注册过，返回的信息："+msg.obj.toString());
+
+                            Util.ShowTips(activity,"该账号没有被注册过,请重新输入！");
+
+
+                        }
+                    }
+
 
 
                     break;
 
                 case GET_USER_FAIL: //查询出现错误
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onFail(msg.obj.toString());
+
+                        }
+                    }
 
                     break;
 
 
                 case ResultCode.QUERY_ACCOUNT_BIND_SUCCESS: //绑定了手机号
 
-                  /*  intent = new Intent(m_activity.getApplicationContext(),AccountManagerCurrentActivity.class);
+                    if(msg.obj!=null) {
+                        if (GameSDK.getInstance().getmLoginListener() != null) {
+                            GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
+
+                               /*  intent = new Intent(m_activity.getApplicationContext(),AccountManagerCurrentActivity.class);
                     String mobile= msg.obj.toString() ;
                     intent.putExtra("userName",m_userNames);
                     intent.putExtra("mobile",mobile);*/
 
-                    KnLog.log("账号绑定了手机"+msg.obj.toString());
+                            KnLog.log("账号绑定了手机"+msg.obj.toString());
 
-                    String mobile= msg.obj.toString() ; //服务器返回的手机号
-                        //手机验证码更改密码
-                        Intent intent1 = new Intent(ForgotPasswordActivity.this,PasswordUpdateActivity.class);
-                        intent1.putExtra("phone",mobile);
-                         startActivity(intent1);
+                            String mobile= msg.obj.toString() ; //服务器返回的手机号
+                            //手机验证码更改密码
+                            Intent intent1 = new Intent(ForgotPasswordActivity.this,PasswordUpdateActivity.class);
+                            intent1.putExtra("phone",mobile);
+                            startActivity(intent1);
 
-                        activity.finish();
+                            activity.finish();
+
+
+
+
+                        }
+                    }
+
 
 
                     break;
                 case ResultCode.QUERY_ACCOUNT_BIND_FAIL: //没有绑定手机号
 
-                    Util.ShowTips(activity,"尚未绑定手机号");
+
+                            Util.ShowTips(activity,"尚未绑定手机号");
+
 
 				break;
 

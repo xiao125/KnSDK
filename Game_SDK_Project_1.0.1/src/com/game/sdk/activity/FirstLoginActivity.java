@@ -467,68 +467,79 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 
 				case ResultCode.NONEXISTENT: //账号不存在
 
-				//	Util.ShowTips(activity,"账号不存在！");
-
-					//提示绑定手机弹窗
-					LayoutInflater inflater = LayoutInflater.from(activity);
-					View v = inflater.inflate(R.layout.bind_mobile_dialog, null);
-					LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
-					final AlertDialog dia=new AlertDialog.Builder(activity).create();
-					Button bind=(Button) v.findViewById(R.id.visit_bind_account); //立即注册
-					Button cont=(Button) v.findViewById(R.id.visit_continue); //重新输入]
-					TextView name = (TextView) v.findViewById(R.id.username); //提示
-
-					String user= name.getText().toString(); //占位符
-					String et=userNameEt.getText().toString().trim(); //账号
-					name.setText(user.replace("1",et)); //替换
-
-					// bind.setText("绑定手机");
-					dia.show();
-					dia.setContentView(v);
-					bind.setOnClickListener(new OnClickListener() { //立即注册
-
-						@Override
-						public void onClick(View v) {
-							// TODO Auto-generated method stub
+					if(msg.obj!=null) {
+						if (GameSDK.getInstance().getmLoginListener() != null) {
+							GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
 
 
-							Intent intent1=new Intent(activity, FastLoginActivity.class);
-							startActivity(intent1);
-							dia.dismiss();
+							//	Util.ShowTips(activity,"账号不存在！");
 
-							//DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
+							//提示绑定手机弹窗
+							LayoutInflater inflater = LayoutInflater.from(activity);
+							View v = inflater.inflate(R.layout.bind_mobile_dialog, null);
+							LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
+							final AlertDialog dia=new AlertDialog.Builder(activity).create();
+							Button bind=(Button) v.findViewById(R.id.visit_bind_account); //立即注册
+							Button cont=(Button) v.findViewById(R.id.visit_continue); //重新输入]
+							TextView name = (TextView) v.findViewById(R.id.username); //提示
+
+							String user= name.getText().toString(); //占位符
+							String et=userNameEt.getText().toString().trim(); //账号
+							name.setText(user.replace("1",et)); //替换
+
+							// bind.setText("绑定手机");
+							dia.show();
+							dia.setContentView(v);
+							bind.setOnClickListener(new OnClickListener() { //立即注册
+
+								@Override
+								public void onClick(View v) {
+									// TODO Auto-generated method stub
+
+
+									Intent intent1=new Intent(activity, FastLoginActivity.class);
+									startActivity(intent1);
+									dia.dismiss();
+
+									//DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
 						/*	Intent intent=new Intent(activity, BindCellActivity.class);
 							intent.putExtra("userName", m_userName);
 							startActivity(intent);*/
-							if(null==activity){
+									if(null==activity){
 
-							}else{
-								activity.finish();
-								activity = null ;
-							}
+									}else{
+										activity.finish();
+										activity = null ;
+									}
+
+								}
+							});
+							cont.setOnClickListener(new OnClickListener() { //重新输入
+
+								@Override
+								public void onClick(View v) {
+									// TODO Auto-generated method stub
+									dia.dismiss();
+									//	DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
+									if(null==activity){
+
+									}else{
+
+
+										dia.dismiss();
+
+
+									}
+
+
+								}
+							});
+
 
 						}
-					});
-					cont.setOnClickListener(new OnClickListener() { //重新输入
-
-						@Override
-						public void onClick(View v) {
-							// TODO Auto-generated method stub
-							dia.dismiss();
-							//	DBHelper.getInstance().insertOrUpdateUser( m_userName , m_password );
-							if(null==activity){
-
-							}else{
+					}
 
 
-								dia.dismiss();
-
-
-							}
-
-
-						}
-					});
 
 
 					break;

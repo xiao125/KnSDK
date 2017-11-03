@@ -1,25 +1,17 @@
 package com.game.sdk.activity;
-
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.kngame_sdk_project.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
-import com.game.sdk.ResultCode;
 import com.game.sdk.listener.BaseListener;
 import com.game.sdk.service.HttpService;
 import com.game.sdk.util.DBHelper;
