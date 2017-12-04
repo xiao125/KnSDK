@@ -86,7 +86,7 @@ public class FastLoginActivity extends Activity {
             setRequestedOrientation(GameSDK.getInstance().getmOrientation());
         }
 
-        setContentView(R.layout.fast_login);
+        setContentView(R.layout.mc_fast_login);
 
         initView();
 
@@ -645,8 +645,8 @@ public class FastLoginActivity extends Activity {
                 case ResultCode.PASSWORD_NEW_SUCCESS:
 
                     if(msg.obj!=null) {
-                        if (GameSDK.getInstance().getmLoginListener() != null) {
-                            GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
+                                                   if (GameSDK.getInstance().getmLoginListener() != null) {
+                                GameSDK.getInstance().getmLoginListener().onSuccess(msg.obj.toString());
 
 
                             KnLog.log("修改密码成功++");

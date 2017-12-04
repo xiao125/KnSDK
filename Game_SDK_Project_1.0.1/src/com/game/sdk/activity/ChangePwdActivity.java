@@ -45,7 +45,7 @@ public class ChangePwdActivity extends Activity implements OnClickListener {
 			setRequestedOrientation(GameSDK.getInstance().getmOrientation());
 		}
 		
-		setContentView(R.layout.changepwd);
+		setContentView(R.layout.mc_changepwd);
 		
 		userNameEt = (EditText) findViewById(R.id.cpac_input_acc);
 		olderPasswordEt = (EditText) findViewById(R.id.cpac_older_input_pwd);

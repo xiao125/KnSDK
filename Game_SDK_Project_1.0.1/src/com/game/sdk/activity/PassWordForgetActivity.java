@@ -155,7 +155,7 @@ public class PassWordForgetActivity extends Activity implements OnClickListener 
 			setRequestedOrientation(GameSDK.getInstance().getmOrientation()); //横竖屏
 		}
 		
-		setContentView(R.layout.password_forget);
+		setContentView(R.layout.mc_password_forget);
 		
 		m_get_security_codeBtn = (TextView) findViewById(R.id.get_security_code);
 		findViewById(R.id.password_get__back).setOnClickListener(this);

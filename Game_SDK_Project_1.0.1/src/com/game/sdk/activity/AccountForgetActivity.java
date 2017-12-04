@@ -121,7 +121,7 @@ public class AccountForgetActivity extends Activity implements OnClickListener {
 			setRequestedOrientation(GameSDK.getInstance().getmOrientation());
 		}
 		
-		setContentView(R.layout.account_forget);
+		setContentView(R.layout.mc_account_forget);
 		
 		m_get_security_codeBtn = (TextView) findViewById(R.id.get_security_code);
 		
@@ -201,7 +201,7 @@ public class AccountForgetActivity extends Activity implements OnClickListener {
 								reason = json.getString("reason");
 
 								LayoutInflater inflater = m_activity.getLayoutInflater();
-								m_View = inflater.inflate(R.layout.tip, null);
+								m_View = inflater.inflate(R.layout.mc_tip, null);
 								FrameLayout.LayoutParams layoutParams1 = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
 								layoutParams1.gravity = Gravity.CENTER;
 								m_activity.addContentView(m_View, layoutParams1);
@@ -343,7 +343,7 @@ public class AccountForgetActivity extends Activity implements OnClickListener {
 	void testFunc( final String username ){
 		
 		 LayoutInflater inflater = m_activity.getLayoutInflater();
-		 m_View = inflater.inflate(R.layout.tip, null);	
+		 m_View = inflater.inflate(R.layout.mc_tip, null);
 		 FrameLayout.LayoutParams  layoutParams1 = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,FrameLayout.LayoutParams.WRAP_CONTENT);
 	  	 layoutParams1.gravity = Gravity.CENTER;
 		 m_activity.addContentView(m_View,layoutParams1);

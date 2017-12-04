@@ -95,7 +95,7 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 			setRequestedOrientation(GameSDK.getInstance().getmOrientation());
 		}
 		
-		setContentView(R.layout.auto_login_manager);
+		setContentView(R.layout.mc_auto_login_manager);
 		
 		
 		m_activity = this ;
@@ -396,7 +396,7 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 
 						} else {
 							LayoutInflater inflater = LayoutInflater.from(m_activity);
-							View v = inflater.inflate(R.layout.bind_mobile_dialog_ts, null); //绑定手机
+							View v = inflater.inflate(R.layout.mc_bind_mobile_dialog_ts, null); //绑定手机
 							LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
 							final AlertDialog dia = new AlertDialog.Builder(m_activity).create();
 							Button bind = (Button) v.findViewById(R.id.visit_bind_account); //下次再说
@@ -588,7 +588,7 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
               final String names=arrlist.get(position);        
               if (convertView==null) {
                   layoutInflater=LayoutInflater.from(context);
-                  convertView=layoutInflater.inflate(R.layout.list_item, null);
+                  convertView=layoutInflater.inflate(R.layout.mc_list_item, null);
                   holder=new Holder();
                   holder.tv=(TextView) convertView.findViewById(R.id.textView);
                  convertView.setTag(holder);

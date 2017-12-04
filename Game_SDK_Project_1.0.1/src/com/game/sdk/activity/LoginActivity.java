@@ -59,7 +59,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
-		setContentView(R.layout.login);
+		setContentView(R.layout.mc_login);
 
 		if(GameSDK.getInstance().ismScreenSensor()){
 			
@@ -184,11 +184,11 @@ public class LoginActivity extends Activity implements OnClickListener {
 		for (int i = 0; i < usernames.length; i++) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("name", usernames[i]);
-			map.put("drawable", R.drawable.list_item_close);
+			map.put("drawable", R.drawable.mc_list_item_close);
 			list.add(map);
 		}
 		
-		MyAdapter dropDownAdapter = new MyAdapter(this, list, R.layout.acc_list_item, new String[] { "name", "drawable" }, new int[] { R.id.textview, R.id.list_item_close });
+		MyAdapter dropDownAdapter = new MyAdapter(this, list, R.layout.mc_acc_list_item, new String[] { "name", "drawable" }, new int[] { R.id.textview, R.id.list_item_close });
 		ListView listView = new ListView(this);
 		listView.setAdapter(dropDownAdapter);
 		listView.setDivider(getResources().getDrawable(R.color.PopViewDividerColor));
@@ -196,7 +196,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		listView.setCacheColorHint(0);
 		popupWindow = new PopupWindow(listView, userNameEt.getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT, true);
 		popupWindow.setOutsideTouchable(true);
-		popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.acc_list_bg));
+		popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.mc_acc_list_bg));
 		
 //		popupWindow.setAnimationStyle(R.style.anim_popupwindow);
 	}
@@ -307,7 +307,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			ViewHolder holder;
 			if (convertView == null) {
 				holder = new ViewHolder();
-				convertView = LayoutInflater.from(LoginActivity.this).inflate(R.layout.acc_list_item, null);
+				convertView = LayoutInflater.from(LoginActivity.this).inflate(R.layout.mc_acc_list_item, null);
 				holder.btn = (ImageButton) convertView.findViewById(R.id.list_item_close);
 				holder.tv = (TextView) convertView.findViewById(R.id.textview);
 				convertView.setTag(holder);

@@ -57,7 +57,7 @@ public class TourtistRegActivity extends Activity implements View.OnClickListene
             setRequestedOrientation(GameSDK.getInstance().getmOrientation());
         }
 
-        setContentView(R.layout.tourist_reg);
+        setContentView(R.layout.mc_tourist_reg);
 
         Intent intent = getIntent();
         phone   = intent.getStringExtra("phone");

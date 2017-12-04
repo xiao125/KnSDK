@@ -20,10 +20,12 @@ import com.game.sdk.activity.FastLoginActivity;
 import com.game.sdk.activity.ForgotPasswordActivity;
 import com.game.sdk.activity.RegisterActivity;
 import com.game.sdk.bean.GameInfo;
+import com.game.sdk.bean.GameUser;
 import com.game.sdk.bean.PayInfo;
 import com.game.sdk.bean.UserInfo;
 import com.game.sdk.listener.LoginListener;
 import com.game.sdk.listener.PayListener;
+import com.game.sdk.listener.ReportListener;
 import com.game.sdk.pay.PAY_API;
 import com.game.sdk.service.HttpService;
 import com.game.sdk.util.DBHelper;
@@ -42,10 +44,16 @@ public class GameSDK {
 
 	private LoginListener mLoginListener = null;
 	private PayListener mPayListener = null;
+	private ReportListener mReportListener =null;
+
+
 
 	private UserInfo userInfo = null;
 	private GameInfo gameInfo = null;
-	
+	private GameUser gameUser = null;
+
+
+
 	private boolean  mScreenSensor = false ;
 	
 	
@@ -101,7 +109,7 @@ public class GameSDK {
 		}
 
 		//上报数据
-		//RecordActivate.getInstance().init(activity);
+		RecordActivate.getInstance().init(activity);
 
 
 
@@ -201,6 +209,26 @@ public class GameSDK {
 		activity.startActivity(intent);
 		
 	}
+
+	/**
+	 * 上报游戏信息
+	 * @param activity
+	 * @param gameUser
+	 * @param listener
+	 */
+	public void reportGameRole(Activity activity, GameUser gameUser ,ReportListener listener){
+
+		setmReportListener(listener);
+
+		RecordGame.getInstance().roleInfo(activity,gameUser);
+
+
+
+	}
+
+
+
+
 
 	/**
 	 * 
@@ -331,6 +359,14 @@ public class GameSDK {
 		this.mPayListener = mPayListener;
 	}
 
+	public ReportListener getmReportListener() {
+		return mReportListener;
+	}
+
+	public void setmReportListener(ReportListener mReportListener) {
+		this.mReportListener = mReportListener;
+	}
+
 	public boolean isInited() {
 		return isInited;
 	}
@@ -351,4 +387,11 @@ public class GameSDK {
 		this.gameInfo = gameInfo;
 	}
 
+	public GameUser getGameUser() {
+		return gameUser;
+	}
+
+	public void setGameUser(GameUser gameUser) {
+		this.gameUser = gameUser;
+	}
 }

@@ -64,7 +64,7 @@ public class VisitManagerActivity extends Activity implements OnClickListener {
 			setRequestedOrientation(GameSDK.getInstance().getmOrientation());
 		}
 	
-    	setContentView(R.layout.visit_manager);
+    	setContentView(R.layout.mc_visit_manager);
 		
 		m_activity = this ;
 		m_btn = (Button)findViewById(R.id.login_game_bt);

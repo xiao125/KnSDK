@@ -151,7 +151,7 @@ public class BindCellActivity  extends Activity implements OnClickListener {
 			setRequestedOrientation(GameSDK.getInstance().getmOrientation());
 		}
 		
-		setContentView(R.layout.bind_cell);
+		setContentView(R.layout.mc_bind_cell);
 
 		initView();
 

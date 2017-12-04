@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/mc_input_frame"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/tips_27"
+                android:textColor="@color/text_color_black"
+                android:textSize="18dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/fl_input_acc"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mc_input_text_bg"
+                android:paddingLeft="8dp"
+                android:hint="@string/tips_20"
+                android:imeOptions="actionDone"
+                android:maxLength="16"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/text_color_hint"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/fl_input_pwd"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                 android:paddingLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/mc_input_text_bg"
+                android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@-_#@`~,.?/|\"
+                android:hint="@string/tips_31"
+                android:imeOptions="actionDone"
+                android:maxLength="16"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/text_color_hint"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+       		android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/fl_once_register_btn"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/mc_red_btn_selector"
+                android:focusable="false"
+                android:text="@string/tips_28"
+                android:textColor="@color/text_color_white" />
+
+            <Button
+                android:id="@+id/fl_login_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/mc_blue_btn_selector"
+                android:layout_alignTop="@+id/fl_register_btn"
+                android:layout_alignRight="@+id/fl_once_register_btn"
+                android:text="@string/tips_29"
+                android:textColor="@color/text_color_white" />
+
+            <Button
+                android:id="@+id/fl_register_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="11dp"
+                android:layout_alignLeft="@+id/fl_once_register_btn"
+                android:background="@color/mc_green_btn_selector"
+                android:text="@string/tips_30"
+                android:textColor="@color/text_color_white" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

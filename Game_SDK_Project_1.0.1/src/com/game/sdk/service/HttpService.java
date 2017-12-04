@@ -7,7 +7,9 @@ import android.util.Log;
 
 import com.game.sdk.GameSDK;
 import com.game.sdk.SDK;
+import com.game.sdk.bean.Data;
 import com.game.sdk.bean.GameInfo;
+import com.game.sdk.bean.GameUser;
 import com.game.sdk.bean.PayInfo;
 import com.game.sdk.bean.UserInfo;
 import com.game.sdk.listener.BaseListener;
@@ -429,6 +431,8 @@ public class HttpService {
 		    params.put("app_key",appkey);
 		    params.put("phone_Type",phonetype);//手机类型
 
+
+
 		    params.put("sign", Md5Util.getMd5(gameId+appkey+imei));
 
 			new RecordActivateAsyncTask(applicationContext, handler, SDK.RECORD_ACTIVATE)
@@ -538,6 +542,9 @@ public class HttpService {
 			String game_id = gameInfo.getGameId();
 			String platform = gameInfo.getPlatform();
 			String channel = gameInfo.getChannel();
+
+			Log.d("ttt",platform);
+			Log.d("ttt",game_id);
 			
 			JSONObject content = new JSONObject();
 			content.put("user_name", username);
@@ -606,6 +613,62 @@ public class HttpService {
 			e.printStackTrace();
 		}
 	}
+
+
+	//发送等级url
+	public static void enterGame(Context applicationContext, GameUser gameUser,Handler handler) {
+		try {
+
+			String versionCode = PROXY_VERSION ;
+			String app_secret = "3d759cba73b253080543f8311b6030bf";
+			GameInfo gameInfo = GameSDK.getInstance().getGameInfo();
+
+			Log.d("ttt","游戏id="+gameInfo.getGameId());
+
+			String channel = gameInfo.getChannel();//渠道
+
+			String adchannel = gameInfo.getAdChannel();//广告渠道
+			String mis = DeviceUtil.getDeviceId(); //IMEI码
+
+			String game_id =  gameInfo.getGameId(); //游戏品牌
+			String uid = gameUser.getUid();//游戏uid
+            String open_id = gameUser.getOpenid();//游戏openid
+            int   serverId = gameUser.getServerId();//服务区id
+			int  lv = gameUser.getUserLevel();// 游戏等级
+            String gid = gameUser.getGid(); //工会id
+
+
+			HashMap<String,String> params =new HashMap<String, String>();
+
+			if(gameUser!=null){
+
+				params.put("game_id",game_id);
+				params.put("uid",uid);
+				params.put("open_id", open_id);
+				params.put("server_id",String.valueOf(serverId));
+				params.put("lv", String.valueOf(lv));
+				params.put("msi",mis);
+				params.put("channel", channel);
+				params.put("gid", gid);
+				params.put("extraInfo", gameUser.getExtraInfo());
+				params.put("proxyVersion", versionCode);
+
+				Map<String, String> update_params1 = Util.getSign( params , app_secret );
+			}
+
+
+
+			KnLog.e("params="+params.toString());
+
+			KnLog.e("enter_url"+SDK.ENTER_GAME);
+			new RecordActivateAsyncTask(applicationContext, handler, SDK.ENTER_GAME)
+					.execute(new Map[] { params , null, null });
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
 
 
 

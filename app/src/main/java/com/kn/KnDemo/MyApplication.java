@@ -6,7 +6,7 @@ import android.app.Application;
 import com.kn.game.configurator.Game;
 
 /**
- * Created by Administrator on 2017/9/28 0028.
+ *
  */
 
 public class MyApplication extends Application {

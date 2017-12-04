@@ -60,7 +60,7 @@ public class ForgotPasswordActivity extends Activity {
             setRequestedOrientation(GameSDK.getInstance().getmOrientation());
         }
 
-        setContentView(R.layout.forgot_password_layout);
+        setContentView(R.layout.mc_forgot_password_layout);
 
         initView();
 

@@ -115,7 +115,7 @@ public class AccountManagerActivity extends Activity implements OnClickListener 
 		}
 		
 //		setContentView(R.layout.account_manager);
-		setContentView(R.layout.visit_manager_dialog);
+		setContentView(R.layout.mc_visit_manager_dialog);
 
 		initView();
 

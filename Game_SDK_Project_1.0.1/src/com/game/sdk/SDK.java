@@ -14,7 +14,7 @@ public class SDK {
 	public static String REG_URL = "http://oms.u7game.cn/api/user_reg.php";//注册
 	public static String APPLY_ORDER_URL = "http://omspay.szkuniu.com/api/apply_order.php";
 	public static String CHANGE_PWD_URL = "http://oms.u7game.cn/api/security.php"; //用旧密码更新新密码
-	public static String GET_RESURITY_CODE_URL = "	http://oms.u7game.cn/api/send_rand_code.php";//获取手机验证码
+	public static String GET_RESURITY_CODE_URL = "http://oms.u7game.cn/api/send_rand_code.php";//获取手机验证码
 	public static String BIND_MOBILE_URL = "http://oms.u7game.cn/api/bind_mobile.php"; //绑定手机请求
 	public static String UPDATE_PASSWORD_URL = "http://oms.u7game.cn/api/find_pwd.php"; //根据手机验证码更改新密码
 	public static String GET_ACCOUNT_URL = "http://oms.u7game.cn/api/find_user_name.php"; //找回帐号接口
@@ -27,6 +27,7 @@ public class SDK {
 	public static String VISITOR_BIND_MOBILE="http://oms.u7game.cn/api/visitor_bind_mobile.php"; //游客绑定手机号
 	public static String RAND_USER_NAME="http://oms.u7game.cn/api/rand_user_name.php"; //随机分配用户名接口
     public static String RECORD_ACTIVATE="http://oms.u7game.cn/api/record_activate.php";//上报设备激活接口
+	public static String ENTER_GAME="http://oms.u7game.cn/api/sendlv.php";//上报游戏信息
 
 
 	public static final int LANDSCAPE = 0;

@@ -51,7 +51,7 @@ private boolean isFirstLogin=false;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_selecte_login);
+		setContentView(R.layout.mc_activity_selecte_login);
 		
 		activity=this;
 
@@ -217,7 +217,7 @@ private boolean isFirstLogin=false;
 				KnLog.log("MIS没有绑定过了++");
 				//弹出对话框，选择是否绑定手机
 				LayoutInflater inflater = LayoutInflater.from(activity);
-				View v = inflater.inflate(R.layout.visit_manager_dialog, null);
+				View v = inflater.inflate(R.layout.mc_visit_manager_dialog, null);
 				LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
 				final AlertDialog dia=new AlertDialog.Builder(activity).create();
 				

@@ -259,7 +259,7 @@ public class PasswordUpdateActivity extends Activity implements OnClickListener 
 			setRequestedOrientation(GameSDK.getInstance().getmOrientation());
 		}
 		
-		setContentView(R.layout.password_update);
+		setContentView(R.layout.mc_password_update);
 
 
 		initView();

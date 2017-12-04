@@ -26,7 +26,7 @@ private ImageView image_back;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_find);
+		setContentView(R.layout.mc_activity_find);
 		activity=this;
 		find_password=(ImageButton) findViewById(R.id.find_password);
 		find_account=(ImageButton) findViewById(R.id.find_account);

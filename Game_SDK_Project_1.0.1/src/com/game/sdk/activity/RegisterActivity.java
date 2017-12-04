@@ -95,7 +95,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 			setRequestedOrientation(GameSDK.getInstance().getmOrientation());
 		}
 		
-		setContentView(R.layout.register);
+		setContentView(R.layout.mc_register);
 		
 		userNameEt = (EditText)findViewById(R.id.account__et)  ; //用户名
 		passWordEt = (EditText)findViewById(R.id.password__et) ; //密码

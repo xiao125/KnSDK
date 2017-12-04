@@ -106,7 +106,7 @@ public class AccounterBindActivity extends Activity implements OnClickListener {
 			setRequestedOrientation(GameSDK.getInstance().getmOrientation());
 		}
 
-		setContentView(R.layout.visitor_account_bind);
+		setContentView(R.layout.mc_visitor_account_bind);
 
 
 		initView();

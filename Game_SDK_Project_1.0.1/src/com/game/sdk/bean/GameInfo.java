@@ -1,24 +1,42 @@
 package com.game.sdk.bean;
 
+import android.text.TextUtils;
+
+import com.game.sdk.util.KnLog;
+import com.game.sdk.util.Util;
+
 public class GameInfo {
 	
 	private String appKey;
-	
+	private String gameName;
+
 	private String gameId;
-	private String channel = "u7game";
+	//private String channel = "u7game";
+	private String channel;
 	private String platform = "android";
 	private String adChannel;
-	private String gid;
+	private String gid = "0";
 
 	private String regKey = "kuniu@!#2014";
 	
-	private int orientation;
+	private int orientation =0;
 	
-	private String adChannelTxt;
+	private String adChannelTxt ="0";
 	
 	public GameInfo(){
 		
 	}
+
+
+	public GameInfo(String gameName, String appKey, String gameId,
+					int screenOrientation) {
+		super();
+		this.gameName = gameName;
+		this.appKey = appKey;
+		this.gameId = gameId;
+		this.orientation = screenOrientation;
+	}
+
 
 	
 	public GameInfo(String appKey, String gameId, String channel,
@@ -87,5 +105,46 @@ public class GameInfo {
 	public String getAdChannelTxt() {
 		return adChannelTxt;
 	}
-	
+
+	public void setAdChannelTxt(String adChannelTxt) {
+		this.adChannelTxt = adChannelTxt;
+	}
+
+
+
+
+
+
+
+	public static void initGameInfo(GameInfo gameInfo){
+
+		//获取本地asset目录下adChannel.txt中的参数
+		String result = Util.getAssetsFileContent(Data.getInstance().getApplicationContex(),"SDKFile/adChannel.png");
+
+		gameInfo.setAdChannelTxt(result);
+
+//		String adChadChannelannel="2200040";
+		String adChannel = Util.getAdchannle(null);
+
+		String channel = Util.getJsonStringByName(result, "channel");
+//		String channel="kaopu";
+
+		String gid = Util.getJsonStringByName(result, "gid");
+
+
+
+		KnLog.e("adChannel:"+adChannel);
+		gameInfo.setAdChannel(adChannel);
+		gameInfo.setChannel(channel);
+		gameInfo.setGid(gid);
+
+		 if (adChannel.equals("2802012")) {
+			gameInfo.setPlatform("android3"); //奇天官网—皇族霸业_专服
+		}
+		else{
+			gameInfo.setPlatform("android");
+		}
+	}
+
+
 }

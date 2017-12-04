@@ -39,12 +39,12 @@ public class RecordActivate {
             switch (msg.what){
 
                 case ResultCode.SUCCESS:
-                    KnLog.log("上报数据成功"+msg.obj.toString());
+                    KnLog.log("上报设备激活成功"+msg.obj.toString());
 
                     break;
 
                 case ResultCode.FAIL:
-                    KnLog.log("上报数据失败"+msg.obj.toString());
+                    KnLog.log("上报设备激活失败"+msg.obj.toString());
                     break;
             }
         }

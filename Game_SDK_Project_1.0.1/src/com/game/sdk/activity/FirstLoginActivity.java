@@ -75,7 +75,7 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 			setRequestedOrientation(GameSDK.getInstance().getmOrientation());
 		}
 		
-		setContentView(R.layout.first_login_new);
+		setContentView(R.layout.mc_first_login_new);
 
 		initView();
 
@@ -476,7 +476,7 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 
 							//提示绑定手机弹窗
 							LayoutInflater inflater = LayoutInflater.from(activity);
-							View v = inflater.inflate(R.layout.bind_mobile_dialog, null);
+							View v = inflater.inflate(R.layout.mc_bind_mobile_dialog, null);
 							LinearLayout layout = (LinearLayout) v.findViewById(R.id.visit_dialog);
 							final AlertDialog dia=new AlertDialog.Builder(activity).create();
 							Button bind=(Button) v.findViewById(R.id.visit_bind_account); //立即注册

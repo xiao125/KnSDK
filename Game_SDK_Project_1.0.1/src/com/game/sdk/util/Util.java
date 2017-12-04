@@ -1,5 +1,9 @@
 package com.game.sdk.util;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.Comparator;
 import java.util.Map;
@@ -13,17 +17,25 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.game.sdk.bean.Data;
+
 public class Util {
 
 	private static long  mTime = System.currentTimeMillis() ;
+	public static boolean  getAssetsFileflag = false;
+	public static String[]  files = null;
 	
 	public static boolean  findNameInSet( final String[] set ,final String name ){
 		boolean  flag = false ;
@@ -278,6 +290,223 @@ public class Util {
 		KnLog.log("网络非连接");
 	    return false; 
 	}
-	
-	
+
+	//----------------------------------------------------------------------------
+
+	//获取Assets/SDKFile下的文件
+	public static void initAssetsFile(Context context){
+
+		if (getAssetsFileflag) {
+
+		} else {
+			getAssetsFileflag = true;
+			AssetManager assetManager = context.getResources().getAssets();
+			try {
+				files = assetManager.list("SDKFile");
+			} catch (IOException e) {
+				KnLog.e(e.getMessage());
+			}
+		}
+	}
+
+	public static String getAssetsFileContent(Context context, String filePath) {
+		initAssetsFile(context);
+		String result = "";
+//	    KnLog.e("assert下所有文件："+filePath.toString());
+		for(int i=0; i<files.length; i++){
+
+//	    	KnLog.e(" "+files[i]);
+			if(filePath.endsWith(files[i])){
+				try {
+					// 获取本地asset目录下adChannel.txt中的参数
+					InputStreamReader inputReader = new InputStreamReader(context
+							.getResources().getAssets().open(filePath));
+					BufferedReader bufReader = new BufferedReader(inputReader);
+					String line = "";
+
+					while ((line = bufReader.readLine()) != null) {
+						result += line;
+					}
+				} catch (FileNotFoundException e) {
+					KnLog.e("not found " + filePath);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return result;
+	}
+
+
+
+	public static String getAdchannle( Context context ){
+
+		//		首先判断是否是易接工具接入的adchannel读取manifest.xml配置文件
+		Context ctx = null ;
+		if(null==context){
+			ctx = Data.getInstance().getApplicationContex();
+		}else{
+			ctx = context ;
+		}
+
+		ApplicationInfo ai;
+		String adChannel = null ;
+		try {
+			ai = ctx.getPackageManager().getApplicationInfo(ctx.getPackageName(), PackageManager.GET_META_DATA);
+			Bundle bundle = ai.metaData;
+			if(null==bundle){
+				KnLog.e("bundle is null");
+			}else{
+				if(bundle.containsKey("adChannel")){
+					adChannel = bundle.get("adChannel").toString();
+				}else{
+					KnLog.e("adChannel is null");
+				}
+			}
+
+		} catch (PackageManager.NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if(adChannel==null){
+
+			//			否则返回adchannel.png中的adChannel值
+			String jsonStr = getAssetsFileContent(ctx,"SDKFile/adChannel.png");
+			KnLog.i("正常渠道打包---------->>>>>>>>adchannel:"+getJsonStringByName(jsonStr,"adChannel"));
+			return getJsonStringByName(jsonStr,"adChannel");
+
+		}else{
+
+			KnLog.i("易接工具打包---------->>>>>>>>adchannel:"+adChannel);
+			return adChannel ;
+
+		}
+
+	}
+
+
+
+	public static String getGameName( Context ctx ){
+
+		String jsonStr = getAssetsFileContent(ctx,"SDKFile/adChannel.png");
+		return getJsonStringByName(jsonStr,"game");
+
+	}
+
+	public static String getChannle( Context context ){
+
+		Context ctx = null ;
+		if(null==context){
+			ctx = Data.getInstance().getApplicationContex();
+		}else{
+			ctx = context ;
+		}
+
+		String jsonStr = getAssetsFileContent(ctx,"SDKFile/adChannel.png");
+		String version_channel = getJsonStringByName(jsonStr,"version_channel");
+
+		if(!version_channel.equals("") && version_channel!=null && !version_channel.equals(" ") ){
+
+			return version_channel ;
+
+		}
+
+		KnLog.e("渠道名称:"+getJsonStringByName(jsonStr,"channel"));
+		return getJsonStringByName(jsonStr,"channel");
+
+	}
+
+	public static String getChannel( Context context ){
+
+		Context ctx = null ;
+		if(null==context){
+			ctx = Data.getInstance().getApplicationContex();
+		}else{
+			ctx = context ;
+		}
+
+		String jsonStr = getAssetsFileContent(ctx,"SDKFile/adChannel.png");
+		String version_channel = getJsonStringByName(jsonStr,"version_channel");
+
+		if(!version_channel.equals("") && version_channel!=null && !version_channel.equals(" ") ){
+
+			return version_channel ;
+
+		}
+
+		return getJsonStringByName(jsonStr,"channel");
+
+
+
+	}
+
+	public static String getSplash(Context ctx){
+
+		String jsonStr = getAssetsFileContent(ctx,"SDKFile/adChannel.png");
+		return getJsonStringByName( jsonStr , "kuniu_splash" );
+
+	}
+
+	public static boolean fileExits( Context ctx , String fileName ){
+
+		boolean       isExits       = false ;
+		initAssetsFile(ctx);
+		for(int i=0; i<files.length; i++){
+
+//	    	KnLog.e(" "+files[i]);
+			if(fileName.endsWith(files[i])){
+				isExits = true;
+			}
+		}
+//    	AssetManager  assetManager  = ctx.getAssets();
+//    	InputStream   inputS 		=  null ;
+//    	boolean       isExits       = false ;
+//
+//    	try {
+//			inputS  					= assetManager.open(fileName);
+//			isExits = true;
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			isExits = false ;
+//		}
+
+		return isExits;
+
+	}
+
+
+
+	public static String getAdChannel() {
+
+		String adChannel = "";
+		try {
+			// 获取本地asset目录下adChannel.txt中的渠道号。方便反编译使用
+			InputStreamReader inputReader = new InputStreamReader(Data
+					.getInstance().getApplicationContex().getResources()
+					.getAssets().open("SDKFile/adChannel.png"));
+			BufferedReader bufReader = new BufferedReader(inputReader);
+			String line = "";
+			String Result = "";
+			while ((line = bufReader.readLine()) != null) {
+				Result += line;
+			}
+			if (!Result.equals("")) {
+				adChannel = Result;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		KnLog.i("<=============adChannel===============>" + adChannel);
+
+		return adChannel;
+
+	}
+
+
+
+
 }

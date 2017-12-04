@@ -81,7 +81,7 @@ public class AccountManagerCurrentActivity extends Activity implements OnClickLi
 			setRequestedOrientation(GameSDK.getInstance().getmOrientation());
 		}
 		
-		setContentView(R.layout.account_current_manager);
+		setContentView(R.layout.mc_account_current_manager);
 		
 		Intent intent = getIntent();
 		m_userNames   = intent.getStringExtra("userName");
