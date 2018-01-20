@@ -39,23 +39,16 @@ public class GameSDK {
 
 	private int mOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE; //横竖屏
 	private boolean isInited = false;
-
 	private Activity activity = null;
-
 	private LoginListener mLoginListener = null;
 	private PayListener mPayListener = null;
 	private ReportListener mReportListener =null;
-
-
-
 	private UserInfo userInfo = null;
 	private GameInfo gameInfo = null;
 	private GameUser gameUser = null;
-
-
-
 	private boolean  mScreenSensor = false ;
-	
+
+
 	
 
 	public boolean ismScreenSensor() {
@@ -127,6 +120,13 @@ public class GameSDK {
 		PAY_API.getInstance().init(activity, getmOrientation(), appid , appkey  , publicKey);
 	}
 
+
+	//webview加载
+	private void webviewinit(){
+
+
+
+	}
 
 
 

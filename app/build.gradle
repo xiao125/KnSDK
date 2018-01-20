@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'xixi'
+            keyPassword '123456'
+            storeFile file('F:/AndroidStudioProjects/KnDemo/xixi.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
     aaptOptions {
@@ -8,9 +16,12 @@ android {
         useNewCruncher = false
 
     }
+
+    //默认配置,所有 productFlavors 都会继承 defaultConfig 中配置的属性
     defaultConfig {
+        //默认的 applicationId,一般与 AndroidManifest.xml 文件 package属性相同
         applicationId "com.kn.KnDemo"
-        minSdkVersion 15
+        minSdkVersion 18
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -21,6 +32,20 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    productFlavors{
+
+        rx{
+            applicationId "com.mc.rxh5"
+            resValue "string", "app_name", "mcc热血"
+            versionCode 1
+            versionName "1.1"
+            // 修改 AndroidManifest.xml 里渠道变量
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "rx",
+                                    app_icon : "@drawable/icon_rx"]
+        }
+
     }
 
 
@@ -35,13 +60,14 @@ repositories {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile(name: 'mcgame', ext: 'aar')
-    compile(name: 'iapppay_plugin', ext: 'aar')
+    /* compile(name: 'mcgame', ext: 'aar')
+                compile(name: 'iapppay_plugin', ext: 'aar')*/
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile project(':gamelibrary')
+    compile project(':SDKProxy')
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
 }

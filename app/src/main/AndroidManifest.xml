@@ -13,7 +13,6 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
-
     <!-- sms pay 短信代扣权限 -->
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -42,14 +41,16 @@
 
 
     <application
-        android:name=".MyApplication"
+        android:name=".config.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="${app_icon}"
+        android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+
+        <activity android:name=".module.Activity.SplashActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,8 +59,22 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".module.mainActvity.GameActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+           />
 
 
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}"
+            />
+
+        <activity
+            android:name="com.proxy.activity.SplashActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            />
 
 
         <activity

@@ -332,7 +332,7 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 				if(msg.obj!=null)
 				{
 					if(GameSDK.getInstance().getmLoginListener()!=null){
-						GameSDK.getInstance().getmLoginListener().onFail(  msg.obj.toString() );	
+						GameSDK.getInstance().getmLoginListener().onFail(  msg.obj.toString() );
 						if(null==m_activity){
 							
 						}else{

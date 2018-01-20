@@ -1,5 +1,6 @@
 package com.kn.game.configurator;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 
@@ -21,11 +22,15 @@ public class Game {
     }
 
     public static <T> T getConfiguration(Object key) {
-        return getConfigurator().getConfiguration(key);
+        return getConfigurator().getConfiguration(key); //获取 LATTE_CONFIGS数组中存储的状态
     }
 
     public static Context getApplicationContext() {
         return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
+    }
+
+    public static Activity getActivity() {
+        return getConfiguration(ConfigKeys.ACTIVITY);
     }
 
     public static Handler getHandler() {

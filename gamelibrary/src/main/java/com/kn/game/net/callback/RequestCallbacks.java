@@ -23,7 +23,7 @@ public final class RequestCallbacks implements Callback<String> {
     private final IFailure FAILURE;
     private final IError ERROR;
     private final LoaderStyle LOADER_STYLE;
-    private static final Handler HANDLER = Game.getHandler(); //hander
+    private static final Handler HANDLER = Game.getHandler(); //获取hander
 
     public RequestCallbacks(IRequest request, ISuccess success, IFailure failure, IError error, LoaderStyle style ) {
         this.REQUEST = request;
@@ -64,7 +64,7 @@ public final class RequestCallbacks implements Callback<String> {
     }
 
     private void onRequestFinish() {
-        final long delayed = Game.getConfiguration(ConfigKeys.LOADER_DELAYED);
+        final long delayed = Game.getConfiguration(ConfigKeys.LOADER_DELAYED); //获取网络延迟时间，默认0
         if (LOADER_STYLE != null) {
             HANDLER.postDelayed(new Runnable() {
                 @Override

@@ -1,5 +1,6 @@
 package com.kn.game.Loader;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatDialog;
 import android.view.Gravity;
@@ -33,8 +34,7 @@ public class LatteLoader {
 
     public static void showLoading(Context context, String type) {
 
-        final AppCompatDialog dialog = new AppCompatDialog(context, R.style.dialog);
-
+       final AppCompatDialog dialog = new AppCompatDialog(context, R.style.dialog);
         final AVLoadingIndicatorView avLoadingIndicatorView = LoaderCreator.create(type, context);
         dialog.setContentView(avLoadingIndicatorView);
 

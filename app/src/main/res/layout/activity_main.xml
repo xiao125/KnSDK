@@ -5,33 +5,10 @@
     android:orientation="vertical"
     >
 
-    <TextView
-        android:id="@+id/te"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="hello"
-       />
 
-
-    <Button
-        android:id="@+id/dl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="登录"
-        />
-
-    <Button
-        android:id="@+id/jh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="激活码"
-        />
-    <Button
-        android:id="@+id/sb"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="上报游戏数据"
-        />
-
+    <WebView
+        android:id="@+id/wb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="dialog" parent="@android:style/Theme.Dialog">
+   <!-- <style name="dialog" parent="@android:style/Theme.Dialog">-->  <!--继承的是AppCompatActivity-->
+    <style name="dialog" parent="Theme.AppCompat.Light.NoActionBar"> <!--继承的是Activity-->
         <!--去掉边框-->
         <item name="android:windowFrame">@null</item>
         <!--悬浮-->

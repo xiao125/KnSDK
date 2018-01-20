@@ -623,19 +623,17 @@ public class HttpService {
 			String app_secret = "3d759cba73b253080543f8311b6030bf";
 			GameInfo gameInfo = GameSDK.getInstance().getGameInfo();
 
-			Log.d("ttt","游戏id="+gameInfo.getGameId());
 
 			String channel = gameInfo.getChannel();//渠道
-
 			String adchannel = gameInfo.getAdChannel();//广告渠道
 			String mis = DeviceUtil.getDeviceId(); //IMEI码
-
 			String game_id =  gameInfo.getGameId(); //游戏品牌
 			String uid = gameUser.getUid();//游戏uid
             String open_id = gameUser.getOpenid();//游戏openid
             int   serverId = gameUser.getServerId();//服务区id
 			int  lv = gameUser.getUserLevel();// 游戏等级
             String gid = gameUser.getGid(); //工会id
+
 
 
 			HashMap<String,String> params =new HashMap<String, String>();
@@ -648,12 +646,13 @@ public class HttpService {
 				params.put("server_id",String.valueOf(serverId));
 				params.put("lv", String.valueOf(lv));
 				params.put("msi",mis);
+				params.put("ad_channel",adchannel);
 				params.put("channel", channel);
 				params.put("gid", gid);
 				params.put("extraInfo", gameUser.getExtraInfo());
 				params.put("proxyVersion", versionCode);
 
-				Map<String, String> update_params1 = Util.getSign( params , app_secret );
+			//	Map<String, String> update_params1 = Util.getSign( params , app_secret );
 			}
 
 

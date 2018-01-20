@@ -10,6 +10,7 @@ public class SDK {
 
 	public static final int READ_TIMEOUT = 25000;
 
+
 	public static String LOGIN_URL = "http://oms.u7game.cn/api/login_check.php"; //登录
 	public static String REG_URL = "http://oms.u7game.cn/api/user_reg.php";//注册
 	public static String APPLY_ORDER_URL = "http://omspay.szkuniu.com/api/apply_order.php";
