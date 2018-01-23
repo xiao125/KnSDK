@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ls_bg_common"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_pand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ls_img_pand"
+            android:paddingTop="2dp"
+            />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="left"
+            android:layout_toRightOf="@+id/img_pand"
+            android:text=" 萌友 | 免费注册"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_16" />
+
+        <ImageView
+            android:id="@+id/img_qa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ls_icon_qa" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/white">
+
+        <CheckBox
+            android:id="@+id/ls_checkbox_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:button="@drawable/ls_checkbox_pwd"
+            />
+
+        <EditText
+            android:id="@+id/edit_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/ls_checkbox_pwd"
+            android:background="@null"
+            android:inputType="text"
+            android:digits="@string/ls_str_edittext_content"
+            android:hint="密码（6 ~ 20位数字/字母）"
+            android:paddingLeft="8dp"
+            android:maxLength="20"
+            android:singleLine="true"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="@dimen/text_size_14"
+             />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ls_btn_orange_full_selector"
+        android:gravity="center"
+        android:text="进入游戏"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_14" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp">
+
+        <Button
+            android:id="@+id/btn_register_back_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ls_btn_bg_alpha_selector"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/ls_str_register_backlogin"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/ls_text_gray"
+
+            />
+
+        <TextView
+            android:id="@+id/text_register_protocol"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="注册即同意《服务条款》"
+            android:textColor="@drawable/ls_text_white_selector"
+            android:textSize="@dimen/text_size_12" />
+
+    </RelativeLayout>
+
+</LinearLayout>

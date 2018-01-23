@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ls_bg_common"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_pand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ls_img_pand"
+            android:paddingTop="2dp"
+            />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="left"
+            android:layout_toRightOf="@+id/img_pand"
+            android:text=" 萌友 | 注册成功"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_16" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="12dp"
+        android:padding="10dp"
+        android:background="@drawable/ls_bg_common_white">
+
+        <TextView
+            android:id="@+id/text_account_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:singleLine="true"
+            android:maxLength="20"
+            android:paddingLeft="80dp"
+            android:text="帐号:4032004040"
+            android:textSize="@dimen/text_size_12"
+             />
+
+        <TextView
+            android:id="@+id/text_pwd_info"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:maxLength="20"
+            android:paddingLeft="80dp"
+            android:textSize="@dimen/text_size_12"
+            android:text="密码:403200"
+             />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="center"
+        android:text="恭喜您，注册成功！帐号已截图至相册"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_12" />
+
+
+
+    <Button
+        android:id="@+id/btn_enter_game"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/ls_orange"
+        android:gravity="center"
+        android:text="进入游戏"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_14" />
+
+</LinearLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="ls_str_register_backlogin"><![CDATA[< 返回登录]]></string>
+    <string name="ls_str_go_register"><![CDATA[ 免费注册 >]]></string>
+    <string name="ls_str_save_user_info">帐号：%1$s \n密码：%2$s</string>
+    <string name="ls_str_edittext_content">0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="ls_str_edittext_content_num">0123456789</string>
+</resources>

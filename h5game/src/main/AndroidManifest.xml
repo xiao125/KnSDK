@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -14,41 +13,32 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
-    <!-- sms pay 短信代扣权限 -->
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <!-- 易联2.0 基础权限 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.hardware.camera.autofocus" />
-    <!--爱贝支付权限-->
+    <!-- sdk权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!-- 定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!--爱贝支付权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
 
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <!--闪屏-->
         <activity android:name=".Module.activity.SplashActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:screenOrientation="portrait"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,12 +51,11 @@
         <!--MainActivity-->
         <activity android:name=".Module.MainActivity.MainActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:screenOrientation="portrait"
             >
 
         </activity>
-
-        <!--sdk配置开始-->
-
 
         <activity
             android:name="com.proxy.activity.SplashActivity"
@@ -75,153 +64,32 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             />
 
+
+        <!--sdk配置开始-->
+
         <activity
-            android:name="com.game.sdk_project.SelecteLoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:name="com.mengyousdk.lib.views.activitys.WebViewActivity"
+            android:configChanges="orientation|navigation|keyboardHidden|screenLayout|screenSize"
             android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+            android:theme="@style/NoTitleActivityDialog" />
 
         <activity
-            android:name="com.game.sdk.activity.ForgotPasswordActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:name="com.mengyousdk.lib.moudle.login.view.LoginRegisterActivity"
+            android:configChanges="orientation|navigation|keyboardHidden|screenLayout|screenSize"
             android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-
+            android:theme="@style/NoTitleActivityDialog"/>
 
         <activity
-            android:name="com.game.sdk.activity.TourtistRegActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:name="com.mengyousdk.lib.moudle.login.view.popview.FloatMenuActivity"
+            android:configChanges="orientation|navigation|keyboardHidden|screenLayout|screenSize"
             android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+            android:theme="@style/NoTitleActivityDialog.Animation" />
+
+        <service android:name="com.mengyousdk.lib.moudle.login.view.popview.FloatWindowService" />
 
 
 
-        <meta-data
-            android:name="com.tencent.rdm.uuid"
-            android:value="a2cb8ad6-89b1-43f2-a3b1-57be070b3222" />
 
-        <activity
-            android:name="com.game.sdk.activity.AccountForgetActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.PassWordForgetActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.PasswordUpdateActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.BindCellActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.AccountManagerActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.AccounterBindActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.AccountManagerCurrentActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.AutoLoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.VisitManagerActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.FirstLoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.RegisterActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-        <activity
-            android:name="com.game.sdk.activity.ChangePwdActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-
-
-        <!--快速登录 -->
-        <activity
-            android:name="com.game.sdk.activity.FastLoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
-            />
-        <!-- 爱贝支付配置 -->
-        <!-- 微支付SDK界面 -->
-        <!-- 显示网页界面 -->
-        <activity
-            android:name="com.iapppay.sdk.main.WebActivity"
-            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
-            android:name="com.iapppay.ui.activity.PersonCenterActivity"
-            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <!-- 收银台-普通 -->
-        <activity
-            android:name="com.iapppay.ui.activity.PayHubActivity"
-            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <!-- 选择充值金额界面 -->
-        <activity
-            android:name="com.iapppay.ui.activity.SelectAmountActivity"
-            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
-            android:launchMode="singleTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
-            android:name="com.iapppay.ui.activity.ChargeActivity"
-            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
-            android:launchMode="singleTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-
-        <!-- 游戏卡和话费卡界面 -->
-        <activity
-            android:name="com.iapppay.ui.card.GamepayActivity"
-            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
-            android:launchMode="singleTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-
-        <!-- alipay sdk begin (新的支付宝) -->
-        <activity
-            android:name="com.alipay.sdk.app.H5PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name="com.alipay.sdk.auth.AuthActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind"/>
 
         <!--sdk配置结束-->
 

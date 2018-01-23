@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="220dp"
+    android:layout_height="120dp"
+    android:background="@drawable/ls_bg_common_gray"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tips_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="网络连接提醒"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/ls_black"
+        />
+
+    <View
+        android:id="@+id/tips_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/tips_title"
+        android:layout_marginTop="5dp"
+        android:background="@color/ls_text_gray_light" />
+
+    <TextView
+        android:id="@+id/tips_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="您正在使用流量，是否继续下载？"
+        android:textSize="@dimen/text_size_14"
+        android:textColor="@color/ls_black"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+         />
+
+    <TextView
+        android:id="@+id/tips_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="继续下载"
+        android:textColor="@color/ls_orange"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="25dp"
+        android:layout_toLeftOf="@+id/tips_back"
+        android:textSize="@dimen/text_size_14"
+        android:padding="10dp"
+        />
+    <TextView
+        android:id="@+id/tips_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="返回"
+        android:textColor="@color/ls_orange"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/text_size_14"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="25dp"
+        android:padding="10dp"
+        />
+
+
+</RelativeLayout>

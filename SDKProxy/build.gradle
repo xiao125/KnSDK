@@ -2,8 +2,9 @@ apply plugin: 'android-library'
 
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
-    compile(name:'mcgame',ext:'aar')
-    compile(name:'iapppay_plugin',ext:'aar')
+    compile(name: 'mcgame', ext: 'aar')
+    compile(name: 'iapppay_plugin', ext: 'aar')
+    compile project(':mengyoulibrary')
 }
 
 repositories{
@@ -13,14 +14,12 @@ repositories{
 
 }
 android {
-    compileSdkVersion 22
+    compileSdkVersion 26
     buildToolsVersion '26.0.1'
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
-
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -44,7 +43,6 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
-
     aaptOptions {
 
         cruncherEnabled = false
@@ -52,4 +50,10 @@ android {
         useNewCruncher = false
 
     }
+    defaultConfig {
+        minSdkVersion 18
+    }
+    productFlavors {
+    }
+
 }

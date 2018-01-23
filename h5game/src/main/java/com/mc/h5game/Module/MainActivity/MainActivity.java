@@ -1,16 +1,19 @@
 package com.mc.h5game.Module.MainActivity;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
@@ -20,9 +23,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import com.mc.h5game.R;
 import com.proxy.Constants;
@@ -50,23 +50,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements ActivityCompat.OnRequestPermissionsResultCallback{
 
     private WebView mweview;
     private LinearLayout linearLayout;
-    private ImageView tx;
-
     OpenSDK m_proxy = OpenSDK.getInstance();
     private String m_appKey = "uVkyGhiKWm7T2B43n5rEafHleXwPzjRU";
     private String m_gameId = "rxcqh5";
     private String m_gameName = "rxcqh5";
     private int m_screenOrientation = 1;
-    private String muid = "";
-
+    private boolean isInit=false;
     private GameInfo m_gameInfo = new GameInfo(m_gameName, m_appKey, m_gameId, m_screenOrientation);
     public static String HtmlUrl;
     private String roleDate;
     private String roledata;
+    public static final int REQUEST_READ_PHONE_STATE=101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +72,33 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         mweview = (WebView) findViewById(R.id.wb);
         linearLayout =(LinearLayout)findViewById(R.id.ll);
-        tx = (ImageView) findViewById(R.id.cx);
+
+
+        //6.0 动态权限（getDeviceId()获取手机串码）
+        permissions();
+
         sdkProxyinit();
         webviewinit();
 
+
+    }
+
+    private void permissions(){
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+
+            if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
+                    != PackageManager.PERMISSION_GRANTED) { //检查是否有权限
+
+                LogUtil.d( "permission denied to SEND_SMS - requesting it");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
+
+            }else {
+
+                LogUtil.d( "不需要申请权限");
+            }
+
+        }
 
     }
 
@@ -94,7 +115,7 @@ public class MainActivity extends Activity {
     //webview
     private void webviewinit() {
 
-        getHtmlUrl();
+       getHtmlUrl();
 
 
     }
@@ -160,19 +181,42 @@ public class MainActivity extends Activity {
     //显示HTML页面
     private void showHtml(String htmlUrl) {
 
+        //设置WebSettings属性
+        WebSettingss();
+
+        //设置webView监听回调
+        WebViewListener();
+
+        mweview.loadUrl(htmlUrl); //加载h5页面
+
+
+    }
+
+
+
+    //设置WebSettings属性
+    private void WebSettingss(){
 
         WebSettings webSettings = mweview.getSettings();
         webSettings.setJavaScriptEnabled(true); //在WebView中启用JavaScript
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true); // 设置允许JS弹窗
         //设置自适应屏幕，两者合用（下面这两个方法合用）
         webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
-        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //优先使用缓存
-        // mweview.setWebViewClient(new WebViewClient()); //不启动浏览器加载html
-        // mweview.setLayerType(View.LAYER_TYPE_SOFTWARE, null); //关闭硬件加速
+        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大
+        webSettings.setDomStorageEnabled(true); //DOM存储打开
+
+        //提高渲染的优先级
+        webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
+        //允许加载本地 html 文件/false
+        webSettings.setAllowFileAccess(true);
+        // 允许通过 file url 加载的 Javascript 读取其他的本地文件,Android 4.1 之前默认是true，在 Android 4.1 及以后默认是false,也就是禁止
+        webSettings.setAllowFileAccessFromFileURLs(true);
+
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //Http与Https混合内容
             //两者都可以
-            webSettings.setMixedContentMode(webSettings.getMixedContentMode());
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 
         }
 
@@ -181,14 +225,45 @@ public class MainActivity extends Activity {
             WebView.setWebContentsDebuggingEnabled(true);
         }*/
 
+
+    }
+
+
+    //设置webView监听回调
+    private void WebViewListener(){
+
+
+        //关闭Webview滚动
+        mweview.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return (motionEvent.getAction() == MotionEvent.ACTION_MOVE);
+            }
+        });
+
         mweview.setWebViewClient(new WebViewClient() {
 
             //不启动浏览器加载html
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
                 mweview.loadUrl(url);
                 return true;
             }
+
+           /* @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+
+                LogUtil.log("显示的网址是："+request.toString());
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    LogUtil.log("显示的网址是："+request.getUrl().toString());
+                    view.loadUrl(request.getUrl().toString());
+                }else {
+                    LogUtil.log("小于21显示的网址是："+request.toString());
+                    view.loadUrl(request.toString());
+                }
+                return  true;
+            }*/
 
             //onPageStarted会在WebView开始加载网页时调用
             @Override
@@ -205,7 +280,7 @@ public class MainActivity extends Activity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                LogUtil.log("WebView加载结束时调用");
+                LogUtil.log("WebView加载结束时调用"+url);
                 LoadingDialog.dismiss();
 
             }
@@ -234,14 +309,17 @@ public class MainActivity extends Activity {
                 LogUtil.log("加载进度=" + newProgress);
                 super.onProgressChanged(view, newProgress);
             }
+
+
         });
 
-        mweview.loadUrl(htmlUrl); //加载h5页面
 
 
     }
 
 
+
+    //js调用相关的方法
     public class InitGame {
 
 
@@ -257,11 +335,14 @@ public class MainActivity extends Activity {
             m_proxy.init(MainActivity.this, m_gameInfo, new InitListener() {
 
                 @Override
-                public void onSuccess(Object arg0) {
+                public void onSuccess(Object msg) {
                     // TODO Auto-generated method stub
                     LogUtil.log("游戏初始化成功=");
+                    isInit =true;
+                    if(msg!=null){
 
-                    activateCallback();
+                        activateCallback();
+                    }
 
                 }
 
@@ -344,7 +425,7 @@ public class MainActivity extends Activity {
                 public void onSuccess(Object result) {
                     LogUtil.log("游戏登出成功:" + result);
                     //游戏账号注销，返回到登录界面
-
+                    logoutCallback();
 
                 }
                 @Override
@@ -361,9 +442,12 @@ public class MainActivity extends Activity {
         public void login() {
 
             LogUtil.log("点击登录");
+            if(!isInit){
+                return;
+            }else {
+                m_proxy.login(MainActivity.this);
 
-            m_proxy.login(MainActivity.this);
-
+            }
 
 
 
@@ -561,6 +645,31 @@ public class MainActivity extends Activity {
         }
     }
 
+    //js接口（游戏回到登录界面）
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    private void logoutCallback() {
+        final int version = Build.VERSION.SDK_INT;
+        if (version < 18) {
+
+            //调用js初始化回调
+            mweview.loadUrl("javascript:logoutCallback()");
+
+        } else { // 该方法在 Android 4.4 版本才可使用，
+
+            //调用js初始化回调
+            mweview.evaluateJavascript("javascript:loginCallback()", new ValueCallback<String>() {
+                @Override
+                public void onReceiveValue(String s) {
+                    //js返回的结果
+                }
+            });
+
+        }
+
+    }
+
+
+
     //sdk登录成功返回的对象数据
     private JSONObject getJson(User user) {
 
@@ -626,28 +735,46 @@ public class MainActivity extends Activity {
     }
 
 
+
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
+        if(keyCode == event.KEYCODE_BACK && mweview.canGoBack()){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("游戏");
-        builder.setMessage("真的忍心退出游戏么？");
-        builder.setPositiveButton("忍痛退出", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                System.exit(0);
-            }
-        });
-        builder.setNegativeButton("手误点错", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+                LogUtil.log("返回上一页");
+                mweview.goBack(); //返回上一页
+             return true;
+            }else {
 
-        builder.create().show();
+            if (m_proxy.hasThirdPartyExit()) {
+
+                //第三方退出
+                m_proxy.onThirdPartyExit();
+
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("游戏");
+                builder.setMessage("真的忍心退出游戏么？");
+                builder.setPositiveButton("忍痛退出", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        System.exit(0);
+                    }
+                });
+                builder.setNegativeButton("手误点错", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.create().show();
+
+            }
+        }
+
 
         return true;
 
@@ -656,9 +783,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
         mweview.onPause();
-        mweview.pauseTimers();//调用pauseTimers()全局停止Js
+       // mweview.pauseTimers();//调用pauseTimers()全局停止Js
         super.onPause();
-        m_proxy.onPause();
+
 
     }
 
@@ -695,5 +822,17 @@ public class MainActivity extends Activity {
     }
 
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
+        switch (requestCode){
+            case REQUEST_READ_PHONE_STATE:
+                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    LogUtil.log("开启权限");
+                }
+                break;
+                default:
+                    break;
+        }
+    }
 }

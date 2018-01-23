@@ -1,1 +1,1 @@
-include ':app', ':gamelibrary', ':iapppay_res', ':Game_SDK_Project_1.0.1', ':h5game', 'SDKProxy'
+include ':app', ':gamelibrary', ':iapppay_res', ':Game_SDK_Project_1.0.1', ':h5game', ':mengyoulibrary', 'SDKProxy'

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:background="@drawable/ls_bg_common"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/img_pand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ls_img_pand"
+            android:paddingTop="2dp"
+            />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="left"
+            android:layout_toRightOf="@+id/img_pand"
+            android:text=" 萌友 | 退出游戏"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_16" />
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="3dp"
+            android:scaleType="center"
+            android:src="@drawable/ls_icon_close" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_gift"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/ls_orange">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:drawableLeft="@drawable/ls_icon_exit_gift"
+            android:drawablePadding="16dp"
+            android:gravity="center"
+            android:text="游戏礼包"
+            android:textColor="@android:color/white"
+            android:textSize="21sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_exit_game"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/ls_btn_bg_alpha_rectangle_selector"
+        android:gravity="center"
+        android:text="退出游戏"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_16" />
+
+</LinearLayout>

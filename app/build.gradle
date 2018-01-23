@@ -21,7 +21,7 @@ android {
     defaultConfig {
         //默认的 applicationId,一般与 AndroidManifest.xml 文件 package属性相同
         applicationId "com.kn.KnDemo"
-        minSdkVersion 18
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"

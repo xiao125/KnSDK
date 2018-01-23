@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ls_bg_common_gray"
+    android:orientation="vertical">
+
+    <!-- 通用导航栏 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/ls_bg_common_white_radius_lr"
+        android:layout_height="45dp">
+
+        <TextView
+            android:id="@+id/text_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="版本更新"
+            android:textColor="@color/ls_text_gray_dark"
+            android:textSize="@dimen/text_size_16" />
+
+        <ImageView
+            android:id="@+id/img_dialog_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:scaleType="center"
+            android:src="@drawable/ls_icon_close" />
+    </RelativeLayout>
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/ls_text_gray_light" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="5dp"
+        android:background="#eeeeee"
+        android:padding="10dp"
+        android:visibility="visible">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:id="@+id/scrollView2">
+
+            <TextView
+                android:id="@+id/btn_dialog_msg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autoLink="all"
+                android:ellipsize="end"
+                android:text="更新通知内容"
+                android:textColor="@color/ls_text_gray_dark" />
+        </ScrollView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/update_content"
+        android:padding="5dp"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/update_progress_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0%"
+            android:textSize="@dimen/text_size_12"
+            android:textColor="@color/ls_black"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/update_progress_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00/00MB"
+            android:textSize="@dimen/text_size_12"
+            android:textColor="@color/ls_black"
+            android:layout_alignParentRight="true"
+            />
+
+        <ProgressBar
+            android:id="@+id/ls_progressbar"
+            android:layout_below="@+id/update_progress_speed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminateOnly="false"
+            android:progressDrawable="@drawable/ls_update_progressbar"
+            android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal"
+            android:minHeight="5dp"
+            android:maxHeight="5dp"
+            android:max="100"
+            android:secondaryProgress="0"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btn_dialog_update"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/ls_orange"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:text="开始更新"
+        android:textSize="@dimen/text_size_14" />
+
+</LinearLayout>

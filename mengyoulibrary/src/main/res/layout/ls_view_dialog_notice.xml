@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ls_bg_common_gray"
+    android:orientation="vertical">
+
+    <!-- 通用导航栏 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/ls_bg_common_white_radius_lr"
+        android:layout_height="45dp">
+
+        <TextView
+            android:id="@+id/text_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:textColor="@color/ls_text_gray_dark"
+            android:textSize="@dimen/text_size_16" />
+
+        <ImageView
+            android:id="@+id/img_dialog_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:padding="8dp"
+            android:scaleType="center"
+            android:src="@drawable/ls_icon_close" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/ls_text_gray_light" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#eeeeee"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp"
+        android:padding="16dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_above="@+id/btn_dialog_ok"
+            android:scrollbars="none"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/btn_dialog_msg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/ls_text_gray_dark"
+                android:ellipsize="end"
+                android:autoLink="all" />
+        </ScrollView>
+        <TextView
+            android:id="@+id/btn_dialog_ok"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/ls_orange"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            android:text="我知道了"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <com.mengyousdk.lib.views.weidgets.ProgressWebView
+        android:id="@+id/ls_m_webview_notice"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/ls_m_layout_notice_title"
+        />
+
+</LinearLayout>

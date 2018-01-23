@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ls_bg_common"
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:context="com.mengyousdk.lib.moudle.login.view.LoginRegisterActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_pand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ls_img_pand"
+            android:paddingTop="2dp"
+            />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="left"
+            android:layout_toRightOf="@+id/img_pand"
+            android:text=" 萌友 | 快速登录"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_16" />
+
+        <ImageView
+            android:id="@+id/img_qa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ls_icon_qa" />
+
+
+    </RelativeLayout>
+
+    <!-- 账号区 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/ls_account_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/ls_img_account_more"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ls_icon_arrow_down" />
+
+            <EditText
+                android:id="@+id/edit_login_account"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/ls_img_account_more"
+                android:background="@null"
+                android:hint="请输入帐号/手机号"
+                android:paddingLeft="8dp"
+                android:digits="@string/ls_str_edittext_content_num"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/text_size_14" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/ls_text_gray" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/white">
+
+            <TextView
+                android:id="@+id/text_login_forgot_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:singleLine="true"
+                android:text="忘记帐号/密码"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@drawable/ls_text_orange_selector" />
+
+            <EditText
+                android:id="@+id/edit_login_pwd"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="请输入密码"
+                android:paddingLeft="8dp"
+                android:maxLength="20"
+                android:inputType="textPassword"
+                android:digits="@string/ls_str_edittext_content"
+                android:singleLine="true"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/text_size_14"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ls_btn_orange_full_selector"
+        android:gravity="center"
+        android:text="进入游戏"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_14" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp">
+
+        <Button
+            android:id="@+id/btn_login_go_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ls_btn_bg_alpha_selector"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/ls_str_go_register"
+            android:textColor="@color/ls_text_gray"
+            android:textSize="@dimen/text_size_14"
+
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
