@@ -1,14 +1,18 @@
 package com.kn.KnDemo.module.mainActvity;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
@@ -18,6 +22,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 
 import com.kn.KnDemo.R;
 import com.kn.KnDemo.URL.URLConfig;
@@ -54,6 +59,7 @@ import java.util.Map;
 public class GameActivity extends Activity{
 
     private WebView mweview;
+    private LinearLayout webViewLayout;
     OpenSDK m_proxy = OpenSDK.getInstance();
     private String m_appKey = "uVkyGhiKWm7T2B43n5rEafHleXwPzjRU";
     private String m_gameId = "rxcqh5";
@@ -64,18 +70,46 @@ public class GameActivity extends Activity{
     public static String HtmlUrl;
     private String roleDate;
     private String roledata;
+    public static final int REQUEST_READ_PHONE_STATE=101;
+
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mweview = (WebView) findViewById(R.id.wb);
+        webViewLayout = (LinearLayout) findViewById(R.id.wb);
+        mweview = new WebView(this);
+        webViewLayout.addView(mweview);
+
+        //6.0 动态权限（getDeviceId()获取手机串码）
+        permissions();
 
         sdkProxyinit();
         webviewinit();
 
     }
+
+    private void permissions(){
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+
+            if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
+                    != PackageManager.PERMISSION_GRANTED) { //检查是否有权限
+
+                LogUtil.d( "permission denied to SEND_SMS - requesting it");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
+
+            }else {
+
+                LogUtil.d( "不需要申请权限");
+            }
+
+        }
+
+    }
+
+
 
     //初始化中间件读取assets资源文件
     private void sdkProxyinit(){
@@ -665,7 +699,6 @@ public class GameActivity extends Activity{
         mweview.onPause();
         mweview.pauseTimers();//调用pauseTimers()全局停止Js
         super.onPause();
-        m_proxy.onPause();
 
     }
 
@@ -701,7 +734,19 @@ public class GameActivity extends Activity{
         m_proxy.onDestroy();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
+        switch (requestCode){
+            case REQUEST_READ_PHONE_STATE:
+                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    LogUtil.log("开启权限");
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
 
 }

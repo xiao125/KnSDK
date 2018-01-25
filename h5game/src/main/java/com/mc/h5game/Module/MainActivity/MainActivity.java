@@ -70,9 +70,11 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mweview = (WebView) findViewById(R.id.wb);
-        linearLayout =(LinearLayout)findViewById(R.id.ll);
 
+        //linearLayout = (LinearLayout) findViewById(R.id.wb);
+        mweview = (WebView) findViewById(R.id.wb);
+       // mweview = new WebView(MainActivity.this);
+       // linearLayout.addView(mweview);
 
         //6.0 动态权限（getDeviceId()获取手机串码）
         permissions();
@@ -164,8 +166,8 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
             public void onFail(Object result) {
 
                 LogUtil.log("网络请求失败："+result.toString());
-                  linearLayout.setVisibility(View.VISIBLE);
-                  mweview.setVisibility(View.GONE);
+                /*  linearLayout.setVisibility(View.VISIBLE);
+                  mweview.setVisibility(View.GONE);*/
 
 
 
@@ -203,7 +205,10 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
         //设置自适应屏幕，两者合用（下面这两个方法合用）
         webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
         webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大
-        webSettings.setDomStorageEnabled(true); //DOM存储打开
+        //webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);  //设置 缓存模式
+        webSettings.setDomStorageEnabled(true);// 开启 DOM storage API 功能
+        webSettings.setDatabaseEnabled(true);//开启 database storage API 功能
+        webSettings.setAppCacheEnabled(true);//开启 Application Caches 功能
 
         //提高渲染的优先级
         webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
@@ -338,9 +343,9 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
                 public void onSuccess(Object msg) {
                     // TODO Auto-generated method stub
                     LogUtil.log("游戏初始化成功=");
-                    isInit =true;
-                    if(msg!=null){
 
+                    if(msg!=null){
+                        isInit =true;
                         activateCallback();
                     }
 
@@ -657,7 +662,7 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
         } else { // 该方法在 Android 4.4 版本才可使用，
 
             //调用js初始化回调
-            mweview.evaluateJavascript("javascript:loginCallback()", new ValueCallback<String>() {
+            mweview.evaluateJavascript("javascript:logoutCallback()", new ValueCallback<String>() {
                 @Override
                 public void onReceiveValue(String s) {
                     //js返回的结果
@@ -740,19 +745,29 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        if(keyCode == event.KEYCODE_BACK && mweview.canGoBack()){
 
-                LogUtil.log("返回上一页");
-                mweview.goBack(); //返回上一页
-             return true;
-            }else {
+        if(keyCode == KeyEvent.KEYCODE_BACK && mweview.canGoBack()){
 
-            if (m_proxy.hasThirdPartyExit()) {
+            LogUtil.log("webView返回上一页");
+            mweview.goBack(); //返回上一页
 
-                //第三方退出
+        }else if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){ //防止按音量键调用退出（减小键监听）
+
+            // LogUtil.log("按了音量减");
+
+
+        }else if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){  ////防止按音量键调用退出（音量增加键监听）
+            //LogUtil.log("按了音量加");
+
+        }
+
+        else{
+
+            if(m_proxy.hasThirdPartyExit()){
+
                 m_proxy.onThirdPartyExit();
 
-            } else {
+            }else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("游戏");
                 builder.setMessage("真的忍心退出游戏么？");
@@ -772,12 +787,13 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
 
                 builder.create().show();
 
+
+
             }
+
         }
 
-
         return true;
-
     }
 
     @Override

@@ -17,6 +17,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 
 import com.kn.KnDemo.R;
 import com.proxy.Constants;
@@ -44,7 +45,8 @@ import java.util.Map;
 
 public class MainActivity extends Activity {
 
-    private WebView mweview;
+   private WebView mweview;
+    private LinearLayout webViewLayout;
     OpenSDK m_proxy = OpenSDK.getInstance();
     private String m_appKey = "uVkyGhiKWm7T2B43n5rEafHleXwPzjRU";
     private String m_gameId = "rxcqh5";
@@ -61,7 +63,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mweview = (WebView) findViewById(R.id.wb);
+        webViewLayout = (LinearLayout) findViewById(R.id.wb);
+         mweview = new WebView(this);
+        webViewLayout.addView(mweview);
 
         sdkProxyinit();
         webviewinit();
@@ -139,6 +143,7 @@ public class MainActivity extends Activity {
 
     //显示HTML页面
     private void showHtml(String htmlUrl) {
+
 
 
         WebSettings webSettings = mweview.getSettings();
