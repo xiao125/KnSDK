@@ -30,8 +30,8 @@
 		        android:layout_gravity="center_vertical"
 		        android:paddingTop="1dp"
 		        android:paddingLeft="15dp"
-		        android:textColor="@color/text_color_forget_password"
-		        android:text="@string/tips_40"/> 
+		        android:textColor="@color/mc_text_color_forget_password"
+		        android:text="@string/mc_tips_40"/>
           </RelativeLayout>
            <RelativeLayout 
                 android:layout_width="wrap_content"
@@ -44,8 +44,8 @@
                 	android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                 	android:background="@color/mc_btn_long_selector"
-                	android:text="@string/tips_41"
-                	android:textColor="@color/text_color_white"/>
+                	android:text="@string/mc_tips_41"
+                	android:textColor="@color/mc_text_color_white"/>
 		   </RelativeLayout>
 		   <RelativeLayout 
                android:layout_width="wrap_content"
@@ -59,8 +59,8 @@
                    android:layout_marginTop="1dp"
                    android:layout_marginLeft="6dp"
                    android:background="@color/mc_btn_short_selector"
-                   android:text="@string/tips_56"
-                   android:textColor="@color/text_color_white"/>
+                   android:text="@string/mc_tips_56"
+                   android:textColor="@color/mc_text_color_white"/>
 		       <Button 
                    android:id="@+id/account_change"
                    android:layout_width="wrap_content"
@@ -68,8 +68,8 @@
                    android:layout_marginTop="1dp"
                    android:layout_marginLeft="104dp"
                    android:background="@color/mc_btn_short_selector"
-                   android:text="@string/tips_43"
-                   android:textColor="@color/text_color_white"/>
+                   android:text="@string/mc_tips_43"
+                   android:textColor="@color/mc_text_color_white"/>
 		   </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

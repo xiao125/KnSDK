@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
 import com.game.sdk.service.HttpService;
@@ -132,7 +132,7 @@ public class TourtistRegActivity extends Activity implements View.OnClickListene
                 return ;
             }
             if(!Util.isNetWorkAvailable(getApplicationContext())){
-                Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+                Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
                 return ;
             }
 
@@ -248,10 +248,10 @@ public class TourtistRegActivity extends Activity implements View.OnClickListene
             super.handleMessage(msg);
             if(10001==msg.what){
                 m_tortist_code.setClickable(true);
-                m_tortist_code.setText(R.string.tips_48);
+                m_tortist_code.setText(R.string.mc_tips_48);
             }
             else if(10000==msg.what){
-                m_tortist_code.setBackgroundColor(getResources().getColor(R.color.kn_text));
+                m_tortist_code.setBackgroundColor(getResources().getColor(R.color.mc_kn_text));
                 String text =String.valueOf(m_time)+"秒";
                 m_tortist_code.setText(text);
             }

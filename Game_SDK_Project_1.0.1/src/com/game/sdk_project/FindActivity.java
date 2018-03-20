@@ -10,7 +10,7 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.activity.AccountForgetActivity;
 import com.game.sdk.activity.FirstLoginActivity;
 import com.game.sdk.activity.PassWordForgetActivity;

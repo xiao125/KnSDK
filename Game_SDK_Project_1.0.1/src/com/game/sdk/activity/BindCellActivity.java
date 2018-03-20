@@ -2,7 +2,7 @@ package com.game.sdk.activity;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
@@ -59,7 +59,7 @@ public class BindCellActivity  extends Activity implements OnClickListener {
 			String cell_num = m_cellNum_et.getText().toString().trim(); //手机号
 			if (isphone(cell_num)) return;
 			if(!Util.isNetWorkAvailable(getApplicationContext())){
-				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 				return ;
 			}
 			if(null==m_activity){
@@ -83,7 +83,7 @@ public class BindCellActivity  extends Activity implements OnClickListener {
 			}
 
 			if(!Util.isNetWorkAvailable(getApplicationContext())){
-				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 				return ;
 			}
 			if(null==m_activity){
@@ -114,11 +114,11 @@ public class BindCellActivity  extends Activity implements OnClickListener {
 
 	private boolean isphone(String cell_num) {
 		if(TextUtils.isEmpty(cell_num)){
-            Util.ShowTips(m_activity,getResources().getString(R.string.tips_58));
+            Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_58));
 			return true;
         }
 		if(!Util.isMobileNO(cell_num)){
-            Util.ShowTips(m_activity,getResources().getString(R.string.tips_57));
+            Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_57));
 			return true;
         }
 		return false;
@@ -312,7 +312,7 @@ public class BindCellActivity  extends Activity implements OnClickListener {
 			super.handleMessage(msg);
 			if(10001==msg.what){
 				m_get_security_codeBtn.setClickable(true);
-				m_get_security_codeBtn.setText(R.string.tips_48);
+				m_get_security_codeBtn.setText(R.string.mc_tips_48);
 			}
 			else if(10000==msg.what){
 				String text =+m_time+"秒";

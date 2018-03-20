@@ -6,7 +6,7 @@ import java.util.TimerTask;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
@@ -62,7 +62,7 @@ public class AccountForgetActivity extends Activity implements OnClickListener {
 				return ;
 			}
 			if(!Util.isNetWorkAvailable(getApplicationContext())){
-				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 				return ;
 			}
 			LoadingDialog.show(m_activity, "提交中...",true);
@@ -70,14 +70,14 @@ public class AccountForgetActivity extends Activity implements OnClickListener {
 		}else if(id==R.id.get_security_code){
 			String cell_num = m_phoneNumber.getText().toString().trim();
 			if(TextUtils.isEmpty(cell_num)){
-				Util.ShowTips(m_activity,getResources().getString(R.string.tips_58));
+				Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_58));
 				return ;
 			}
 			if(!Util.isMobileNO(cell_num)){
-				Util.ShowTips(m_activity,getResources().getString(R.string.tips_57));
+				Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_57));
 			}
 			if(!Util.isNetWorkAvailable(getApplicationContext())){
-				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 				return ;
 			}
 			LoadingDialog.show(m_activity, "获取验证码中...",true);
@@ -330,7 +330,7 @@ public class AccountForgetActivity extends Activity implements OnClickListener {
 			super.handleMessage(msg);
 			if(10001==msg.what){
 				m_get_security_codeBtn.setClickable(true);
-				m_get_security_codeBtn.setText(R.string.tips_48);
+				m_get_security_codeBtn.setText(R.string.mc_tips_48);
 			}
 			else if(10000==msg.what){
 				String text ="已发送"+"("+m_time+")";

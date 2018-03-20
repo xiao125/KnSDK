@@ -23,7 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
@@ -283,7 +283,7 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 
 
 		if(TextUtils.isEmpty(username)){
-			Util.ShowTips(activity,getResources().getString(R.string.tips_100));
+			Util.ShowTips(activity,getResources().getString(R.string.mc_tips_100));
 			return ;
 		}
 
@@ -296,29 +296,29 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 
 
 		if (TextUtils.isEmpty(username)) {
-			Util.ShowTips(context,  getResources().getString(R.string.tips_2) );
+			Util.ShowTips(context,  getResources().getString(R.string.mc_tips_2) );
 			return;
 		}
 
 		if (TextUtils.isEmpty(password)) {
-			Util.ShowTips(context,  getResources().getString(R.string.tips_8) );
+			Util.ShowTips(context,  getResources().getString(R.string.mc_tips_8) );
 			return;
 		}
 
 
 		if (!username.matches("^.{6,25}$")) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_4) );
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_4) );
 			return;
 		}
 
 		if (!password.matches("^.{6,20}$")) {
-			Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
+			Util.ShowTips(context,  getResources().getString(R.string.mc_tips_5) );
 			return;
 		}
 
 
 		if(!Util.isNetWorkAvailable(getApplicationContext())){
-			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 			return ;
 		}
 		//LoadingDialog.show(context, "绑定中...",true);
@@ -347,17 +347,17 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 
 
 			if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
-				Util.ShowTips(context, getResources().getString(R.string.tips_1));
+				Util.ShowTips(context, getResources().getString(R.string.mc_tips_1));
 				return true;
 			}
 
 			if (!username.matches("^[A-Za-z0-9_-]+$")) {
-				Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
+				Util.ShowTips(context,  getResources().getString(R.string.mc_tips_3) );
 				return true;
 			}
 
 			if (!username.matches("^.{6,25}$")) {
-				Util.ShowTips(context, getResources().getString(R.string.tips_4) );
+				Util.ShowTips(context, getResources().getString(R.string.mc_tips_4) );
 				return true;
 			}
 
@@ -379,22 +379,22 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 	private void checkPhoneLoginParams(Context context, EditText mUsername, EditText mPassword) {
 		String username = mUsername.getText().toString();
 		if(TextUtils.isEmpty(username)){
-			Util.ShowTips(context,getResources().getString(R.string.tips_58));
+			Util.ShowTips(context,getResources().getString(R.string.mc_tips_58));
 			return;
 		}
 		if(!Util.isMobileNO(username)){
-			Util.ShowTips(context,getResources().getString(R.string.tips_57));
+			Util.ShowTips(context,getResources().getString(R.string.mc_tips_57));
 			return ;
 		}
 		if(!Util.isNetWorkAvailable(getApplicationContext())){
-			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 
 			return ;
 		}
 
 		String password = mPassword.getText().toString();
 		if (TextUtils.isEmpty(password)) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_8) );
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_8) );
 			return;
 		}
 
@@ -414,17 +414,17 @@ public class FirstLoginActivity extends Activity implements OnClickListener {
 		String password = mPassword.getText().toString().trim();
 
 		if (TextUtils.isEmpty(username)) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_2) );
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_2) );
 			return;
 		}
 
 		if (TextUtils.isEmpty(password)) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_8) );
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_8) );
 			return;
 		}
 		
 		if(!Util.isNetWorkAvailable(getApplicationContext())){
-			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 			return ;
 		}
 

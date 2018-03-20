@@ -66,28 +66,157 @@
 
 
         <!--sdk配置开始-->
+        <activity
+            android:name="com.game.sdk_project.SelecteLoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
         <activity
-            android:name="com.mengyousdk.lib.views.activitys.WebViewActivity"
-            android:configChanges="orientation|navigation|keyboardHidden|screenLayout|screenSize"
-            android:screenOrientation="behind"
-            android:theme="@style/NoTitleActivityDialog" />
+            android:name="com.game.sdk.activity.ForgotPasswordActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
 
         <activity
-            android:name="com.mengyousdk.lib.moudle.login.view.LoginRegisterActivity"
-            android:configChanges="orientation|navigation|keyboardHidden|screenLayout|screenSize"
-            android:screenOrientation="behind"
-            android:theme="@style/NoTitleActivityDialog"/>
+            android:name="com.game.sdk.activity.TourtistRegActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+
+
+        <meta-data
+            android:name="com.tencent.rdm.uuid"
+            android:value="a2cb8ad6-89b1-43f2-a3b1-57be070b3222" />
 
         <activity
-            android:name="com.mengyousdk.lib.moudle.login.view.popview.FloatMenuActivity"
-            android:configChanges="orientation|navigation|keyboardHidden|screenLayout|screenSize"
+            android:name="com.game.sdk.activity.AccountForgetActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.PassWordForgetActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.PasswordUpdateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.BindCellActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.AccountManagerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.AccounterBindActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.AccountManagerCurrentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.AutoLoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.VisitManagerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.FirstLoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.RegisterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.game.sdk.activity.ChangePwdActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+
+        <!--快速登录 -->
+        <activity
+            android:name="com.game.sdk.activity.FastLoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            />
+
+        <!-- 微支付SDK界面 -->
+        <!-- 显示网页界面 -->
+        <activity
+            android:name="com.iapppay.sdk.main.WebActivity"
+            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.iapppay.ui.activity.PersonCenterActivity"
+            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 收银台-普通 -->
+        <activity
+            android:name="com.iapppay.ui.activity.PayHubActivity"
+            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 选择充值金额界面 -->
+        <activity
+            android:name="com.iapppay.ui.activity.SelectAmountActivity"
+            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.iapppay.ui.activity.ChargeActivity"
+            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+
+        <!-- 游戏卡和话费卡界面 -->
+        <activity
+            android:name="com.iapppay.ui.card.GamepayActivity"
+            android:configChanges="screenSize|orientation|keyboard|navigation|layoutDirection"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+
+        <!-- alipay sdk begin (新的支付宝) -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
             android:screenOrientation="behind"
-            android:theme="@style/NoTitleActivityDialog.Animation" />
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"/>
 
-        <service android:name="com.mengyousdk.lib.moudle.login.view.popview.FloatWindowService" />
 
 
+        <!-- sdk相关配置结束 -->
 
 
 

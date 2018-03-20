@@ -26,8 +26,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="@string/tips_18"
-                android:textColor="@color/text_color_black"
+                android:text="@string/mc_tips_18"
+                android:textColor="@color/mc_text_color_black"
                 android:textSize="18dp" />
         </RelativeLayout>
 
@@ -49,8 +49,8 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/text_color_black"
-                    android:text="@string/tips_19" 
+                    android:textColor="@color/mc_text_color_black"
+                    android:text="@string/mc_tips_19"
                     android:textSize="15dp"
 					android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -63,12 +63,12 @@
 	                android:layout_height="wrap_content"
 	                android:background="@drawable/mc_input_text_bg"
 	                android:paddingLeft="8dp"
-	                android:hint="@string/tips_20"
+	                android:hint="@string/mc_tips_20"
 	                android:imeOptions="actionDone"
 	                android:maxLength="16"
 	                android:singleLine="true"
 	                android:textColor="@android:color/black"
-	                android:textColorHint="@color/text_color_hint"
+	                android:textColorHint="@color/mc_text_color_hint"
 	                android:textSize="15dp" />
                 
                 
@@ -84,8 +84,8 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/text_color_black"
-                    android:text="@string/tips_21"
+                    android:textColor="@color/mc_text_color_black"
+                    android:text="@string/mc_tips_21"
                     android:textSize="15dp"
 					android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -99,12 +99,12 @@
 	                android:layout_marginTop="8dp"
 	                android:background="@drawable/mc_input_text_bg"
 	                android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@-_#@`~,.?/|\"
-	                android:hint="@string/tips_22"
+	                android:hint="@string/mc_tips_22"
 	                android:imeOptions="actionDone"
 	                android:maxLength="16"
 	                android:singleLine="true"
 	                android:textColor="@android:color/black"
-	                android:textColorHint="@color/text_color_hint"
+	                android:textColorHint="@color/mc_text_color_hint"
 	                android:textSize="15dp" />
              
              </LinearLayout>
@@ -119,8 +119,8 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/text_color_black"
-                    android:text="@string/tips_23"
+                    android:textColor="@color/mc_text_color_black"
+                    android:text="@string/mc_tips_23"
                     android:textSize="15dp"
 					android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -134,12 +134,12 @@
 	                android:layout_marginTop="8dp"
 	                android:background="@drawable/mc_input_text_bg"
 	                android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@-_#@`~,.?/|\"
-	                android:hint="@string/tips_24"
+	                android:hint="@string/mc_tips_24"
 	                android:imeOptions="actionDone"
 	                android:maxLength="16"
 	                android:singleLine="true"
 	                android:textColor="@android:color/black"
-	                android:textColorHint="@color/text_color_hint"
+	                android:textColorHint="@color/mc_text_color_hint"
 	                android:textSize="15dp" />
              
              </LinearLayout>
@@ -161,9 +161,9 @@
                 android:layout_marginRight="14dp"                
                 android:layout_height="wrap_content"
                 android:background="@color/mc_blue_btn_selector"
-                android:text="@string/tips_25"
+                android:text="@string/mc_tips_25"
                 android:focusable="false"
-                android:textColor="@color/text_color_white" />
+                android:textColor="@color/mc_text_color_white" />
 
             <Button
                 android:id="@+id/cpac_back_btn"
@@ -173,8 +173,8 @@
                 android:layout_height="wrap_content"
                 android:focusable="false"
                 android:background="@color/mc_green_btn_selector"
-                android:text="@string/tips_26"
-                android:textColor="@color/text_color_white" />
+                android:text="@string/mc_tips_26"
+                android:textColor="@color/mc_text_color_white" />
     
             
           </LinearLayout>

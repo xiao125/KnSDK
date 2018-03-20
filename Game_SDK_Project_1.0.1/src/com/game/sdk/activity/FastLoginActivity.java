@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
@@ -136,8 +136,8 @@ public class FastLoginActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                user_register.setBackgroundColor(getResources().getColor(R.color.kn_text));
-                phone_register.setBackgroundColor(getResources().getColor(R.color.Kn_Username));
+                user_register.setBackgroundColor(getResources().getColor(R.color.mc_kn_text));
+                phone_register.setBackgroundColor(getResources().getColor(R.color.mc_Kn_Username));
                 user_layout.setVisibility(View.INVISIBLE); //隐藏
                 phone_layout.setVisibility(View.VISIBLE);//显示
 
@@ -159,8 +159,8 @@ public class FastLoginActivity extends Activity {
 
 
 
-                user_register.setBackgroundColor(getResources().getColor(R.color.Kn_Username));
-                phone_register.setBackgroundColor(getResources().getColor(R.color.kn_text));
+                user_register.setBackgroundColor(getResources().getColor(R.color.mc_Kn_Username));
+                phone_register.setBackgroundColor(getResources().getColor(R.color.mc_kn_text));
                 user_layout.setVisibility(View.VISIBLE);//显示
                 phone_layout.setVisibility(View.INVISIBLE); //隐藏
                 isVISIBLE=false;
@@ -181,12 +181,12 @@ public class FastLoginActivity extends Activity {
                 if (b){
                     //选择了
                     kn_user_zc.setEnabled(true);
-                    kn_user_zc.setBackgroundColor(getResources().getColor(R.color.Kn_Username));
+                    kn_user_zc.setBackgroundColor(getResources().getColor(R.color.mc_Kn_Username));
                 }else {
 
 
                     kn_user_zc.setEnabled(false);
-                    kn_user_zc.setBackgroundColor(getResources().getColor(R.color.kn_text));
+                    kn_user_zc.setBackgroundColor(getResources().getColor(R.color.mc_kn_text));
 
                 }
             }
@@ -309,16 +309,16 @@ public class FastLoginActivity extends Activity {
     //判断手机号是否正确
     private boolean isPhone(String phone) {
         if(TextUtils.isEmpty(phone)){
-            Util.ShowTips(m_activity,getResources().getString(R.string.tips_58));
+            Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_58));
 
             return true;
         }
         if(!Util.isMobileNO(phone)){
-            Util.ShowTips(m_activity,getResources().getString(R.string.tips_57));
+            Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_57));
             return true;
         }
         if(!Util.isNetWorkAvailable(getApplicationContext())){
-            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 
             return true;
         }
@@ -430,7 +430,7 @@ public class FastLoginActivity extends Activity {
                     public void run() {
                         mCount--;
                         phone_ks_code.setText(String.valueOf(mCount)+"秒");
-                        phone_ks_code.setBackgroundColor(getResources().getColor(R.color.kn_text));
+                        phone_ks_code.setBackgroundColor(getResources().getColor(R.color.mc_kn_text));
 
                         if (mCount<=0){
                             phone_ks_code.setText("重新发送");
@@ -468,16 +468,16 @@ public class FastLoginActivity extends Activity {
 
 
         if(TextUtils.isEmpty(cell_Num)){
-            Util.ShowTips(m_activity,getResources().getString(R.string.tips_58));
+            Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_58));
 
             return ;
         }
         if(!Util.isMobileNO(cell_Num)){
-            Util.ShowTips(m_activity,getResources().getString(R.string.tips_57));
+            Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_57));
             return ;
         }
         if(!Util.isNetWorkAvailable(getApplicationContext())){
-            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 
             return ;
         }
@@ -514,11 +514,11 @@ public class FastLoginActivity extends Activity {
         String password = passWordEt.getText().toString().trim();//密码
 
         if(TextUtils.isEmpty(userphone)){
-            Util.ShowTips(m_activity,getResources().getString(R.string.tips_58));
+            Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_58));
             return ;
         }
         if(!Util.isMobileNO(userphone)){
-            Util.ShowTips(m_activity,getResources().getString(R.string.tips_57));
+            Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_57));
             return ;
         }
 
@@ -528,18 +528,18 @@ public class FastLoginActivity extends Activity {
         }
 
         if (TextUtils.isEmpty(password)) {
-            Util.ShowTips(context,  getResources().getString(R.string.tips_8) );
+            Util.ShowTips(context,  getResources().getString(R.string.mc_tips_8) );
             return;
         }
 
         if (!password.matches("^.{6,20}$")) {
-            Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
+            Util.ShowTips(context,  getResources().getString(R.string.mc_tips_5) );
             return;
         }
 
 
         if(!Util.isNetWorkAvailable(getApplicationContext())){
-            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
             return ;
         }
        // String pw = Md5Util.getMd5(password);
@@ -561,30 +561,30 @@ public class FastLoginActivity extends Activity {
         //注意：判断顺序
         String username = userNameEt.getText().toString();
         if (TextUtils.isEmpty(username)) {
-            Util.ShowTips(context,  getResources().getString(R.string.tips_2) );
+            Util.ShowTips(context,  getResources().getString(R.string.mc_tips_2) );
             return;
         }
 
         if (!username.matches("^.{6,25}$")) {
-            Util.ShowTips(context, getResources().getString(R.string.tips_4) );
+            Util.ShowTips(context, getResources().getString(R.string.mc_tips_4) );
             return;
         }
 
         if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
-            Util.ShowTips(context, getResources().getString(R.string.tips_1));
+            Util.ShowTips(context, getResources().getString(R.string.mc_tips_1));
             return;
         }
 
 
         if (!username.matches("^[A-Za-z0-9_-]+$")) {
-            Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
+            Util.ShowTips(context,  getResources().getString(R.string.mc_tips_3) );
             return;
         }
 
 
         String password = passWordEt.getText().toString();
         if (TextUtils.isEmpty(password)) {
-            Util.ShowTips(context,  getResources().getString(R.string.tips_8) );
+            Util.ShowTips(context,  getResources().getString(R.string.mc_tips_8) );
             return;
         }
       /*  String confirm_password=confirmPassword.getText().toString();
@@ -603,7 +603,7 @@ public class FastLoginActivity extends Activity {
 
 
         if (!password.matches("^.{6,20}$")) {
-            Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
+            Util.ShowTips(context,  getResources().getString(R.string.mc_tips_5) );
             return;
         }
 
@@ -613,7 +613,7 @@ public class FastLoginActivity extends Activity {
         }*/
 
         if(!Util.isNetWorkAvailable(getApplicationContext())){
-            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
             return ;
         }
      //  String  pw = Md5Util.getMd5(password);
@@ -735,7 +735,7 @@ public class FastLoginActivity extends Activity {
 
                             setResult(Activity.RESULT_OK);
                             DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
-                            Util.ShowTips(FastLoginActivity.this, getResources().getString(R.string.tips_15) );
+                            Util.ShowTips(FastLoginActivity.this, getResources().getString(R.string.mc_tips_15) );
                             //RegisterActivity.this.finish();
 
                            /*   m_activity.finish();
@@ -776,7 +776,7 @@ public class FastLoginActivity extends Activity {
 
                             //添加手机账号
                             DBHelper.getInstance().insertOrUpdateUser( m_phone ,m_pw );
-                            Util.ShowTips(FastLoginActivity.this, getResources().getString(R.string.tips_15) );
+                            Util.ShowTips(FastLoginActivity.this, getResources().getString(R.string.mc_tips_15) );
 
                             GameSDK.instance.login(FastLoginActivity.this); //跳转到免密码登录
 

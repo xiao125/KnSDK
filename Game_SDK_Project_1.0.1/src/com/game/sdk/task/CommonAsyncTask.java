@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.os.AsyncTask;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.ResultCode;
 import com.game.sdk.bean.Result;
 import com.game.sdk.listener.BaseListener;
@@ -42,7 +42,7 @@ public class CommonAsyncTask extends AsyncTask<Map<String, String>, Void, Void> 
 					Thread.sleep(500L);
 					if (i == 2) {
 						KnLog.e("请检查网络是否连接");
-						excuteCallback(ResultCode.FAIL , new Result(ResultCode.NET_DISCONNET, activity.getResources().getString(R.string.tips_34) ).toString() );
+						excuteCallback(ResultCode.FAIL , new Result(ResultCode.NET_DISCONNET, activity.getResources().getString(R.string.mc_tips_34) ).toString() );
 						break;
 					}
 				}

@@ -2,7 +2,7 @@ package com.game.sdk.activity;
 
 import java.util.ArrayList;
 import java.util.Timer;
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
@@ -230,7 +230,7 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 			//	直接登录
 			KnLog.log("直接登录++");
 			if(!Util.isNetWorkAvailable(getApplicationContext())){
-				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 				return ;
 			}
 			
@@ -534,7 +534,7 @@ public class AutoLoginActivity extends Activity implements OnClickListener {
 			}
 			else if(10001==msg.what){
 				if(!Util.isNetWorkAvailable(getApplicationContext())){
-					Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+					Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 					return ;
 				}
 				

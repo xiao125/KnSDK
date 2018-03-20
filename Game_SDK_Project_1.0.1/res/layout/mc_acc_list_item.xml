@@ -18,7 +18,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/dp_5"
         android:background="@drawable/mc_list_item_close"
-        android:contentDescription="@string/app_name" />
+        />
 
     <TextView
         android:id="@+id/textview"
@@ -28,6 +28,6 @@
         android:layout_toLeftOf="@id/list_item_close"
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceSmallInverse"
-        android:textColor="@color/Kn_Username" />
+        android:textColor="@color/mc_Kn_Username" />
 
 </RelativeLayout>

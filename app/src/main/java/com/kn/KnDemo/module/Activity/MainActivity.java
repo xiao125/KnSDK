@@ -69,6 +69,8 @@ public class MainActivity extends Activity {
 
         sdkProxyinit();
         webviewinit();
+        //String htmlurl="file:///android_asset/normal.html";
+       // showHtml(htmlurl);
 
 
     }

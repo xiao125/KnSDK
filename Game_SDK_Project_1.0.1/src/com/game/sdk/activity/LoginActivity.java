@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.SDK;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
@@ -191,7 +191,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		MyAdapter dropDownAdapter = new MyAdapter(this, list, R.layout.mc_acc_list_item, new String[] { "name", "drawable" }, new int[] { R.id.textview, R.id.list_item_close });
 		ListView listView = new ListView(this);
 		listView.setAdapter(dropDownAdapter);
-		listView.setDivider(getResources().getDrawable(R.color.PopViewDividerColor));
+		listView.setDivider(getResources().getDrawable(R.color.mc_PopViewDividerColor));
 		listView.setDividerHeight(1);
 		listView.setCacheColorHint(0);
 		popupWindow = new PopupWindow(listView, userNameEt.getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT, true);
@@ -204,17 +204,17 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private void checkLoginParams(Activity context, EditText userNameEt, EditText passWordEt) {
 		String username = userNameEt.getText().toString();
 		if (TextUtils.isEmpty(username)) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_2), Toast.LENGTH_SHORT);
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_2), Toast.LENGTH_SHORT);
 			return;
 		}
 		String password = passWordEt.getText().toString();
 		if (TextUtils.isEmpty(password)) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_8) , Toast.LENGTH_SHORT);
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_8) , Toast.LENGTH_SHORT);
 			return;
 		}
 		
 		if(!Util.isNetWorkAvailable(getApplicationContext())){
-			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 			return ;
 		}
 		
@@ -344,13 +344,13 @@ public class LoginActivity extends Activity implements OnClickListener {
 						long returnId = DBHelper.getInstance().deleteUser(usernames[position]);
 						if (returnId == -1)
 						{
-							Util.ShowTips(LoginActivity.this, getResources().getString(R.string.tips_12) );
+							Util.ShowTips(LoginActivity.this, getResources().getString(R.string.mc_tips_12) );
 						}
 						else
 						{
 							String[] newUserNames = DBHelper.getInstance().findAllUserName(); 
 							initPopupWindow();
-							Util.ShowTips(LoginActivity.this, getResources().getString(R.string.tips_13));
+							Util.ShowTips(LoginActivity.this, getResources().getString(R.string.mc_tips_13));
 							if (newUserNames.length == 0)
 							{
 								userNameEt.setText("");

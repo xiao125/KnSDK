@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.ResultCode;
 import com.game.sdk.bean.Result;
 import com.game.sdk.util.HttpUtil;
@@ -41,7 +41,7 @@ public class RecordGameAsyncTask extends AsyncTask<Map<String, String>, Void, Vo
 					 Thread.sleep(500L);
 					 if ( i==2 ) {
 						 msg.what = ResultCode.FAIL;
-						 msg.obj = new Result(ResultCode.NET_DISCONNET,  context.getResources().getString(R.string.tips_34).toString() ).toString() ;
+						 msg.obj = new Result(ResultCode.NET_DISCONNET,  context.getResources().getString(R.string.mc_tips_34).toString() ).toString() ;
 						 break;
 					}
 				 }

@@ -1,6 +1,6 @@
 package com.game.sdk.activity;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
@@ -53,7 +53,7 @@ public class AccountManagerActivity extends Activity implements OnClickListener 
 			intent = new Intent(AccountManagerActivity.this,BindCellActivity.class);
 			intent.putExtra("userName",m_userNames);
 
-		}else if (id==R.id.image_back){ //返回
+		}else if (id== R.id.image_back){ //返回
 
 				if (m_activity!=null){
 					m_activity.finish();
@@ -75,11 +75,11 @@ public class AccountManagerActivity extends Activity implements OnClickListener 
 				//	直接登录
 				KnLog.log("游客直接登录++");
 				if(!Util.isNetWorkAvailable(getApplicationContext())){
-					Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+					Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 					return ;
 				}
 				if(	null == DeviceUtil.getDeviceId()){
-					Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_59).toString());
+					Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_59).toString());
 					return ;
 				}
 				KnLog.log("游客登录开始");

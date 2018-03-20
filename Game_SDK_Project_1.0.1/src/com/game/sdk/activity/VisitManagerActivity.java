@@ -6,7 +6,7 @@ import java.util.TimerTask;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
@@ -149,11 +149,11 @@ public class VisitManagerActivity extends Activity implements OnClickListener {
 			//	直接登录
 			KnLog.log("游客直接登录++");
 			if(!Util.isNetWorkAvailable(getApplicationContext())){
-				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 				return ;
 			}
 			if(	null == DeviceUtil.getDeviceId()){
-				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_59).toString());
+				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_59).toString());
 				return ;
 			}
 			KnLog.log("游客登录开始");
@@ -239,11 +239,11 @@ public class VisitManagerActivity extends Activity implements OnClickListener {
 			}
 			else if(10001==msg.what){	
 				if(!Util.isNetWorkAvailable(getApplicationContext())){
-					Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+					Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 					return ;
 				}
 				if(	null == DeviceUtil.getDeviceId()){
-					Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_59).toString());
+					Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_59).toString());
 					return ;
 				}
 				KnLog.log("游客登录开始");

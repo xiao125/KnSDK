@@ -58,8 +58,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dp_20"
-            android:text="@string/tips_62"
-            android:textColor="@color/kn_text" />
+            android:text="@string/mc_tips_62"
+            android:textColor="@color/mc_kn_text" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -93,8 +93,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/select_login_ks_login"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/tips_70"
-                    android:textColor="@color/kn_selecte_log" />
+                    android:text="@string/mc_tips_70"
+                    android:textColor="@color/mc_kn_selecte_log" />
             </RelativeLayout>
 
 
@@ -120,8 +120,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/select_login_account_login"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/tips_61"
-                    android:textColor="@color/kn_selecte_log" />
+                    android:text="@string/mc_tips_61"
+                    android:textColor="@color/mc_kn_selecte_log" />
             </RelativeLayout>
 
 
@@ -146,8 +146,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/select_login_visit_login"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/tips_37"
-                    android:textColor="@color/kn_selecte_log" />
+                    android:text="@string/mc_tips_37"
+                    android:textColor="@color/mc_kn_selecte_log" />
             </RelativeLayout>
 
 

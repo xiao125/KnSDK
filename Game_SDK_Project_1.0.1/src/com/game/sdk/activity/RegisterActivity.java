@@ -1,6 +1,6 @@
 package com.game.sdk.activity;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
@@ -207,50 +207,50 @@ public class RegisterActivity extends Activity implements OnClickListener {
 	private void checkRegisterParams(Context context, EditText userNameEt, EditText passWordEt) {
 		String username = userNameEt.getText().toString();
 		if (TextUtils.isEmpty(username)) {
-			Util.ShowTips(context,  getResources().getString(R.string.tips_2) );
+			Util.ShowTips(context,  getResources().getString(R.string.mc_tips_2) );
 			return;
 		}
 		String password = passWordEt.getText().toString();
 		if (TextUtils.isEmpty(password)) {
-			Util.ShowTips(context,  getResources().getString(R.string.tips_8) );
+			Util.ShowTips(context,  getResources().getString(R.string.mc_tips_8) );
 			return;
 		}
 		String confirm_password=confirmPassword.getText().toString();
 		if (TextUtils.isEmpty(confirm_password)) {
-			Util.ShowTips(context,  getResources().getString(R.string.tips_64) );
+			Util.ShowTips(context,  getResources().getString(R.string.mc_tips_64) );
 			return;
 		}
 		
 		if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_1));
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_1));
 			return;
 		}
 
 		if (!username.matches("^[a-z|A-Z|0-9]{1,}$")) {
-			Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
+			Util.ShowTips(context,  getResources().getString(R.string.mc_tips_3) );
 			return;
 		}
 
 		if (!username.matches("^.{6,12}$")) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_4) );
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_4) );
 			return;
 		}
 
 		if (!password.matches("^.{6,16}$")) {
-			Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
+			Util.ShowTips(context,  getResources().getString(R.string.mc_tips_5) );
 			return;
 		}
 		if (!confirm_password.matches("^.{6,16}$")) {
-			Util.ShowTips(context,  getResources().getString(R.string.tips_5) );
+			Util.ShowTips(context,  getResources().getString(R.string.mc_tips_5) );
 			return;
 		}
 		if (!confirm_password.equals(password)) {
-			Util.ShowTips(context,  getResources().getString(R.string.tips_65) );
+			Util.ShowTips(context,  getResources().getString(R.string.mc_tips_65) );
 			return;
 		}
 		
 		if(!Util.isNetWorkAvailable(getApplicationContext())){
-			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 			return ;
 		}
 		password = Md5Util.getMd5(password);
@@ -270,7 +270,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 			case ResultCode.SUCCESS:
 				setResult(Activity.RESULT_OK);
 				DBHelper.getInstance().insertOrUpdateUser( m_userName , m_passWord );
-				Util.ShowTips(RegisterActivity.this, getResources().getString(R.string.tips_15) );
+				Util.ShowTips(RegisterActivity.this, getResources().getString(R.string.mc_tips_15) );
 				//RegisterActivity.this.finish();
 				GameSDK.instance.login(RegisterActivity.this);
 				//	执行自动登录

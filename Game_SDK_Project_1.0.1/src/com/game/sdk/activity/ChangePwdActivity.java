@@ -9,7 +9,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.listener.BaseListener;
@@ -93,7 +93,7 @@ public class ChangePwdActivity extends Activity implements OnClickListener {
 		final String username = userNameEt.getText().toString();
 		
 		if (TextUtils.isEmpty(username)) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_2) , Toast.LENGTH_SHORT);
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_2) , Toast.LENGTH_SHORT);
 			return;
 		}
 		
@@ -101,23 +101,23 @@ public class ChangePwdActivity extends Activity implements OnClickListener {
 		String newPassword = newPasswordEt.getText().toString();
 		 
 		if (TextUtils.isEmpty(oldPassword) || TextUtils.isEmpty(newPassword) ) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_7), Toast.LENGTH_SHORT);
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_7), Toast.LENGTH_SHORT);
 			return;
 		}
 		if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_1));
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_1));
 			return;
 		}
 		if (!username.matches("^[a-z|A-Z|0-9]{1,}$")) {
-			Util.ShowTips(context,getResources().getString(R.string.tips_3));
+			Util.ShowTips(context,getResources().getString(R.string.mc_tips_3));
 			return;
 		}
 		if (!username.matches("^.{4,16}$")) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_4));
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_4));
 			return;
 		}
 		if (!oldPassword.matches("^.{6,16}$") || !newPassword.matches("^.{6,16}$") ) {
-			Util.ShowTips(context, getResources().getString(R.string.tips_5));
+			Util.ShowTips(context, getResources().getString(R.string.mc_tips_5));
 			return;
 		}
 		
@@ -125,7 +125,7 @@ public class ChangePwdActivity extends Activity implements OnClickListener {
 		final String newpwd= Md5Util.getMd5(newPassword);
 		
 		if(!Util.isNetWorkAvailable(getApplicationContext())){
-			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+			Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 			return ;
 		}
 		LoadingDialog.show(context, "请求中...", true);

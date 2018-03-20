@@ -13,16 +13,18 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.activity.AutoLoginActivity;
 import com.game.sdk.activity.ChangePwdActivity;
 import com.game.sdk.activity.FastLoginActivity;
 import com.game.sdk.activity.ForgotPasswordActivity;
 import com.game.sdk.activity.RegisterActivity;
+import com.game.sdk.bean.Data;
 import com.game.sdk.bean.GameInfo;
 import com.game.sdk.bean.GameUser;
 import com.game.sdk.bean.PayInfo;
 import com.game.sdk.bean.UserInfo;
+import com.game.sdk.listener.InitListener;
 import com.game.sdk.listener.LoginListener;
 import com.game.sdk.listener.PayListener;
 import com.game.sdk.listener.ReportListener;
@@ -43,11 +45,11 @@ public class GameSDK {
 	private LoginListener mLoginListener = null;
 	private PayListener mPayListener = null;
 	private ReportListener mReportListener =null;
+	private InitListener mInitListener= null;
 	private UserInfo userInfo = null;
 	private GameInfo gameInfo = null;
 	private GameUser gameUser = null;
 	private boolean  mScreenSensor = false ;
-
 
 	
 
@@ -78,8 +80,8 @@ public class GameSDK {
 		setGameInfo(gameInfo);
 		SDK.changeConfig(gameInfo.getAdChannelTxt());
 		KnLog.setLogEnable(false);
-		
-		
+
+
 		//	读取activity中manifest.xml中某个键值对是否支持横竖屏切换
 		ApplicationInfo ai;
 		String adChannel = null ;
@@ -101,9 +103,16 @@ public class GameSDK {
 			e.printStackTrace();
 		}
 
-		//上报数据
-		RecordActivate.getInstance().init(activity);
 
+		/*Data.getInstance().setGameActivity(activity);
+		//读取ass文件参数
+		Data.getInstance().setGameInfo(gameInfo);
+*/
+
+		//上报数据
+		//RecordActivate.getInstance().init(activity);
+
+	//	mInitListener.onSuccess(0);
 
 
 	}
@@ -121,12 +130,6 @@ public class GameSDK {
 	}
 
 
-	//webview加载
-	private void webviewinit(){
-
-
-
-	}
 
 
 
@@ -143,7 +146,7 @@ public class GameSDK {
 		KnLog.log(" login ccc");
 		
 		if (!isInited()) {
-			Util.ShowTips(activity, activity.getResources().getString(R.string.tips_16) );
+			Util.ShowTips(activity, activity.getResources().getString(R.string.mc_tips_16) );
 			return;
 		}
 
@@ -183,7 +186,7 @@ public class GameSDK {
 		setmLoginListener(listener);
 		
 		if (!isInited()) {
-			Util.ShowTips(activity, activity.getResources().getString(R.string.tips_16) );
+			Util.ShowTips(activity, activity.getResources().getString(R.string.mc_tips_16) );
 			return;
 		}
 
@@ -318,7 +321,7 @@ public class GameSDK {
 			final PayListener payListener) {
 		
 		if (userInfo == null || !userInfo.isLogin()) {
-			Util.ShowTips(activity,  activity.getResources().getString(R.string.tips_17) );
+			Util.ShowTips(activity,  activity.getResources().getString(R.string.mc_tips_17) );
 			return;
 		}
 		
@@ -393,5 +396,13 @@ public class GameSDK {
 
 	public void setGameUser(GameUser gameUser) {
 		this.gameUser = gameUser;
+	}
+
+	public InitListener getmInitListener() {
+		return mInitListener;
+	}
+
+	public void setmInitListener(InitListener mInitListener) {
+		this.mInitListener = mInitListener;
 	}
 }

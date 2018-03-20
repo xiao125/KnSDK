@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 
 public class VisitiDialog {
 	 

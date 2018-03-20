@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
 import com.game.sdk.activity.AccountManagerActivity;
@@ -51,6 +51,14 @@ private boolean isFirstLogin=false;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+		if(GameSDK.getInstance().ismScreenSensor()){
+
+		}else{
+			setRequestedOrientation(GameSDK.getInstance().getmOrientation());
+		}
+
+
 		setContentView(R.layout.mc_activity_selecte_login);
 		
 		activity=this;
@@ -274,11 +282,11 @@ private boolean isFirstLogin=false;
 						// TODO Auto-generated method stub
 						dia.dismiss();
 						if(!Util.isNetWorkAvailable(getApplicationContext())){
-							Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+							Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 							return ;
 						}
 						if(	null == DeviceUtil.getDeviceId()){
-							Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_59).toString());
+							Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_59).toString());
 							return ;
 						}
 						KnLog.log("游客登录开始");

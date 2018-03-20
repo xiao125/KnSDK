@@ -7,7 +7,7 @@ dependencies {
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
 
     sourceSets {
         main {
@@ -38,9 +38,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             //打开资源压缩
-            shrinkResources true
+          //  shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

@@ -23,8 +23,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="@string/tips_27"
-                android:textColor="@color/text_color_black"
+                android:text="@string/mc_tips_27"
+                android:textColor="@color/mc_text_color_black"
                 android:textSize="18dp" />
         </RelativeLayout>
 
@@ -42,12 +42,12 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/mc_input_text_bg"
                 android:paddingLeft="8dp"
-                android:hint="@string/tips_20"
+                android:hint="@string/mc_tips_20"
                 android:imeOptions="actionDone"
                 android:maxLength="16"
                 android:singleLine="true"
                 android:textColor="@android:color/black"
-                android:textColorHint="@color/text_color_hint"
+                android:textColorHint="@color/mc_text_color_hint"
                 android:textSize="15dp" />
 
             <EditText
@@ -58,12 +58,12 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/mc_input_text_bg"
                 android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@-_#@`~,.?/|\"
-                android:hint="@string/tips_31"
+                android:hint="@string/mc_tips_31"
                 android:imeOptions="actionDone"
                 android:maxLength="16"
                 android:singleLine="true"
                 android:textColor="@android:color/black"
-                android:textColorHint="@color/text_color_hint"
+                android:textColorHint="@color/mc_text_color_hint"
                 android:textSize="15dp" />
         </LinearLayout>
 
@@ -82,8 +82,8 @@
                 android:layout_centerHorizontal="true"
                 android:background="@color/mc_red_btn_selector"
                 android:focusable="false"
-                android:text="@string/tips_28"
-                android:textColor="@color/text_color_white" />
+                android:text="@string/mc_tips_28"
+                android:textColor="@color/mc_text_color_white" />
 
             <Button
                 android:id="@+id/fl_login_btn"
@@ -92,8 +92,8 @@
                 android:background="@color/mc_blue_btn_selector"
                 android:layout_alignTop="@+id/fl_register_btn"
                 android:layout_alignRight="@+id/fl_once_register_btn"
-                android:text="@string/tips_29"
-                android:textColor="@color/text_color_white" />
+                android:text="@string/mc_tips_29"
+                android:textColor="@color/mc_text_color_white" />
 
             <Button
                 android:id="@+id/fl_register_btn"
@@ -103,8 +103,8 @@
                 android:layout_marginBottom="11dp"
                 android:layout_alignLeft="@+id/fl_once_register_btn"
                 android:background="@color/mc_green_btn_selector"
-                android:text="@string/tips_30"
-                android:textColor="@color/text_color_white" />
+                android:text="@string/mc_tips_30"
+                android:textColor="@color/mc_text_color_white" />
 
         </RelativeLayout>
 

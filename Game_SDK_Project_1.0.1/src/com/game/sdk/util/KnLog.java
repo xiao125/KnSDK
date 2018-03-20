@@ -4,7 +4,7 @@ import android.util.Log;
 
 public class KnLog {
 
-	public static boolean mLogEnable = true;
+	public static boolean mLogEnable = false;
 	
 	public static final String TAG = "KNGAMESDK";
 	
@@ -40,7 +40,10 @@ public class KnLog {
 	}
 	
 	public static void log( String message ){
-		Log.e(TAG, message);
+		if (mLogEnable){
+			Log.d(TAG, message);
+		}
+
 	}
 
 }

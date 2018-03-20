@@ -24,7 +24,7 @@
                 	android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/text_color_white"
+                    android:textColor="@color/mc_text_color_white"
                     android:text="您的用户名是:"/>
                
                  <Button 
@@ -35,8 +35,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center_horizontal"
                 	android:background="@color/mc_btn_submit_selector"
-                	android:text="@string/tips_25"
-                	android:textColor="@color/text_color_white"/>
+                	android:text="@string/mc_tips_25"
+                	android:textColor="@color/mc_text_color_white"/>
                
           </RelativeLayout>
      </LinearLayout>

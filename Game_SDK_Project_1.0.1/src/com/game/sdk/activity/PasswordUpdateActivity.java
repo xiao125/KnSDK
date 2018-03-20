@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
@@ -37,8 +37,8 @@ import org.json.JSONObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.example.kngame_sdk_project.R.id.password_update_back;
-import static com.example.kngame_sdk_project.R.id.update_code;
+import static com.game.sdkproxy.R.id.password_update_back;
+import static com.game.sdkproxy.R.id.update_code;
 
 /**
  * 通过手机验证码重新修改密码
@@ -100,21 +100,21 @@ public class PasswordUpdateActivity extends Activity implements OnClickListener 
 			}
 
 			if(TextUtils.isEmpty(newPwd)){
-				Util.ShowTips(m_activity.getApplicationContext(), getResources().getString(R.string.tips_8) , Toast.LENGTH_SHORT);
+				Util.ShowTips(m_activity.getApplicationContext(), getResources().getString(R.string.mc_tips_8) , Toast.LENGTH_SHORT);
 				return ;
 			}
 			if (!newPwd.matches("^.{6,16}$")) {
-				Util.ShowTips(m_activity,  getResources().getString(R.string.tips_5) );
+				Util.ShowTips(m_activity,  getResources().getString(R.string.mc_tips_5) );
 				return;
 			}
 
 			if (!newPwd.equals(qdPwd)) {
-				Util.ShowTips(m_activity,getResources().getString(R.string.tips_65) );
+				Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_65) );
 				return;
 			}
 
 			if(!Util.isNetWorkAvailable(getApplicationContext())){
-				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 				return ;
 			}
 
@@ -205,14 +205,14 @@ public class PasswordUpdateActivity extends Activity implements OnClickListener 
 
 			String cell_Num = va_phone; //手机号
 			if(TextUtils.isEmpty(cell_Num)){
-				Util.ShowTips(m_activity,getResources().getString(R.string.tips_58));
+				Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_58));
 				return ;
 			}
 			if(!Util.isMobileNO(cell_Num)){
-				Util.ShowTips(m_activity,getResources().getString(R.string.tips_57));
+				Util.ShowTips(m_activity,getResources().getString(R.string.mc_tips_57));
 			}
 			if(!Util.isNetWorkAvailable(getApplicationContext())){
-				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+				Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
 				return ;
 			}
 			if(null==m_activity){
@@ -459,11 +459,11 @@ public class PasswordUpdateActivity extends Activity implements OnClickListener 
 			super.handleMessage(msg);
 			if(10001==msg.what){
 				m_update_code.setClickable(true);
-				m_update_code.setText(R.string.tips_48);
+				m_update_code.setText(R.string.mc_tips_48);
 			}
 			else if(10000==msg.what){
 				String text =m_time+"秒";
-				m_update_code.setBackgroundResource(R.color.kn_text);
+				m_update_code.setBackgroundResource(R.color.mc_kn_text);
 				m_update_code.setText(text);
 			}
 		}

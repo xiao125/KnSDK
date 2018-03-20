@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:text="@string/tips_48"
+                android:text="@string/mc_tips_48"
                 android:textColor="#00EE76" />
         </LinearLayout>
 
@@ -105,7 +105,7 @@
             android:layout_marginRight="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_10"
             android:background="@drawable/mc_first_login_btn"
-            android:text="@string/tips_25" />
+            android:text="@string/mc_tips_25" />
 
     </LinearLayout>
 

@@ -122,6 +122,7 @@ public class GameInfo {
 		String result = Util.getAssetsFileContent(Data.getInstance().getApplicationContex(),"SDKFile/adChannel.png");
 
 		gameInfo.setAdChannelTxt(result);
+		KnLog.log("获取文件参数："+result);
 
 //		String adChadChannelannel="2200040";
 		String adChannel = Util.getAdchannle(null);

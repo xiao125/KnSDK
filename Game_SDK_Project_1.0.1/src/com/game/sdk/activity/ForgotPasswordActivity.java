@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.GameSDK;
 import com.game.sdk.ResultCode;
 import com.game.sdk.service.HttpService;
@@ -102,18 +102,18 @@ public class ForgotPasswordActivity extends Activity {
                 if (isChecked){
 
                     iscb=true;
-                    mphone.setTextColor(getResources().getColor(R.color.Kn_Username));
+                    mphone.setTextColor(getResources().getColor(R.color.mc_Kn_Username));
                   //  memail.setTextColor(getResources().getColor(R.color.kn_selecte_log));
                    // m_cb_email.setChecked(false);
                     m_cb_phone.setChecked(true);
                     m_zh_qd.setEnabled(true);
-                    m_zh_qd.setBackgroundColor(getResources().getColor(R.color.Kn_Username));
+                    m_zh_qd.setBackgroundColor(getResources().getColor(R.color.mc_Kn_Username));
 
 
                 }else {
-                    mphone.setTextColor(getResources().getColor(R.color.kn_selecte_log));
+                    mphone.setTextColor(getResources().getColor(R.color.mc_kn_selecte_log));
                     m_zh_qd.setEnabled(false);
-                    m_zh_qd.setBackgroundColor(getResources().getColor(R.color.kn_text));
+                    m_zh_qd.setBackgroundColor(getResources().getColor(R.color.mc_kn_text));
                 }
             }
         });
@@ -182,12 +182,12 @@ public class ForgotPasswordActivity extends Activity {
 
 
         if (!username.matches("^.{6,25}$")) {
-            Util.ShowTips(activity, getResources().getString(R.string.tips_4) );
+            Util.ShowTips(activity, getResources().getString(R.string.mc_tips_4) );
             return;
         }
 
         if (!username.matches("^[A-Za-z0-9 _-]+$")) {
-            Util.ShowTips(activity, getResources().getString(R.string.tips_3));
+            Util.ShowTips(activity, getResources().getString(R.string.mc_tips_3));
             return;
         }
 
@@ -199,7 +199,7 @@ public class ForgotPasswordActivity extends Activity {
 */
 
         if(!Util.isNetWorkAvailable(getApplicationContext())){
-            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
             return ;
         }
 
@@ -220,22 +220,22 @@ public class ForgotPasswordActivity extends Activity {
             //手机号或者账号不能为空
 
             if(TextUtils.isEmpty(username)){
-                Util.ShowTips(context,getResources().getString(R.string.tips_100));
+                Util.ShowTips(context,getResources().getString(R.string.mc_tips_100));
                 return true;
             }
 
             if (!username.matches("^[a-z|A-Z]{1}.{0,}$")) {
-                Util.ShowTips(context, getResources().getString(R.string.tips_1));
+                Util.ShowTips(context, getResources().getString(R.string.mc_tips_1));
                 return true;
             }
 
             if (!username.matches("^[A-Za-z0-9_-]+$")) {
-                Util.ShowTips(context,  getResources().getString(R.string.tips_3) );
+                Util.ShowTips(context,  getResources().getString(R.string.mc_tips_3) );
                 return true;
             }
 
             if (!username.matches("^.{6,25}$")) {
-                Util.ShowTips(context, getResources().getString(R.string.tips_4) );
+                Util.ShowTips(context, getResources().getString(R.string.mc_tips_4) );
                 return true;
             }
 
@@ -250,15 +250,15 @@ public class ForgotPasswordActivity extends Activity {
     private boolean isphone() {
         String cell_num =  m_phone.getText().toString().trim(); //手机号
         if(TextUtils.isEmpty(cell_num)){
-            Util.ShowTips(activity,getResources().getString(R.string.tips_58));
+            Util.ShowTips(activity,getResources().getString(R.string.mc_tips_58));
             return true;
         }
         if(!Util.isMobileNO(cell_num)){
-            Util.ShowTips(activity,getResources().getString(R.string.tips_57));
+            Util.ShowTips(activity,getResources().getString(R.string.mc_tips_57));
             return true;
         }
         if(!Util.isNetWorkAvailable(getApplicationContext())){
-            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.tips_34).toString());
+            Util.ShowTips(getApplicationContext(),getResources().getString(R.string.mc_tips_34).toString());
             return true;
         }
         return false;

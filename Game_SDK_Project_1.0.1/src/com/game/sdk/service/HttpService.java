@@ -430,8 +430,9 @@ public class HttpService {
 			String appkey= String.valueOf(System.currentTimeMillis());//自定义，没有明确指定
 		    params.put("app_key",appkey);
 		    params.put("phone_Type",phonetype);//手机类型
+			params.put("proxyVersion","1.0.0");
 
-
+          KnLog.log("appkey");
 
 		    params.put("sign", Md5Util.getMd5(gameId+appkey+imei));
 

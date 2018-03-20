@@ -1,6 +1,6 @@
 package com.game.sdk.activity;
 
-import com.example.kngame_sdk_project.R;
+import com.game.sdkproxy.R;
 import com.game.sdk.Constants;
 import com.game.sdk.GameSDK;
 
@@ -95,10 +95,10 @@ public class AccountManagerCurrentActivity extends Activity implements OnClickLi
 			String text1= "已经成功绑定手机号码\n";
 			String  text = text1+"\r\r\r\r\r\r"+m_mobile;
 			SpannableString spanString = new SpannableString(text);      
-			ForegroundColorSpan span = new ForegroundColorSpan(m_activity.getResources().getColor(R.color.text_color_hint));      
+			ForegroundColorSpan span = new ForegroundColorSpan(m_activity.getResources().getColor(R.color.mc_text_color_hint));
 			spanString.setSpan(span,0,text1.length()-1, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
 			
-			ForegroundColorSpan span1 = new ForegroundColorSpan(m_activity.getResources().getColor(R.color.text_color_loginmanager_tuhao));      
+			ForegroundColorSpan span1 = new ForegroundColorSpan(m_activity.getResources().getColor(R.color.mc_text_color_loginmanager_tuhao));
 			spanString.setSpan(span1,text1.length(),text.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
 			
 			m_textView.setText( spanString );

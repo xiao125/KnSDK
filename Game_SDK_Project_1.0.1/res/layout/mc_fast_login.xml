@@ -43,8 +43,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:text="@string/tips_70"
-                android:textColor="@color/text_color_black"
+                android:text="@string/mc_tips_70"
+                android:textColor="@color/mc_text_color_black"
                 android:textSize="@dimen/sp_13" />
 
             <ImageView
@@ -79,9 +79,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_30"
                 android:layout_weight="1"
-                android:background="@color/Kn_Username"
-                android:text="@string/tips_71"
-                android:textColor="@color/kn_selecte_log"
+                android:background="@color/mc_Kn_Username"
+                android:text="@string/mc_tips_71"
+                android:textColor="@color/mc_kn_selecte_log"
                 android:textSize="@dimen/dp_13" />
 
             <Button
@@ -89,9 +89,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_30"
                 android:layout_weight="1"
-                android:background="@color/kn_text"
-                android:text="@string/tips_72"
-                android:textColor="@color/kn_selecte_log"
+                android:background="@color/mc_kn_text"
+                android:text="@string/mc_tips_72"
+                android:textColor="@color/mc_kn_selecte_log"
                 android:textSize="@dimen/sp_13" />
 
         </LinearLayout>
@@ -117,8 +117,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/dp_20"
-                    android:text="@string/tips_73"
-                    android:textColor="@color/kn_text"
+                    android:text="@string/mc_tips_73"
+                    android:textColor="@color/mc_kn_text"
                     android:textSize="@dimen/sp_10" />
 
 
@@ -185,7 +185,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/mc_first_login_edit1"
-                        android:hint="@string/tips_24"
+                        android:hint="@string/mc_tips_24"
                         android:paddingLeft="@dimen/dp_30"
                         android:textSize="@dimen/sp_13"
                         android:password="true"
@@ -253,7 +253,7 @@
                         android:padding="@dimen/dp_5"
                         android:text="获取验证码"
                         android:inputType="number"
-                        android:textColor="@color/text_color_black"
+                        android:textColor="@color/mc_text_color_black"
                         android:textSize="@dimen/sp_13"
 
                         />
@@ -379,8 +379,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/zc_cb"
                         android:layout_toRightOf="@+id/zc_cb"
-                        android:text="@string/tips_74"
-                        android:textColor="@color/kn_text"
+                        android:text="@string/mc_tips_74"
+                        android:textColor="@color/mc_kn_text"
                         android:textSize="@dimen/sp_10" />
 
                     <TextView
@@ -389,8 +389,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/zc_cb"
                         android:layout_toRightOf="@+id/tv"
-                        android:text="@string/tips_75"
-                        android:textColor="@color/zc_xy"
+                        android:text="@string/mc_tips_75"
+                        android:textColor="@color/mc_zc_xy"
                         android:textSize="@dimen/sp_10"
 
                         />
@@ -415,8 +415,8 @@
                     android:layout_height="@dimen/dp_30"
                     android:layout_weight="1"
                     android:background="@drawable/mc_round_btn_login"
-                    android:text="@string/tips_76"
-                    android:textColor="@color/kn_selecte_log"
+                    android:text="@string/mc_tips_76"
+                    android:textColor="@color/mc_kn_selecte_log"
                     android:textSize="@dimen/sp_13" />
 
 
